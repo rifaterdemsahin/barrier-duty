@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barrier Duty - Volunteer Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🚧 Barrier Duty Volunteer Management</h1>
+            <p class="tagline">Organizing school crossing volunteers</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#rota" onclick="showSection('rota')">Volunteer Rota</a></li>
+                <li><a href="#volunteers" onclick="showSection('volunteers')">Volunteers</a></li>
+                <li><a href="#updates" onclick="showSection('updates')">Updates</a></li>
+                <li><a href="#admin" onclick="checkAccess('admin')">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <!-- Home Section -->
+            <section id="home" class="content-section active">
+                <h2>Welcome to Barrier Duty</h2>
+                <div class="welcome-grid">
+                    <div class="welcome-card">
+                        <h3>📅 Our Mission</h3>
+                        <p>We coordinate volunteers to ensure safe school crossings for our children. Every volunteer makes a difference in keeping our kids safe.</p>
+                    </div>
+                    <div class="welcome-card">
+                        <h3>👥 Join Us</h3>
+                        <p>We need volunteers for morning and afternoon duties. Each shift is 30 minutes. Sign up today!</p>
+                    </div>
+                    <div class="welcome-card">
+                        <h3>🔔 Stay Updated</h3>
+                        <p>Check the updates section regularly for schedule changes, weather alerts, and important announcements.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Volunteer Rota Section -->
+            <section id="rota" class="content-section">
+                <h2>📅 Volunteer Rota</h2>
+                <div class="rota-filter">
+                    <button class="filter-btn active" onclick="filterRota('all')">All</button>
+                    <button class="filter-btn" onclick="filterRota('morning')">Morning</button>
+                    <button class="filter-btn" onclick="filterRota('afternoon')">Afternoon</button>
+                </div>
+                
+                <div class="rota-table-container">
+                    <table class="rota-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Day</th>
+                                <th>Time Slot</th>
+                                <th>Volunteer</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rotaTableBody">
+                            <tr data-shift="morning">
+                                <td>2026-02-17</td>
+                                <td>Monday</td>
+                                <td class="morning-slot">8:00 AM - 8:30 AM</td>
+                                <td>Sarah Johnson</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                            <tr data-shift="afternoon">
+                                <td>2026-02-17</td>
+                                <td>Monday</td>
+                                <td class="afternoon-slot">3:00 PM - 3:30 PM</td>
+                                <td>Michael Brown</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                            <tr data-shift="morning">
+                                <td>2026-02-18</td>
+                                <td>Tuesday</td>
+                                <td class="morning-slot">8:00 AM - 8:30 AM</td>
+                                <td>Emily Davis</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                            <tr data-shift="afternoon">
+                                <td>2026-02-18</td>
+                                <td>Tuesday</td>
+                                <td class="afternoon-slot">3:00 PM - 3:30 PM</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr data-shift="morning">
+                                <td>2026-02-19</td>
+                                <td>Wednesday</td>
+                                <td class="morning-slot">8:00 AM - 8:30 AM</td>
+                                <td>Robert Wilson</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                            <tr data-shift="afternoon">
+                                <td>2026-02-19</td>
+                                <td>Wednesday</td>
+                                <td class="afternoon-slot">3:00 PM - 3:30 PM</td>
+                                <td>Jennifer Martinez</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                            <tr data-shift="morning">
+                                <td>2026-02-20</td>
+                                <td>Thursday</td>
+                                <td class="morning-slot">8:00 AM - 8:30 AM</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr data-shift="afternoon">
+                                <td>2026-02-20</td>
+                                <td>Thursday</td>
+                                <td class="afternoon-slot">3:00 PM - 3:30 PM</td>
+                                <td>David Anderson</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                            <tr data-shift="morning">
+                                <td>2026-02-21</td>
+                                <td>Friday</td>
+                                <td class="morning-slot">8:00 AM - 8:30 AM</td>
+                                <td>Lisa Taylor</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                            <tr data-shift="afternoon">
+                                <td>2026-02-21</td>
+                                <td>Friday</td>
+                                <td class="afternoon-slot">3:00 PM - 3:30 PM</td>
+                                <td>James Thomas</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="rota-note">
+                    <p>⚠️ Slots marked as "Pending" need volunteers. Contact the admin to sign up!</p>
+                </div>
+            </section>
+
+            <!-- Volunteers Section -->
+            <section id="volunteers" class="content-section">
+                <h2>👥 Our Volunteers</h2>
+                <div class="volunteer-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Active Volunteers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Total Shifts This Year</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Coverage Rate</div>
+                    </div>
+                </div>
+
+                <h3>Volunteer Information</h3>
+                <div class="volunteer-grid">
+                    <div class="volunteer-card">
+                        <h4>Sarah Johnson</h4>
+                        <p><strong>Total Shifts:</strong> 18 shifts</p>
+                        <p><strong>Child's Year:</strong> Leaving 2026</p>
+                        <p><strong>Availability:</strong> Monday & Friday mornings</p>
+                    </div>
+                    <div class="volunteer-card">
+                        <h4>Michael Brown</h4>
+                        <p><strong>Total Shifts:</strong> 22 shifts</p>
+                        <p><strong>Child's Year:</strong> Leaving 2028</p>
+                        <p><strong>Availability:</strong> Weekday afternoons</p>
+                    </div>
+                    <div class="volunteer-card">
+                        <h4>Emily Davis</h4>
+                        <p><strong>Total Shifts:</strong> 15 shifts</p>
+                        <p><strong>Child's Year:</strong> Leaving 2027</p>
+                        <p><strong>Availability:</strong> Tuesday & Wednesday mornings</p>
+                    </div>
+                    <div class="volunteer-card">
+                        <h4>Robert Wilson</h4>
+                        <p><strong>Total Shifts:</strong> 20 shifts</p>
+                        <p><strong>Child's Year:</strong> Leaving 2026</p>
+                        <p><strong>Availability:</strong> Wednesday & Thursday</p>
+                    </div>
+                    <div class="volunteer-card">
+                        <h4>Jennifer Martinez</h4>
+                        <p><strong>Total Shifts:</strong> 17 shifts</p>
+                        <p><strong>Child's Year:</strong> Leaving 2029</p>
+                        <p><strong>Availability:</strong> All afternoons</p>
+                    </div>
+                    <div class="volunteer-card">
+                        <h4>David Anderson</h4>
+                        <p><strong>Total Shifts:</strong> 19 shifts</p>
+                        <p><strong>Child's Year:</strong> Leaving 2027</p>
+                        <p><strong>Availability:</strong> Thursday & Friday</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Updates Section -->
+            <section id="updates" class="content-section">
+                <h2>🔔 Latest Updates</h2>
+                <div class="updates-timeline">
+                    <div class="update-item urgent">
+                        <div class="update-date">Feb 11, 2026</div>
+                        <div class="update-content">
+                            <h3>❗ Urgent: Volunteers Needed</h3>
+                            <p>We need volunteers for Thursday morning (Feb 20) and Tuesday afternoon (Feb 18). Please contact admin if you can help!</p>
+                        </div>
+                    </div>
+                    <div class="update-item">
+                        <div class="update-date">Feb 8, 2026</div>
+                        <div class="update-content">
+                            <h3>📅 Schedule Updated</h3>
+                            <p>The rota for March has been published. Please check your assigned slots and confirm your availability.</p>
+                        </div>
+                    </div>
+                    <div class="update-item">
+                        <div class="update-date">Feb 5, 2026</div>
+                        <div class="update-content">
+                            <h3>🎉 Thank You!</h3>
+                            <p>Thanks to all volunteers for maintaining 98% coverage this term. Your dedication keeps our children safe!</p>
+                        </div>
+                    </div>
+                    <div class="update-item">
+                        <div class="update-date">Feb 1, 2026</div>
+                        <div class="update-content">
+                            <h3>☔ Weather Policy Reminder</h3>
+                            <p>In severe weather, duty may be cancelled. Check your email for last-minute notifications.</p>
+                        </div>
+                    </div>
+                    <div class="update-item">
+                        <div class="update-date">Jan 28, 2026</div>
+                        <div class="update-content">
+                            <h3>👋 New Volunteers Welcome</h3>
+                            <p>We're welcoming 3 new volunteers this month: Alex Thompson, Maria Garcia, and Chris Lee. Welcome to the team!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Section (Password Protected) -->
+            <section id="admin" class="content-section protected-section">
+                <div id="adminLogin" class="login-form">
+                    <h2>🔒 Admin Area</h2>
+                    <p>This section is password protected. Please enter the admin password to continue.</p>
+                    <form onsubmit="return checkPassword(event)">
+                        <input type="password" id="adminPassword" placeholder="Enter password" required>
+                        <button type="submit">Access Admin Area</button>
+                    </form>
+                    <p class="hint">Hint: Default password is "admin123"</p>
+                </div>
+                
+                <div id="adminContent" class="admin-content" style="display: none;">
+                    <div class="admin-header">
+                        <h2>⚙️ Admin Dashboard</h2>
+                        <button onclick="logout()" class="logout-btn">Logout</button>
+                    </div>
+                    
+                    <div class="admin-grid">
+                        <div class="admin-card">
+                            <h3>📊 Quick Stats</h3>
+                            <ul>
+                                <li>Total Volunteers: 24</li>
+                                <li>Shifts This Week: 10</li>
+                                <li>Pending Confirmations: 2</li>
+                                <li>Volunteers Leaving 2026: 8</li>
+                                <li>Volunteers Leaving 2027: 9</li>
+                                <li>Volunteers Leaving 2028+: 7</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3>⚠️ Action Required</h3>
+                            <ul>
+                                <li>Fill Thursday morning slot (Feb 20)</li>
+                                <li>Fill Tuesday afternoon slot (Feb 18)</li>
+                                <li>Confirm Lisa Taylor for Friday morning</li>
+                                <li>Send reminder emails for next week</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3>📧 Contact Management</h3>
+                            <p>Manage volunteer contact information, send notifications, and update availability.</p>
+                            <button class="admin-action-btn">Manage Contacts</button>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3>📅 Rota Management</h3>
+                            <p>Create and edit the volunteer schedule, assign shifts, and manage coverage.</p>
+                            <button class="admin-action-btn">Edit Rota</button>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3>📢 Send Update</h3>
+                            <p>Post announcements and updates that will appear on the main updates page.</p>
+                            <button class="admin-action-btn">Create Update</button>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3>📈 Reports</h3>
+                            <p>Generate reports on volunteer participation, coverage rates, and attendance.</p>
+                            <button class="admin-action-btn">View Reports</button>
+                        </div>
+                    </div>
+                    
+                    <div class="export-section">
+                        <h3>📥 Export Data</h3>
+                        <button class="export-btn">Export Rota (CSV)</button>
+                        <button class="export-btn">Export Volunteer List (CSV)</button>
+                        <button class="export-btn">Export Statistics (PDF)</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Barrier Duty Volunteer Management. All rights reserved.</p>
+            <p>Keeping our children safe, one crossing at a time. 🚸</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
