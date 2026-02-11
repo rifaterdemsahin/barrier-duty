@@ -2,6 +2,8 @@
 
 A responsive web application for managing school crossing volunteers, coordinating rotas, and keeping everyone informed about their duties.
 
+> https://rifaterdemsahin.github.io/barrier-duty/#updates
+
 ## Features
 
 ### 📅 Volunteer Rota
