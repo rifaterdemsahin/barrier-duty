@@ -17,7 +17,7 @@
     <nav>
         <div class="container">
             <ul class="nav-menu">
-                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#home" class="active" onclick="showSection('home')">Home</a></li>
                 <li><a href="#rota" onclick="showSection('rota')">Volunteer Rota</a></li>
                 <li><a href="#volunteers" onclick="showSection('volunteers')">Volunteers</a></li>
                 <li><a href="#updates" onclick="showSection('updates')">Updates</a></li>
@@ -51,9 +51,9 @@
             <section id="rota" class="content-section">
                 <h2>📅 Volunteer Rota</h2>
                 <div class="rota-filter">
-                    <button class="filter-btn active" onclick="filterRota('all')">All</button>
-                    <button class="filter-btn" onclick="filterRota('morning')">Morning</button>
-                    <button class="filter-btn" onclick="filterRota('afternoon')">Afternoon</button>
+                    <button class="filter-btn active" onclick="filterRota('all', event)">All</button>
+                    <button class="filter-btn" onclick="filterRota('morning', event)">Morning</button>
+                    <button class="filter-btn" onclick="filterRota('afternoon', event)">Afternoon</button>
                 </div>
                 
                 <div class="rota-table-container">

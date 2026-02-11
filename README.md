@@ -49,7 +49,29 @@ Visit the live site at: `https://[your-username].github.io/barrier-duty/`
 
 **Default Password:** `admin123`
 
-⚠️ **Important:** In a production environment, implement proper server-side authentication and change the default password.
+### ⚠️ CRITICAL SECURITY WARNING
+
+This implementation uses **CLIENT-SIDE password protection for demonstration purposes only**. This is **NOT SECURE** for production use because:
+
+1. The password is visible in the JavaScript source code
+2. Anyone can view the source and see the password
+3. There is no real authentication - users can bypass it by manipulating browser storage
+
+**For Production Use:**
+- Implement proper **server-side authentication** with encrypted passwords
+- Use a backend framework (Node.js, Python Flask/Django, PHP, etc.)
+- Store passwords securely using bcrypt or similar hashing
+- Implement proper session management on the server
+- Use HTTPS for all communications
+- Consider using OAuth or other modern authentication methods
+
+This demo is suitable for:
+- Local development and testing
+- Understanding the UI/UX flow
+- Demonstrating features to stakeholders
+- Educational purposes
+
+**Do not deploy this to production without implementing proper security measures.**
 
 ## Local Development
 
