@@ -32,7 +32,6 @@ function showSection(sectionId) {
 // ⚠️ SECURITY WARNING: This is a client-side demo implementation only.
 // For production use, you MUST implement proper server-side authentication.
 // Never store passwords in client-side JavaScript.
-// This demo password is visible to anyone who views the source code.
 const ADMIN_PASSWORD = 'admin123'; // Demo password - NOT FOR PRODUCTION USE
 
 function checkPassword(event) {
@@ -45,7 +44,7 @@ function checkPassword(event) {
         showAdminContent();
         return false;
     } else {
-        alert('❌ Incorrect password. Please try again.\n\nHint: Default password is "admin123"');
+        alert('❌ Incorrect password. Please try again.');
         document.getElementById('adminPassword').value = '';
         return false;
     }
