@@ -200,16 +200,50 @@ Edit CSS variables in `styles.css`:
 - Safari (latest)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
+## New Features: Google Sheets Integration & Email Notifications
+
+### 📊 Google Sheets Integration
+The system now supports integration with Google Sheets for real-time data management:
+- **Live volunteer data** sync from spreadsheets
+- **Automated schedule updates** and tracking
+- **Availability update logging** for audit trail
+- **Dashboard metrics** with formulas and statistics
+
+See [GOOGLE_SHEETS_SETUP.md](GOOGLE_SHEETS_SETUP.md) for detailed setup instructions.
+
+### 📧 Automated Email Notifications (n8n)
+Volunteers receive automated emails via n8n workflows:
+- **Availability requests** when assigned to pending shifts
+- **Daily reminders** for upcoming unconfirmed duties
+- **Confirmation emails** when updates are submitted
+- **One-click update links** to quickly modify availability
+
+See [N8N_EMAIL_WORKFLOW.md](N8N_EMAIL_WORKFLOW.md) for workflow setup guide.
+
+### 🔗 Volunteer Update Portal
+New self-service page for volunteers:
+- **Update availability** through a simple web form ([update-availability.html](update-availability.html))
+- **Pre-filled forms** from email notification links
+- **Instant submission** to Google Sheets
+- **Email confirmations** to both volunteer and admin
+
+### 🔌 API Integration
+Complete API integration documentation:
+- **Google Sheets API** setup and authentication
+- **OAuth 2.0 configuration** for secure access
+- **JavaScript API client** for frontend integration
+- **Error handling** and rate limiting best practices
+
+See [API_INTEGRATION.md](API_INTEGRATION.md) for complete API documentation.
+
 ## Future Enhancements
 
-- Backend integration for real data storage
-- Email notifications to volunteers
 - SMS alerts for urgent changes
 - Calendar export (iCal format)
-- Volunteer self-service portal
 - Weather API integration
-- Automatic reminder system
 - Multi-language support
+- Mobile app development
+- Advanced analytics dashboard
 
 ## Contributing
 

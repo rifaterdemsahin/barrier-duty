@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Availability - Barrier Duty</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .update-form-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .update-form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .update-form-header h1 {
+            color: var(--primary-color, #2563eb);
+            margin-bottom: 10px;
+        }
+
+        .update-form-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-group label .required {
+            color: #dc2626;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color, #2563eb);
+        }
+
+        .form-control.error {
+            border-color: #dc2626;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 40px;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .error-message {
+            color: #dc2626;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.visible {
+            display: block;
+        }
+
+        .info-box {
+            background: #f0f9ff;
+            border-left: 4px solid #0284c7;
+            padding: 15px;
+            margin-bottom: 24px;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #075985;
+            font-size: 14px;
+        }
+
+        .date-range-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-color, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color, #1e40af);
+        }
+
+        .submit-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            display: none;
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 24px;
+            border-radius: 4px;
+        }
+
+        .success-message.visible {
+            display: block;
+        }
+
+        .success-message h3 {
+            color: #065f46;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            color: #047857;
+            margin: 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-color, #2563eb);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loading-spinner.visible {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid var(--primary-color, #2563eb);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .help-text {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .update-form-container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .date-range-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🚧 Barrier Duty Volunteer Management</h1>
+            <p class="tagline">Update Your Availability</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="update-form-container">
+            <div class="update-form-header">
+                <h1>📅 Update Your Availability</h1>
+                <p>Let us know about any changes to your volunteer schedule</p>
+            </div>
+
+            <div id="successMessage" class="success-message">
+                <h3>✅ Update Submitted Successfully!</h3>
+                <p>Thank you for updating your availability. An administrator will review your request and update the schedule accordingly. You will receive a confirmation email shortly.</p>
+                <a href="index.html" class="back-link">← Back to Home</a>
+            </div>
+
+            <form id="availabilityForm">
+                <div class="info-box">
+                    <p>📧 An email confirmation will be sent to you once your update is processed by an administrator.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="volunteerName">
+                        Your Name <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="volunteerName" 
+                        name="volunteerName" 
+                        class="form-control" 
+                        placeholder="Enter your full name"
+                        required
+                    >
+                    <div id="nameError" class="error-message">Please enter your name</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">
+                        Email Address <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-control" 
+                        placeholder="your.email@example.com"
+                        required
+                    >
+                    <div id="emailError" class="error-message">Please enter a valid email address</div>
+                    <div class="help-text">We'll use this to send you confirmation and updates</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="updateType">
+                        Update Type <span class="required">*</span>
+                    </label>
+                    <select id="updateType" name="updateType" class="form-control" required>
+                        <option value="">-- Select Update Type --</option>
+                        <option value="Unavailable">I'm Unavailable</option>
+                        <option value="Available">I'm Available</option>
+                        <option value="Substitute Request">Request a Substitute</option>
+                        <option value="Change Request">Request Schedule Change</option>
+                    </select>
+                    <div id="updateTypeError" class="error-message">Please select an update type</div>
+                </div>
+
+                <div class="date-range-group">
+                    <div class="form-group">
+                        <label for="dateFrom">
+                            From Date <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="date" 
+                            id="dateFrom" 
+                            name="dateFrom" 
+                            class="form-control"
+                            required
+                        >
+                        <div id="dateFromError" class="error-message">Please select a start date</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateTo">
+                            To Date <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="date" 
+                            id="dateTo" 
+                            name="dateTo" 
+                            class="form-control"
+                            required
+                        >
+                        <div id="dateToError" class="error-message">Please select an end date</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="reason">
+                        Reason / Details
+                    </label>
+                    <textarea 
+                        id="reason" 
+                        name="reason" 
+                        class="form-control" 
+                        placeholder="Please provide any additional details or reasons for this update"
+                    ></textarea>
+                    <div class="help-text">Optional: Help us understand your situation better</div>
+                </div>
+
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner"></div>
+                    <p>Submitting your update...</p>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    📤 Submit Update
+                </button>
+            </form>
+
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Barrier Duty Volunteer Management. All rights reserved.</p>
+            <p>Keeping our children safe, one crossing at a time. 🚸</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form validation and submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('availabilityForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const successMessage = document.getElementById('successMessage');
+
+            // Get URL parameters (if coming from email link)
+            const urlParams = new URLSearchParams(window.location.search);
+            const prefilledName = urlParams.get('name');
+            const prefilledEmail = urlParams.get('email');
+            const prefilledDate = urlParams.get('date');
+            const scheduleId = urlParams.get('scheduleId');
+
+            // Prefill form if parameters exist
+            if (prefilledName) {
+                document.getElementById('volunteerName').value = prefilledName;
+            }
+            if (prefilledEmail) {
+                document.getElementById('email').value = prefilledEmail;
+            }
+            if (prefilledDate) {
+                document.getElementById('dateFrom').value = prefilledDate;
+                document.getElementById('dateTo').value = prefilledDate;
+            }
+
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dateFrom').setAttribute('min', today);
+            document.getElementById('dateTo').setAttribute('min', today);
+
+            // Validate date range
+            document.getElementById('dateFrom').addEventListener('change', function() {
+                const fromDate = this.value;
+                document.getElementById('dateTo').setAttribute('min', fromDate);
+            });
+
+            // Form submission
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Validate form
+                if (!validateForm()) {
+                    return;
+                }
+
+                // Get form data
+                const formData = {
+                    volunteerName: document.getElementById('volunteerName').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    updateType: document.getElementById('updateType').value,
+                    dateFrom: document.getElementById('dateFrom').value,
+                    dateTo: document.getElementById('dateTo').value,
+                    reason: document.getElementById('reason').value.trim(),
+                    scheduleId: scheduleId || '',
+                    submittedAt: new Date().toISOString()
+                };
+
+                // Show loading state
+                submitBtn.disabled = true;
+                loadingSpinner.classList.add('visible');
+                form.style.display = 'none';
+
+                try {
+                    // Submit to Google Sheets (if integrated)
+                    await submitToGoogleSheets(formData);
+
+                    // Trigger n8n webhook for email notification
+                    await triggerEmailNotification(formData);
+
+                    // Show success message
+                    successMessage.classList.add('visible');
+                    
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    alert('There was an error submitting your update. Please try again or contact the administrator.');
+                    
+                    // Reset form state
+                    submitBtn.disabled = false;
+                    loadingSpinner.classList.remove('visible');
+                    form.style.display = 'block';
+                }
+            });
+
+            function validateForm() {
+                let isValid = true;
+
+                // Validate name
+                const name = document.getElementById('volunteerName').value.trim();
+                if (!name) {
+                    showError('nameError', 'volunteerName');
+                    isValid = false;
+                } else {
+                    hideError('nameError', 'volunteerName');
+                }
+
+                // Validate email
+                const email = document.getElementById('email').value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email || !emailRegex.test(email)) {
+                    showError('emailError', 'email');
+                    isValid = false;
+                } else {
+                    hideError('emailError', 'email');
+                }
+
+                // Validate update type
+                const updateType = document.getElementById('updateType').value;
+                if (!updateType) {
+                    showError('updateTypeError', 'updateType');
+                    isValid = false;
+                } else {
+                    hideError('updateTypeError', 'updateType');
+                }
+
+                // Validate dates
+                const dateFrom = document.getElementById('dateFrom').value;
+                const dateTo = document.getElementById('dateTo').value;
+                
+                if (!dateFrom) {
+                    showError('dateFromError', 'dateFrom');
+                    isValid = false;
+                } else {
+                    hideError('dateFromError', 'dateFrom');
+                }
+
+                if (!dateTo) {
+                    showError('dateToError', 'dateTo');
+                    isValid = false;
+                } else if (dateFrom && new Date(dateTo) < new Date(dateFrom)) {
+                    showError('dateToError', 'dateTo');
+                    document.getElementById('dateToError').textContent = 'End date must be after start date';
+                    isValid = false;
+                } else {
+                    hideError('dateToError', 'dateTo');
+                }
+
+                return isValid;
+            }
+
+            function showError(errorId, inputId) {
+                document.getElementById(errorId).classList.add('visible');
+                document.getElementById(inputId).classList.add('error');
+            }
+
+            function hideError(errorId, inputId) {
+                document.getElementById(errorId).classList.remove('visible');
+                document.getElementById(inputId).classList.remove('error');
+            }
+
+            async function submitToGoogleSheets(data) {
+                // This function will be implemented when Google Sheets API is integrated
+                // For now, we'll use a placeholder
+                
+                // Example implementation (requires API setup):
+                /*
+                if (typeof api !== 'undefined' && api.isInitialized) {
+                    await api.submitAvailabilityUpdate(data);
+                }
+                */
+                
+                // Simulate API call
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        console.log('Data submitted to Google Sheets:', data);
+                        resolve();
+                    }, 1000);
+                });
+            }
+
+            async function triggerEmailNotification(data) {
+                // Trigger n8n webhook for email notification
+                // Replace with your actual n8n webhook URL
+                const webhookUrl = 'YOUR_N8N_WEBHOOK_URL';
+                
+                try {
+                    // Uncomment when n8n is configured:
+                    /*
+                    const response = await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to trigger email notification');
+                    }
+                    */
+
+                    console.log('Email notification triggered for:', data.email);
+                } catch (error) {
+                    console.error('Error triggering email notification:', error);
+                    // Don't fail the form submission if email notification fails
+                }
+            }
+        });
+    </script>
+</body>
+</html>
