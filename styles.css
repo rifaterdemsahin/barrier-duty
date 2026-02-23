@@ -618,6 +618,210 @@ footer p {
     }
 }
 
+/* Resources Section */
+.resource-card {
+    background: var(--bg-white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.resource-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.resource-note {
+    margin-top: 1rem;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.video-config-note {
+    background: #fef3c7;
+    border-left: 4px solid var(--warning-color);
+    padding: 0.75rem 1rem;
+    border-radius: 0 6px 6px 0;
+    color: var(--text-dark) !important;
+}
+
+.video-config-note code {
+    background: rgba(0,0,0,0.08);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.875rem;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.rules-section h4 {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+}
+
+.rules-list {
+    list-style: none;
+    padding: 0;
+}
+
+.rules-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.rules-list li:last-child {
+    border-bottom: none;
+}
+
+/* Flier preview (inline) */
+.flier-preview {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+.flier-content {
+    background: white;
+}
+
+.flier-content .flier-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem 1.5rem 1.5rem;
+}
+
+.flier-content .flier-header .flier-emoji {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.flier-content .flier-header h2 {
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem;
+    padding: 0;
+}
+
+.flier-content .flier-header .flier-subtitle {
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.flier-content .flier-body {
+    padding: 1.5rem;
+}
+
+.flier-content .flier-body > p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.flier-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.flier-list li {
+    padding: 0.4rem 0;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.flier-shifts {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.flier-shift {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 140px;
+    text-align: center;
+    flex: 1;
+}
+
+.flier-cta {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--text-dark) !important;
+}
+
+.flier-url {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-color) !important;
+}
+
+/* Resource action buttons */
+.resource-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.resource-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.resource-btn-secondary {
+    background-color: var(--text-light);
+}
+
+.resource-btn-secondary:hover {
+    background-color: var(--text-dark);
+}
+
 /* Print Styles */
 @media print {
     nav,
@@ -625,7 +829,9 @@ footer p {
     .filter-btn,
     .logout-btn,
     .admin-action-btn,
-    .export-btn {
+    .export-btn,
+    .page-actions,
+    .resource-btn {
         display: none;
     }
 

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barrier Duty Volunteer Flier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+            padding: 20px;
+        }
+
+        .page-actions {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .page-actions button,
+        .page-actions a {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 0 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .page-actions button:hover,
+        .page-actions a:hover {
+            background-color: #1e40af;
+        }
+
+        .page-actions a.back-link {
+            background-color: #6b7280;
+        }
+
+        .page-actions a.back-link:hover {
+            background-color: #374151;
+        }
+
+        .flier {
+            max-width: 794px; /* A4 width at 96 dpi */
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .flier-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            text-align: center;
+            padding: 48px 40px 36px;
+        }
+
+        .flier-header .emoji {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .flier-header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .flier-header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .flier-body {
+            padding: 40px;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #374151;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .benefits {
+            background: #f0f9ff;
+            border-radius: 10px;
+            padding: 28px 32px;
+            margin-bottom: 32px;
+        }
+
+        .benefits h2 {
+            font-size: 1.3rem;
+            color: #2563eb;
+            margin-bottom: 16px;
+        }
+
+        .benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits li {
+            padding: 8px 0;
+            font-size: 1rem;
+            color: #374151;
+            border-bottom: 1px solid #e0f2fe;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .benefits li:last-child {
+            border-bottom: none;
+        }
+
+        .shifts-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .shift-card {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .shift-card .shift-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .shift-card .shift-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .shift-card .shift-time {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .quote-box {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px 24px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 32px;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: #374151;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            text-align: center;
+            padding: 32px 40px;
+            margin: -40px -40px -40px;
+            margin-top: 0;
+        }
+
+        .cta-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-section .website-url {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 24px;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 8px 0 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-section p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .page-actions {
+                display: none;
+            }
+
+            .flier {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .shifts-section {
+                grid-template-columns: 1fr;
+            }
+
+            .flier-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .flier-body {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-actions">
+        <a href="index.html#resources" class="back-link">← Back to Website</a>
+        <button onclick="window.print()">🖨️ Print Flier</button>
+    </div>
+
+    <div class="flier">
+        <div class="flier-header">
+            <span class="emoji">🚧</span>
+            <h1>Could You Spare 30 Minutes?</h1>
+            <p class="subtitle">We Need Barrier Duty Volunteers!</p>
+        </div>
+
+        <div class="flier-body">
+            <p class="intro-text">
+                Every school day, parent volunteers help keep <strong>our children safe</strong> at the school crossing.
+                It only takes <strong>30 minutes per shift</strong> — and it makes a huge difference!
+            </p>
+
+            <div class="benefits">
+                <h2>✅ What's Involved?</h2>
+                <ul>
+                    <li>✅ <span>No experience needed — <strong>full training and a welcome walk-through provided</strong></span></li>
+                    <li>✅ <span>High-visibility vest and barrier <strong>supplied by the school</strong></span></li>
+                    <li>✅ <span>Flexible scheduling — <strong>choose shifts that suit you</strong></span></li>
+                    <li>✅ <span>Join a friendly team of <strong>parent volunteers</strong></span></li>
+                    <li>✅ <span>Make a <strong>real, visible difference</strong> to your child's daily safety</span></li>
+                </ul>
+            </div>
+
+            <div class="shifts-section">
+                <div class="shift-card">
+                    <span class="shift-icon">☀️</span>
+                    <div class="shift-name">Morning Shift</div>
+                    <div class="shift-time">8:00 AM – 8:30 AM</div>
+                </div>
+                <div class="shift-card">
+                    <span class="shift-icon">🌆</span>
+                    <div class="shift-name">Afternoon Shift</div>
+                    <div class="shift-time">3:00 PM – 3:30 PM</div>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "It's one of the most rewarding things I do as a parent. It only takes half an hour, but you can see the difference it makes every single day."
+                — A current barrier duty volunteer
+            </div>
+
+            <div class="cta-section">
+                <h2>🌐 Sign Up or Find Out More</h2>
+                <div class="website-url">rifaterdemsahin.github.io/barrier-duty</div>
+                <p>Or speak to the school office — we'd love to hear from you! 🚸</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
