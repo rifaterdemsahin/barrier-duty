@@ -171,6 +171,9 @@ document.addEventListener('keydown', function(e) {
                 showSection('updates');
                 break;
             case '5':
+                showSection('resources');
+                break;
+            case '6':
                 checkAccess('admin');
                 break;
         }

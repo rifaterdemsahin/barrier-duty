@@ -21,6 +21,7 @@
                 <li><a href="#rota" onclick="showSection('rota')">Volunteer Rota</a></li>
                 <li><a href="#volunteers" onclick="showSection('volunteers')">Volunteers</a></li>
                 <li><a href="#updates" onclick="showSection('updates')">Updates</a></li>
+                <li><a href="#resources" onclick="showSection('resources')">Resources</a></li>
                 <li><a href="#admin" onclick="checkAccess('admin')">Admin</a></li>
             </ul>
         </div>
@@ -249,6 +250,106 @@
                             <h3>👋 New Volunteers Welcome</h3>
                             <p>We're welcoming 3 new volunteers this month: Alex Thompson, Maria Garcia, and Chris Lee. Welcome to the team!</p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resources Section -->
+            <section id="resources" class="content-section">
+                <h2>📚 Resources</h2>
+
+                <!-- Video Tutorial -->
+                <div class="resource-card">
+                    <h3>🎬 How to Do Barrier Duty</h3>
+                    <p>Watch this short video to learn exactly what to do on your barrier duty shift — including where to stand, how to signal traffic, and how to keep children safe.</p>
+                    <div class="video-container">
+                        <!-- Replace VIDEO_ID below with your YouTube video ID, e.g. dQw4w9WgXcQ -->
+                        <iframe
+                            src="https://www.youtube.com/embed/VIDEO_ID"
+                            title="How to do barrier duty - school crossing volunteer tutorial"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="resource-note video-config-note">⚙️ <em><strong>Admin:</strong> Replace <code>VIDEO_ID</code> in <code>index.html</code> with the actual YouTube video ID to display your tutorial video here.</em></p>
+                    <p class="resource-note">💡 <em>Tip: Watch this video before your first shift. It only takes a few minutes!</em></p>
+                </div>
+
+                <!-- Duty Rules -->
+                <div class="resource-card">
+                    <h3>📋 Duty Rules &amp; Guidelines</h3>
+                    <div class="rules-grid">
+                        <div class="rules-section">
+                            <h4>🚦 On Duty</h4>
+                            <ul class="rules-list">
+                                <li>Arrive <strong>5 minutes early</strong> to collect the barrier and high-visibility vest from the school office.</li>
+                                <li>Position yourself at the designated crossing point — do <strong>not</strong> move the barrier without permission.</li>
+                                <li>Engage the barrier only when it is safe to stop traffic (no oncoming vehicles in sight).</li>
+                                <li>Maintain the crossing for the <strong>full 30-minute slot</strong> until your relief arrives.</li>
+                                <li>Never leave the post unattended. If you must leave early, contact the admin immediately.</li>
+                                <li>Wear the high-visibility vest at all times while on duty.</li>
+                            </ul>
+                        </div>
+                        <div class="rules-section">
+                            <h4>📞 How to Communicate</h4>
+                            <ul class="rules-list">
+                                <li><strong>Can't make your shift?</strong> Update your availability at least <strong>24 hours in advance</strong> using the link on the home page.</li>
+                                <li><strong>Last-minute emergency?</strong> Contact the admin directly by phone/text (details in your confirmation email).</li>
+                                <li><strong>Incident on duty?</strong> Report it to the school office immediately and submit a written summary by email within 24 hours.</li>
+                                <li><strong>New to the role?</strong> Ask to shadow an experienced volunteer for your first shift — just let the admin know.</li>
+                                <li>Do not engage with the media on behalf of the school. Refer any enquiries to the school office.</li>
+                            </ul>
+                        </div>
+                        <div class="rules-section">
+                            <h4>⚠️ Safety Rules</h4>
+                            <ul class="rules-list">
+                                <li>Never step into the road yourself — your role is to <strong>control the barrier</strong>, not to direct traffic.</li>
+                                <li>In severe weather (thunderstorm, ice), do not proceed without authorisation from the school.</li>
+                                <li>If a driver behaves aggressively, do <strong>not</strong> engage. Note the vehicle and report to the school office.</li>
+                                <li>Keep mobile phone use to a minimum while on duty.</li>
+                                <li>Children must not cross until the barrier is fully extended and traffic has stopped.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Printable Flier -->
+                <div class="resource-card">
+                    <h3>📄 Flier for Other Parents</h3>
+                    <p>Help us recruit new volunteers! Print this flier and share it with other parents at the school gate, in class WhatsApp groups, or on the school noticeboard.</p>
+                    <div class="flier-preview">
+                        <div class="flier-content">
+                            <div class="flier-header">
+                                <span class="flier-emoji">🚧</span>
+                                <h2>Could You Spare 30 Minutes?</h2>
+                                <p class="flier-subtitle">We Need Barrier Duty Volunteers!</p>
+                            </div>
+                            <div class="flier-body">
+                                <p>Every morning and afternoon, parent volunteers help keep our children safe at the school crossing. It takes just <strong>30 minutes</strong> per shift.</p>
+                                <ul class="flier-list">
+                                    <li>✅ No experience needed — full training provided</li>
+                                    <li>✅ High-visibility vest and barrier supplied</li>
+                                    <li>✅ Flexible — choose shifts that suit your schedule</li>
+                                    <li>✅ Make a real difference to your child's safety</li>
+                                </ul>
+                                <div class="flier-shifts">
+                                    <div class="flier-shift">
+                                        <strong>☀️ Morning</strong>
+                                        <span>8:00 AM – 8:30 AM</span>
+                                    </div>
+                                    <div class="flier-shift">
+                                        <strong>🌆 Afternoon</strong>
+                                        <span>3:00 PM – 3:30 PM</span>
+                                    </div>
+                                </div>
+                                <p class="flier-cta">Interested? Visit our website or speak to the school office:</p>
+                                <p class="flier-url">🌐 rifaterdemsahin.github.io/barrier-duty</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="flier.html" target="_blank" class="resource-btn">🖨️ Open Printable Flier</a>
+                        <button class="resource-btn resource-btn-secondary" onclick="window.print()">🖨️ Print This Page</button>
                     </div>
                 </div>
             </section>
