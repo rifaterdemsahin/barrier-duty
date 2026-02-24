@@ -6,9 +6,7 @@
 
 ## 🎬 Tutorial Video
 
-[![How Barrier Duty Works](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/@RifatErdemSahin)
-
-> 📺 Watch the full walkthrough on the [Rifat Erdem Sahin YouTube Channel](https://www.youtube.com/@RifatErdemSahin)
+> 📺 Watch barrier duty guides on the [Rifat Erdem Sahin YouTube Channel](https://www.youtube.com/@RifatErdemSahin)
 
 ---
 

@@ -196,7 +196,7 @@
                 var ths = header.trim().split('|').filter(function(c){return c.trim();})
                     .map(function(c){return '<th>' + c.trim() + '</th>';}).join('');
                 var trs = rows.trim().split('\n').map(function(row) {
-                    var tds = row.split('|').filter(function(c){return c.trim() !== undefined && row.indexOf('|') !== -1;})
+                    var tds = row.split('|').filter(function(c){return c.trim() !== '' && row.indexOf('|') !== -1;})
                         .filter(function(c,i,a){return i>0 && i<a.length-1;})
                         .map(function(c){return '<td>' + c.trim() + '</td>';}).join('');
                     return '<tr>' + tds + '</tr>';
