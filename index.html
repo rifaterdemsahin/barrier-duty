@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barrier Duty - Volunteer Management</title>
+    <title>🚧 Barrier Duty — Volunteer Management</title>
+    <meta name="description" content="Barrier Duty Volunteer Management — coordinating school crossing volunteers for children's safety.">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <script>window.MENU_BASE_PATH = '';</script>
+    <script src="menu.js"></script>
     <header>
         <div class="container">
             <h1>🚧 Barrier Duty Volunteer Management</h1>
@@ -42,8 +45,9 @@
                         <p>We need volunteers for morning and afternoon duties. Each shift is 30 minutes and has 2 volunteer spots. Morning shifts run 8:30–9:00 AM. Sign up today!</p>
                     </div>
                     <div class="welcome-card">
-                        <h3>🔔 Stay Updated</h3>
-                        <p>Check the updates section regularly for schedule changes, weather alerts, and important announcements.</p>
+                        <h3>🎭 Media Gallery</h3>
+                        <p>See real images and videos from barrier duty operations — the crossing, equipment, and how-to guides.</p>
+                        <a href="3_Simulation/carousel.html" style="display:inline-block;margin-top:10px;background:#f59e0b;color:white;padding:8px 18px;border-radius:6px;text-decoration:none;font-weight:600;">View Gallery →</a>
                     </div>
                 </div>
                 
@@ -352,6 +356,25 @@
                         <button class="resource-btn resource-btn-secondary" onclick="window.print()">🖨️ Print This Page</button>
                     </div>
                 </div>
+
+                <!-- Media Gallery -->
+                <div class="resource-card">
+                    <h3>🎭 Media Gallery</h3>
+                    <p>View real images and videos from barrier duty operations — the crossing location, equipment, duty times, and how-to guides.</p>
+                    <a href="3_Simulation/carousel.html" class="resource-btn" style="display:inline-block;margin-top:10px;">📸 Open Media Carousel</a>
+                </div>
+
+                <!-- Markdown Viewer -->
+                <div class="resource-card">
+                    <h3>📄 Documentation Viewer</h3>
+                    <p>Browse the project documentation and guides using the built-in markdown renderer.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;">
+                        <a href="markdown_renderer.html?file=README.md" class="resource-btn">📖 README</a>
+                        <a href="markdown_renderer.html?file=1_Real_Unknown/README.md" class="resource-btn">🔍 1 Unknown</a>
+                        <a href="markdown_renderer.html?file=2_Environment/README.md" class="resource-btn">🌍 2 Environment</a>
+                        <a href="markdown_renderer.html?file=4_Formula/qdrant_ollama_setup.md" class="resource-btn">📐 Qdrant Setup</a>
+                    </div>
+                </div>
             </section>
 
             <!-- Admin Section (Password Protected) -->
@@ -432,6 +455,13 @@
         <div class="container">
             <p>&copy; 2026 Barrier Duty Volunteer Management. All rights reserved.</p>
             <p>Keeping our children safe, one crossing at a time. 🚸</p>
+            <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;">
+                <a href="https://github.com/rifaterdemsahin/barrier-duty" target="_blank" rel="noopener" style="color:#60a5fa;text-decoration:none;font-size:0.9rem;">🐙 GitHub Repo</a>
+                <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" rel="noopener" style="color:#60a5fa;text-decoration:none;font-size:0.9rem;">💼 LinkedIn</a>
+                <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" style="color:#60a5fa;text-decoration:none;font-size:0.9rem;">▶️ YouTube</a>
+                <a href="3_Simulation/carousel.html" style="color:#60a5fa;text-decoration:none;font-size:0.9rem;">🎭 Media Gallery</a>
+                <a href="markdown_renderer.html" style="color:#60a5fa;text-decoration:none;font-size:0.9rem;">📄 MD Viewer</a>
+            </div>
         </div>
     </footer>
 

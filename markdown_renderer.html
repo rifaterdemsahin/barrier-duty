@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📄 Markdown Viewer — Barrier Duty</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f8fafc;
+            color: #1f2937;
+            line-height: 1.7;
+        }
+        #sls-menu + .md-wrapper,
+        .md-wrapper { padding-top: 24px; }
+        .md-wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 24px 20px 60px;
+        }
+        .toolbar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .toolbar a, .toolbar button {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .toolbar a:hover, .toolbar button:hover { background: #1e40af; }
+        .toolbar a.back { background: #6b7280; }
+        .toolbar a.back:hover { background: #374151; }
+        #file-input-bar {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex: 1;
+            min-width: 260px;
+        }
+        #file-input-bar input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        .md-content {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 36px 40px;
+        }
+        @media (max-width: 600px) {
+            .md-content { padding: 20px 16px; }
+        }
+        /* Markdown styles */
+        .md-content h1 { font-size: 2rem; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; margin-bottom: 20px; color: #111827; }
+        .md-content h2 { font-size: 1.5rem; border-bottom: 1px solid #f3f4f6; padding-bottom: 6px; margin: 28px 0 14px; color: #1e40af; }
+        .md-content h3 { font-size: 1.2rem; margin: 22px 0 10px; color: #374151; }
+        .md-content h4 { font-size: 1rem; margin: 18px 0 8px; color: #6b7280; }
+        .md-content p { margin-bottom: 14px; }
+        .md-content ul, .md-content ol { margin: 0 0 14px 24px; }
+        .md-content li { margin-bottom: 6px; }
+        .md-content a { color: #2563eb; text-decoration: underline; }
+        .md-content a:hover { color: #1e40af; }
+        .md-content code {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.88em;
+            font-family: 'Courier New', monospace;
+        }
+        .md-content pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        .md-content pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            color: inherit;
+            font-size: 0.9em;
+        }
+        .md-content blockquote {
+            border-left: 4px solid #2563eb;
+            padding: 12px 20px;
+            margin: 16px 0;
+            background: #eff6ff;
+            color: #374151;
+            border-radius: 0 8px 8px 0;
+        }
+        .md-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.95rem;
+        }
+        .md-content th {
+            background: #2563eb;
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        .md-content td {
+            padding: 8px 14px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .md-content tr:nth-child(even) td { background: #f9fafb; }
+        .md-content img { max-width: 100%; border-radius: 8px; margin: 12px 0; }
+        .md-content hr { border: none; border-top: 2px solid #e5e7eb; margin: 24px 0; }
+        .error-box {
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            border-radius: 8px;
+            padding: 20px;
+            color: #b91c1c;
+        }
+        .loading {
+            text-align: center;
+            color: #6b7280;
+            padding: 60px 20px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <script>window.MENU_BASE_PATH = '';</script>
+    <script src="menu.js"></script>
+
+    <div class="md-wrapper">
+        <div class="toolbar">
+            <a href="index.html" class="back">← Home</a>
+            <div id="file-input-bar">
+                <input type="text" id="filePathInput" placeholder="Path to .md file, e.g. README.md" />
+                <button onclick="loadFile()">📄 Load</button>
+            </div>
+        </div>
+        <div id="md-output" class="md-content">
+            <div class="loading">⏳ Loading markdown...</div>
+        </div>
+    </div>
+
+    <script>
+        // Simple markdown parser (no external deps)
+        function parseMd(md) {
+            var html = md
+                // Escape HTML
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                // Code blocks (fenced)
+                .replace(/```(\w*)\n([\s\S]*?)```/g, function(_, lang, code) {
+                    return '<pre><code class="lang-' + lang + '">' + code.trim() + '</code></pre>\n';
+                })
+                // Inline code
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                // Images before links
+                .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">')
+                // Links
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                // Bold
+                .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                .replace(/__([^_]+)__/g, '<strong>$1</strong>')
+                // Italic
+                .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+                .replace(/_([^_]+)_/g, '<em>$1</em>')
+                // HR
+                .replace(/^---$/gm, '<hr>')
+                // Blockquote
+                .replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>')
+                // Headings
+                .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
+                .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+                .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+                .replace(/^# (.+)$/gm, '<h1>$1</h1>');
+
+            // Tables
+            html = html.replace(/(\|.+\|\n)((?:\|[-: ]+\|\n))((?:\|.+\|\n?)+)/g, function(_, header, sep, rows) {
+                var ths = header.trim().split('|').filter(function(c){return c.trim();})
+                    .map(function(c){return '<th>' + c.trim() + '</th>';}).join('');
+                var trs = rows.trim().split('\n').map(function(row) {
+                    var tds = row.split('|').filter(function(c){return c.trim() !== '' && row.indexOf('|') !== -1;})
+                        .filter(function(c,i,a){return i>0 && i<a.length-1;})
+                        .map(function(c){return '<td>' + c.trim() + '</td>';}).join('');
+                    return '<tr>' + tds + '</tr>';
+                }).join('');
+                return '<table><thead><tr>' + ths + '</tr></thead><tbody>' + trs + '</tbody></table>\n';
+            });
+
+            // Unordered lists
+            html = html.replace(/^([ \t]*[-*+] .+\n?)+/gm, function(block) {
+                var items = block.trim().split('\n').map(function(l) {
+                    return '<li>' + l.replace(/^[ \t]*[-*+] /, '') + '</li>';
+                }).join('');
+                return '<ul>' + items + '</ul>\n';
+            });
+            // Ordered lists
+            html = html.replace(/^([ \t]*\d+\. .+\n?)+/gm, function(block) {
+                var items = block.trim().split('\n').map(function(l) {
+                    return '<li>' + l.replace(/^[ \t]*\d+\. /, '') + '</li>';
+                }).join('');
+                return '<ol>' + items + '</ol>\n';
+            });
+
+            // Paragraphs (lines not already wrapped in block elements)
+            html = html.replace(/^(?!<[h|u|o|p|b|t|d|i|a|c|l|r|s]|$)(.+)$/gm, '<p>$1</p>');
+
+            return html;
+        }
+
+        function loadFile() {
+            var input = document.getElementById('filePathInput').value.trim();
+            if (!input) return;
+            var params = new URLSearchParams(window.location.search);
+            params.set('file', input);
+            window.history.replaceState({}, '', '?' + params.toString());
+            fetchAndRender(input);
+        }
+
+        function fetchAndRender(filePath) {
+            var out = document.getElementById('md-output');
+            out.innerHTML = '<div class="loading">⏳ Loading <code>' + filePath + '</code>…</div>';
+            document.getElementById('filePathInput').value = filePath;
+
+            fetch(filePath)
+                .then(function(r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status + ' — ' + r.statusText);
+                    return r.text();
+                })
+                .then(function(text) {
+                    out.innerHTML = parseMd(text);
+                })
+                .catch(function(err) {
+                    out.innerHTML = '<div class="error-box"><strong>❌ Could not load file:</strong> ' + filePath + '<br><br>' + err.message + '<br><br>💡 Make sure you are serving this site from an HTTP server (not file://).</div>';
+                });
+        }
+
+        // On page load, check for ?file= param
+        (function init() {
+            var params = new URLSearchParams(window.location.search);
+            var file = params.get('file');
+            if (file) {
+                fetchAndRender(file);
+            } else {
+                document.getElementById('md-output').innerHTML =
+                    '<div style="text-align:center;color:#6b7280;padding:40px 20px;">' +
+                    '<p style="font-size:1.5rem;margin-bottom:12px;">📄 Markdown Viewer</p>' +
+                    '<p>Enter a file path above and click <strong>Load</strong>, or add <code>?file=README.md</code> to the URL.</p>' +
+                    '<div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">' +
+                    '<a href="?file=README.md" style="background:#2563eb;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;">📖 README.md</a>' +
+                    '<a href="?file=1_Real_Unknown/README.md" style="background:#2563eb;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;">🔍 1 Unknown</a>' +
+                    '<a href="?file=2_Environment/README.md" style="background:#2563eb;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;">🌍 2 Environment</a>' +
+                    '<a href="?file=3_Simulation/README.md" style="background:#2563eb;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;">🎭 3 Simulation</a>' +
+                    '<a href="?file=4_Formula/README.md" style="background:#2563eb;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;">📐 4 Formula</a>' +
+                    '<a href="?file=5_Symbols/README.md" style="background:#2563eb;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;">💻 5 Symbols</a>' +
+                    '<a href="?file=6_Semblance/README.md" style="background:#2563eb;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;">🐞 6 Semblance</a>' +
+                    '<a href="?file=7_Testing_Known/README.md" style="background:#2563eb;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;">✅ 7 Testing</a>' +
+                    '</div>' +
+                    '</div>';
+            }
+        })();
+    </script>
+</body>
+</html>
