@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎭 Media Gallery — Barrier Duty</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        .page-header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 32px 20px 24px;
+            text-align: center;
+        }
+        .page-header h1 { font-size: 1.8rem; color: #f59e0b; margin-bottom: 8px; }
+        .page-header p { color: #94a3b8; font-size: 0.95rem; }
+        .back-link {
+            display: inline-block;
+            margin-top: 16px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { color: #93c5fd; }
+
+        /* Carousel */
+        .carousel-section {
+            max-width: 900px;
+            margin: 32px auto;
+            padding: 0 16px;
+        }
+        .carousel-container {
+            position: relative;
+            background: #1e293b;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            min-height: 420px;
+        }
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 440px;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .carousel-slide video {
+            max-width: 100%;
+            max-height: 440px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .slide-caption {
+            margin-top: 14px;
+            text-align: center;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+        .slide-caption strong { color: #f59e0b; }
+
+        /* Navigation buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(245, 158, 11, 0.85);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-btn:hover { background: #f59e0b; transform: translateY(-50%) scale(1.1); }
+        .carousel-btn.prev { left: 12px; }
+        .carousel-btn.next { right: 12px; }
+
+        /* Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 0 8px;
+        }
+        .dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #475569;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            border: none;
+        }
+        .dot.active { background: #f59e0b; transform: scale(1.3); }
+
+        /* Thumbnail strip */
+        .thumbnail-strip {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 14px 0 4px;
+            scrollbar-width: thin;
+            scrollbar-color: #475569 #1e293b;
+        }
+        .thumbnail-strip::-webkit-scrollbar { height: 4px; }
+        .thumbnail-strip::-webkit-scrollbar-track { background: #1e293b; }
+        .thumbnail-strip::-webkit-scrollbar-thumb { background: #475569; border-radius: 2px; }
+        .thumb {
+            min-width: 90px;
+            height: 64px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s;
+            background: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .thumb.active { border-color: #f59e0b; }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .thumb .video-thumb {
+            font-size: 1.8rem;
+            color: #94a3b8;
+        }
+
+        /* Counter */
+        .carousel-counter {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+            padding-bottom: 12px;
+        }
+
+        /* Touch support hint */
+        .swipe-hint {
+            text-align: center;
+            color: #475569;
+            font-size: 0.8rem;
+            padding: 8px 0 24px;
+        }
+
+        @media (max-width: 600px) {
+            .carousel-slide { min-height: 280px; padding: 12px; }
+            .carousel-btn { width: 36px; height: 36px; font-size: 1rem; }
+            .page-header h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <script>window.MENU_BASE_PATH = '../';</script>
+    <script src="../menu.js"></script>
+
+    <div class="page-header">
+        <h1>🎭 Barrier Duty — Media Gallery</h1>
+        <p>Real-world images and videos from barrier duty operations</p>
+        <a href="../index.html" class="back-link">← Back to Main Site</a>
+    </div>
+
+    <div class="carousel-section">
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)" aria-label="Previous">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel(1)" aria-label="Next">&#8250;</button>
+
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Slide 1: Sign -->
+                <div class="carousel-slide">
+                    <img src="media/sign.jpeg" alt="Barrier duty sign at the school crossing" loading="lazy">
+                    <div class="slide-caption">
+                        <strong>🪧 The Barrier Sign</strong><br>
+                        The official sign used at the school crossing during duty hours
+                    </div>
+                </div>
+                <!-- Slide 2: Road -->
+                <div class="carousel-slide">
+                    <img src="media/road.jpeg" alt="The road and school crossing location" loading="lazy">
+                    <div class="slide-caption">
+                        <strong>🛣️ The Crossing Location</strong><br>
+                        The road where volunteers manage pedestrian crossing
+                    </div>
+                </div>
+                <!-- Slide 3: Times -->
+                <div class="carousel-slide">
+                    <img src="media/times.jpeg" alt="Duty times schedule" loading="lazy">
+                    <div class="slide-caption">
+                        <strong>🕐 Duty Times</strong><br>
+                        Schedule showing morning and afternoon duty slots
+                    </div>
+                </div>
+                <!-- Slide 4: Lock -->
+                <div class="carousel-slide">
+                    <img src="media/lock.jpeg" alt="Lock and barrier equipment" loading="lazy">
+                    <div class="slide-caption">
+                        <strong>🔒 Lock &amp; Equipment</strong><br>
+                        The lock and barrier equipment used by volunteers
+                    </div>
+                </div>
+                <!-- Slide 5: How-to Video -->
+                <div class="carousel-slide">
+                    <video controls preload="metadata" poster="">
+                        <source src="media/how_to.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="slide-caption">
+                        <strong>🎬 How-To Guide</strong><br>
+                        Step-by-step walkthrough for barrier duty volunteers
+                    </div>
+                </div>
+                <!-- Slide 6: Lock & Barrier Video -->
+                <div class="carousel-slide">
+                    <video controls preload="metadata" poster="">
+                        <source src="media/lock_and_barrier.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="slide-caption">
+                        <strong>🎬 Lock &amp; Barrier Demo</strong><br>
+                        How to use the lock and barrier safely
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots"></div>
+        <div class="carousel-counter" id="carouselCounter">1 / 6</div>
+
+        <div class="thumbnail-strip" id="thumbnailStrip"></div>
+
+        <p class="swipe-hint">👆 Swipe left/right on mobile · Use arrow buttons or keyboard ← →</p>
+    </div>
+
+    <script>
+        var current = 0;
+        var total = 6;
+        var track = document.getElementById('carouselTrack');
+        var dotsContainer = document.getElementById('carouselDots');
+        var counter = document.getElementById('carouselCounter');
+        var thumbStrip = document.getElementById('thumbnailStrip');
+
+        var thumbDefs = [
+            { type: 'img', src: 'media/sign.jpeg', label: '🪧 Sign' },
+            { type: 'img', src: 'media/road.jpeg', label: '🛣️ Road' },
+            { type: 'img', src: 'media/times.jpeg', label: '🕐 Times' },
+            { type: 'img', src: 'media/lock.jpeg', label: '🔒 Lock' },
+            { type: 'video', label: '🎬 How-To' },
+            { type: 'video', label: '🎬 Barrier' }
+        ];
+
+        // Build dots
+        for (var i = 0; i < total; i++) {
+            var dot = document.createElement('button');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            dot.setAttribute('data-index', i);
+            dot.onclick = (function(idx) { return function() { goTo(idx); }; })(i);
+            dotsContainer.appendChild(dot);
+        }
+
+        // Build thumbnails
+        thumbDefs.forEach(function(def, idx) {
+            var thumb = document.createElement('div');
+            thumb.className = 'thumb' + (idx === 0 ? ' active' : '');
+            thumb.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
+            thumb.onclick = (function(i) { return function() { goTo(i); }; })(idx);
+            if (def.type === 'img') {
+                var img = document.createElement('img');
+                img.src = def.src;
+                img.alt = def.label;
+                img.loading = 'lazy';
+                thumb.appendChild(img);
+            } else {
+                var span = document.createElement('span');
+                span.className = 'video-thumb';
+                span.textContent = '▶';
+                thumb.appendChild(span);
+            }
+            thumbStrip.appendChild(thumb);
+        });
+
+        function goTo(idx) {
+            // Pause any playing videos
+            track.querySelectorAll('video').forEach(function(v) { v.pause(); });
+
+            current = idx;
+            track.style.transform = 'translateX(-' + (current * 100) + '%)';
+            counter.textContent = (current + 1) + ' / ' + total;
+
+            dotsContainer.querySelectorAll('.dot').forEach(function(d, i) {
+                d.classList.toggle('active', i === current);
+            });
+            thumbStrip.querySelectorAll('.thumb').forEach(function(t, i) {
+                t.classList.toggle('active', i === current);
+            });
+        }
+
+        function moveCarousel(dir) {
+            goTo((current + dir + total) % total);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') moveCarousel(-1);
+            if (e.key === 'ArrowRight') moveCarousel(1);
+        });
+
+        // Touch/swipe support
+        var touchStartX = 0;
+        track.addEventListener('touchstart', function(e) {
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+        track.addEventListener('touchend', function(e) {
+            var diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) moveCarousel(diff > 0 ? 1 : -1);
+        }, { passive: true });
+    </script>
+</body>
+</html>

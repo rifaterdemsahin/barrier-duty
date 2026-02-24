@@ -1,10 +1,39 @@
-# 🚧 Barrier Duty - Volunteer Management System
+# 🚧 Barrier Duty — Volunteer Management System
 
 A responsive web application for managing school crossing volunteers, coordinating rotas, and keeping everyone informed about their duties.
 
-> https://rifaterdemsahin.github.io/barrier-duty/#updates
+> 🌐 **Live Site:** [rifaterdemsahin.github.io/barrier-duty](https://rifaterdemsahin.github.io/barrier-duty/)  
+> 🐙 **GitHub:** [github.com/rifaterdemsahin/barrier-duty](https://github.com/rifaterdemsahin/barrier-duty)  
+> 💼 **LinkedIn:** [linkedin.com/in/rifaterdemsahin](https://www.linkedin.com/in/rifaterdemsahin/)  
+> ▶️ **YouTube:** [youtube.com/@RifatErdemSahin](https://www.youtube.com/@RifatErdemSahin)
 
-## Features
+---
+
+## 📂 Project Structure (SLS — Self Learning System)
+
+| Folder | Purpose | Link |
+|--------|---------|------|
+| `1_Real_Unknown/` | Define the problem, OKRs, goals | [📖 View](1_Real_Unknown/README.md) |
+| `2_Environment/` | Context, constraints, client setup | [📖 View](2_Environment/README.md) |
+| `3_Simulation/` | Media carousel, UI mockups | [📖 View](3_Simulation/README.md) · [🎭 Carousel](https://rifaterdemsahin.github.io/barrier-duty/3_Simulation/carousel.html) |
+| `4_Formula/` | Guides, Qdrant/Ollama setup | [📖 View](4_Formula/README.md) |
+| `5_Symbols/` | Source code reference | [📖 View](5_Symbols/README.md) |
+| `6_Semblance/` | Errors, fixes, lessons learned | [📖 View](6_Semblance/README.md) |
+| `7_Testing_Known/` | Tests and acceptance criteria | [📖 View](7_Testing_Known/README.md) |
+
+---
+
+## 🚀 Quick Links
+
+- 🏠 [Home Page](https://rifaterdemsahin.github.io/barrier-duty/)
+- 📅 [Volunteer Rota](https://rifaterdemsahin.github.io/barrier-duty/#rota)
+- 🔔 [Updates](https://rifaterdemsahin.github.io/barrier-duty/#updates)
+- 📝 [Update My Availability](https://rifaterdemsahin.github.io/barrier-duty/update-availability.html)
+- 🎭 [Media Gallery / Carousel](https://rifaterdemsahin.github.io/barrier-duty/3_Simulation/carousel.html)
+- 📄 [Markdown Viewer](https://rifaterdemsahin.github.io/barrier-duty/markdown_renderer.html)
+- 🖨️ [Printable Flier](https://rifaterdemsahin.github.io/barrier-duty/flier.html)
+
+---
 
 ### 📅 Volunteer Rota
 - Weekly schedule with morning (8:00-8:30 AM) and afternoon (3:00-3:30 PM) shifts
