@@ -246,112 +246,173 @@ document.addEventListener('DOMContentLoaded', function() {
     updateNotificationBadge();
 });
 
-// Load Rota Data from Azure Blob Storage (or fallback to local for dev)
-async function loadRotaFromAzure() {
+// Generic Data Loader
+async function loadData(entity) {
+    const backendUrl = `/api/data/${entity}`;
+    const azureBlobUrl = `https://dpstoragebarrierduty.blob.core.windows.net/rota/${entity}.json`;
+    const fallbackLocalUrl = `5_Symbols/${entity}.json`;
+
+    let data = [];
+    try {
+        let response = await fetch(backendUrl);
+        if (!response.ok) response = await fetch(azureBlobUrl);
+        if (!response.ok) response = await fetch(fallbackLocalUrl);
+        data = await response.json();
+    } catch (error) {
+        console.error(`Error loading ${entity} data:`, error);
+    }
+    return data;
+}
+
+async function renderRota() {
     const tableBody = document.getElementById('rotaTableBody');
     if (!tableBody) return;
 
-    // Production Azure Blob URL for the rota data
-    const azureBlobUrl = 'https://dpstoragebarrierduty.blob.core.windows.net/rota/rota.json';
-    const fallbackLocalUrl = '5_Symbols/rota.json';
-
-    try {
-        let response = await fetch(azureBlobUrl);
-        if (!response.ok) {
-            console.log('Azure blob not available, falling back to local file.');
-            response = await fetch(fallbackLocalUrl);
-        }
-        
-        const data = await response.json();
-        
-        tableBody.innerHTML = ''; // Clear loading state
-        
-        data.forEach(entry => {
-            const tr = document.createElement('tr');
-            tr.setAttribute('data-shift', entry.shift);
-            
-            const timeClass = entry.shift === 'morning' ? 'morning-slot' : 'afternoon-slot';
-            
-            const formatVolunteer = (name) => {
-                if (name.toLowerCase() === 'needed') {
-                    return '<span class="status pending">Needed</span>';
-                }
-                return name;
-            };
-
-            tr.innerHTML = `
-                <td>${entry.date}</td>
-                <td>${entry.day}</td>
-                <td class="${timeClass}">${entry.time}</td>
-                <td>${formatVolunteer(entry.volunteer1)}</td>
-                <td>${formatVolunteer(entry.volunteer2)}</td>
-            `;
-            tableBody.appendChild(tr);
-        });
-    } catch (error) {
-        console.error('Error loading rota data:', error);
+    const data = await loadData('rota');
+    if (!data.length) {
         tableBody.innerHTML = '<tr><td colspan="5">Error loading rota. Please try again later.</td></tr>';
+        return;
     }
+
+    tableBody.innerHTML = ''; // Clear loading state
+    data.forEach(entry => {
+        const tr = document.createElement('tr');
+        tr.setAttribute('data-shift', entry.shift);
+        
+        const timeClass = entry.shift === 'morning' ? 'morning-slot' : 'afternoon-slot';
+        
+        const formatVolunteer = (name) => {
+            if (name.toLowerCase() === 'needed') {
+                return '<span class="status pending">Needed</span>';
+            }
+            return name;
+        };
+
+        tr.innerHTML = `
+            <td>${entry.date}</td>
+            <td>${entry.day}</td>
+            <td class="${timeClass}">${entry.time}</td>
+            <td>${formatVolunteer(entry.volunteer1)}</td>
+            <td>${formatVolunteer(entry.volunteer2)}</td>
+        `;
+        tableBody.appendChild(tr);
+    });
 }
 
-// Ensure the rota is loaded when DOM is ready
+async function renderVolunteers() {
+    const grid = document.querySelector('.volunteer-grid');
+    if (!grid) return;
+
+    const data = await loadData('volunteers');
+    if (!data.length) return;
+
+    grid.innerHTML = '';
+    data.forEach(vol => {
+        grid.innerHTML += `
+            <div class="volunteer-card" style="opacity: 1; transform: translateY(0);">
+                <h4>${vol.name}</h4>
+                <p><strong>Total Shifts:</strong> ${vol.total_shifts} shifts</p>
+                <p><strong>Availability:</strong> ${vol.availability}</p>
+            </div>
+        `;
+    });
+}
+
+async function renderUpdates() {
+    const timeline = document.querySelector('.updates-timeline');
+    if (!timeline) return;
+
+    const data = await loadData('updates');
+    if (!data.length) return;
+
+    timeline.innerHTML = '';
+    data.forEach(upd => {
+        const urgentClass = upd.urgent ? 'urgent' : '';
+        timeline.innerHTML += `
+            <div class="update-item ${urgentClass}" style="opacity: 1; transform: translateY(0);">
+                <div class="update-date">${upd.date}</div>
+                <div class="update-content">
+                    <h3>${upd.title}</h3>
+                    <p>${upd.content}</p>
+                </div>
+            </div>
+        `;
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    loadRotaFromAzure();
+    renderRota();
+    renderVolunteers();
+    renderUpdates();
 });
 
-// --- Rota Editor Functions ---
+// --- Generic Editor Functions ---
+let currentEditorEntity = null;
 
-async function openRotaEditor() {
-    const editorSection = document.getElementById('adminRotaEditor');
-    const textArea = document.getElementById('rotaJsonEditor');
+async function openEditor(entity) {
+    currentEditorEntity = entity;
+    const editorSection = document.getElementById('adminDataEditor');
+    const textArea = document.getElementById('jsonEditor');
+    const title = document.getElementById('editorTitle');
     
     editorSection.style.display = 'block';
-    textArea.value = "Loading current rota...";
+    title.textContent = `✏️ Edit ${entity.charAt(0).toUpperCase() + entity.slice(1)}`;
+    textArea.value = "Loading...";
     
-    // Fetch current data
-    const azureBlobUrl = 'https://dpstoragebarrierduty.blob.core.windows.net/rota/rota.json';
-    const fallbackLocalUrl = '5_Symbols/rota.json';
+    const data = await loadData(entity);
+    textArea.value = JSON.stringify(data, null, 4);
     
-    try {
-        let response = await fetch(azureBlobUrl);
-        if (!response.ok) {
-            response = await fetch(fallbackLocalUrl);
-        }
-        const data = await response.json();
-        textArea.value = JSON.stringify(data, null, 4);
-        
-        // Scroll to editor
-        editorSection.scrollIntoView({ behavior: 'smooth' });
-    } catch (e) {
-        textArea.value = '[\n    // Error loading rota. You can paste your own JSON here.\n]';
-    }
+    editorSection.scrollIntoView({ behavior: 'smooth' });
 }
 
-function closeRotaEditor() {
-    document.getElementById('adminRotaEditor').style.display = 'none';
+function closeEditor() {
+    document.getElementById('adminDataEditor').style.display = 'none';
+    currentEditorEntity = null;
 }
 
-function downloadRotaJson() {
-    const textArea = document.getElementById('rotaJsonEditor');
+async function saveData() {
+    if (!currentEditorEntity) return;
+    
+    const textArea = document.getElementById('jsonEditor');
     const content = textArea.value;
     
-    // Validate JSON before downloading
+    let parsedData;
     try {
-        JSON.parse(content);
+        parsedData = JSON.parse(content);
     } catch (e) {
-        alert("Invalid JSON format. Please fix the errors before downloading.\n\n" + e.message);
+        alert("Invalid JSON format. Please fix the errors before saving.\n\n" + e.message);
         return;
     }
     
-    const blob = new Blob([content], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'rota.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    
-    alert("Downloaded rota.json. You can now provide this file to the system or upload it to Azure.");
+    try {
+        const res = await fetch(`/api/data/${currentEditorEntity}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(parsedData)
+        });
+        
+        if (res.ok) {
+            alert(`✅ ${currentEditorEntity} updated successfully!`);
+            // Re-render corresponding section
+            if (currentEditorEntity === 'rota') renderRota();
+            if (currentEditorEntity === 'volunteers') renderVolunteers();
+            if (currentEditorEntity === 'updates') renderUpdates();
+            closeEditor();
+        } else {
+            throw new Error("Backend failed to save data");
+        }
+    } catch (e) {
+        console.warn("API save failed, falling back to download mechanism.", e);
+        // Fallback to download
+        const blob = new Blob([content], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${currentEditorEntity}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        alert(`Downloaded ${currentEditorEntity}.json. You can upload it manually.`);
+    }
 }

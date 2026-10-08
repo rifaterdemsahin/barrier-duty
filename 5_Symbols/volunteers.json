@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Sarah J.",
+        "total_shifts": 18,
+        "availability": "Monday & Friday mornings"
+    },
+    {
+        "name": "Michael B.",
+        "total_shifts": 22,
+        "availability": "Weekday afternoons"
+    },
+    {
+        "name": "Emily D.",
+        "total_shifts": 15,
+        "availability": "Tuesday & Wednesday mornings"
+    }
+]

@@ -330,3 +330,14 @@
   - Created `5_Symbols/backend/setup_config_container.sh` to provision the Azure `config` container and upload the JSON files automatically.
 - **Related Files:** `5_Symbols/script.js`, `index.html`, `5_Symbols/menu.js`, `5_Symbols/markdown_renderer.html`, `3_Simulation/carousel.html`, `3_Simulation/carousel_config.json`, `5_Symbols/backend/setup_config_container.sh`
 - **Last Updated:** 2026-10-08
+
+### SPEC-031: [Dynamic Entity Editor and Fly.io Backend]
+- **Status:** Active
+- **Description:** Implemented a full-stack editing capability for Rota, Volunteers, and Updates, supported by a Python Flask backend designed for Fly.io deployment.
+- **Key Behaviors:**
+  - Added sample JSON data for `rota.json`, `volunteers.json`, and `updates.json` in `5_Symbols/`.
+  - Created `app.py`, `Dockerfile`, and `fly.toml` to serve the application and provide a REST API (`/api/data/<entity>`) for saving JSON data back to Azure Blob Storage (or local disk as fallback).
+  - Refactored `index.html` and `5_Symbols/script.js` to dynamically load Rota, Volunteers, and Updates data.
+  - Replaced the single Rota Editor with a generic `adminDataEditor` that allows the admin to edit any of the three entities directly in the browser and save them via the backend API.
+- **Related Files:** `app.py`, `Dockerfile`, `fly.toml`, `requirements.txt`, `index.html`, `5_Symbols/script.js`, `5_Symbols/rota.json`, `5_Symbols/volunteers.json`, `5_Symbols/updates.json`
+- **Last Updated:** 2026-10-08

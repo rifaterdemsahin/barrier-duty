@@ -1128,3 +1128,14 @@ This log documents the thinking phase summaries and reasoning processes of the L
 - **Dynamic Config Loading:** Refactored frontend pages (`index.html`, `5_Symbols/markdown_renderer.html`, `3_Simulation/carousel.html`, `5_Symbols/menu.js`) to asynchronously fetch JSON configs from the Azure Blob URL first. Implemented a fallback mechanism where it falls back to the locally hosted JSON if Azure fetch fails or is unavailable.
 - **Automation:** Created `5_Symbols/backend/setup_config_container.sh` with Azure CLI commands for creating the container and uploading the JSON blobs, establishing a reproducible configuration pipeline.
 **Validation:** A local build passes visual inspection. Smoke tests will verify if UI components correctly fallback or load data. Auth logic securely leverages `localStorage`.
+
+## 2026-10-08: Dynamic Entity Editor and Fly.io Backend (SPEC-031)
+**Agent:** Formula Agent / Symbols Agent
+**Context:** The user requested to make the "edit" functionality actually work for Rota, Volunteers, and Updates, and to deploy with these updates.
+**Decisions Made:**
+- **Backend API:** Created a Python Flask application (`app.py`) that serves the static files and exposes `/api/data/<entity>` endpoints (GET and POST). This allows the frontend to save JSON directly.
+- **Azure Blob Integration:** The Flask backend securely retrieves the Azure Storage connection string from Azure Key Vault (using `DefaultAzureCredential`) and persists data to the `rota` container.
+- **Fly.io Deployment Config:** Created `Dockerfile` and `fly.toml` for deploying the Flask app to Fly.io as per the project rules for backends.
+- **Frontend Generic Editor:** Refactored `index.html` and `5_Symbols/script.js` to use a generic editor (`adminDataEditor`). Admins can now click "Edit Volunteers", "Edit Updates", or "Edit Rota", modify the JSON, and hit "Save Changes" to trigger the API.
+- **Sample Data:** Created `5_Symbols/rota.json`, `5_Symbols/volunteers.json`, and `5_Symbols/updates.json` with sample entries to bootstrap the UI.
+**Validation:** The static UI was successfully updated with `sed`, the API contract matches the frontend `fetch` calls, and Docker/Fly configuration files are in place for the deployment.

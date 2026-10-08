@@ -4,11 +4,11 @@
 > Latest run overwrites this file; one report per test run.
 
 ## Run Info
-- **Date:** 2026-10-08 21:04
+- **Date:** 2026-10-08 21:53
 - **Trigger:** Manual run
 - **Mode:** Local filesystem
 - **Tester:** smoke_test.py (automated)
-- **Verdict:** ✅ ALL PASS
+- **Verdict:** ❌ 2 FAILURE(S)
 
 ## Results Summary
 | Test | Result | Detail |
@@ -18,16 +18,24 @@
 | Menu Links Resolve | ✅ Pass | — |
 | Project Menu | ✅ Pass | — |
 | Debug Menu | ✅ Pass | — |
-| Nav 3-Way Sync | ✅ Pass | — |
+| Nav 3-Way Sync | ❌ Fail | drift: ['1_Real_Unknown/what_is_a_school_street.md'] |
 | Stage Docs In Menu | ✅ Pass | — |
-| Social Links | ✅ Pass | — |
+| Social Links | ❌ Fail | missing: ['github.com', 'linkedin.com'] |
 | README Pages URL | ✅ Pass | — |
 | Secrets Scan | ✅ Pass | — |
 | Root Layout (RULE-005) | ✅ Pass | — |
 
 ## Failures
 
-None — all smoke tests passed. ✨
+### #1 — Nav 3-Way Sync
+- **Error:** drift: ['1_Real_Unknown/what_is_a_school_street.md']
+- **GitHub Issue:** _create per the Smoke Tests & GitHub Issues rule_
+- **Status:** Open
+
+### #2 — Social Links
+- **Error:** missing: ['github.com', 'linkedin.com']
+- **GitHub Issue:** _create per the Smoke Tests & GitHub Issues rule_
+- **Status:** Open
 
 ## Rules Applied
 - Every failure gets a GitHub Issue (`[SMOKE-FAIL] <test> — <description>`)

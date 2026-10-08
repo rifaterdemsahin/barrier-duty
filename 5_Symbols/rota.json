@@ -1,34 +1,18 @@
 [
-  {
-    "date": "2026-02-17",
-    "day": "Monday",
-    "shift": "morning",
-    "time": "8:30 AM - 9:00 AM",
-    "volunteer1": "Sarah J.",
-    "volunteer2": "Needed"
-  },
-  {
-    "date": "2026-02-17",
-    "day": "Monday",
-    "shift": "afternoon",
-    "time": "3:00 PM - 3:30 PM",
-    "volunteer1": "Michael B.",
-    "volunteer2": "Needed"
-  },
-  {
-    "date": "2026-02-18",
-    "day": "Tuesday",
-    "shift": "morning",
-    "time": "8:30 AM - 9:00 AM",
-    "volunteer1": "Emily D.",
-    "volunteer2": "Needed"
-  },
-  {
-    "date": "2026-02-18",
-    "day": "Tuesday",
-    "shift": "afternoon",
-    "time": "3:00 PM - 3:30 PM",
-    "volunteer1": "Needed",
-    "volunteer2": "Needed"
-  }
+    {
+        "date": "2026-10-12",
+        "day": "Monday",
+        "time": "08:30-09:00",
+        "shift": "morning",
+        "volunteer1": "John Doe",
+        "volunteer2": "Needed"
+    },
+    {
+        "date": "2026-10-12",
+        "day": "Monday",
+        "time": "15:00-15:30",
+        "shift": "afternoon",
+        "volunteer1": "Jane Smith",
+        "volunteer2": "Alice Brown"
+    }
 ]

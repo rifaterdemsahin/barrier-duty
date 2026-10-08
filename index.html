@@ -473,19 +473,19 @@
                         <div class="admin-card">
                             <h3>📧 Contact Management</h3>
                             <p>Manage volunteer contact information, send notifications, and update availability.</p>
-                            <button class="admin-action-btn">Manage Contacts</button>
+                            <button class="admin-action-btn" onclick="openEditor('volunteers')">Edit Volunteers</button>
                         </div>
                         
                         <div class="admin-card">
                             <h3>📅 Rota Management</h3>
                             <p>Create and edit the volunteer schedule, assign shifts, and manage coverage.</p>
-                            <button class="admin-action-btn" onclick="openRotaEditor()">Edit Rota</button>
+                            <button class="admin-action-btn" onclick="openEditor('rota')">Edit Rota</button>
                         </div>
                         
                         <div class="admin-card">
                             <h3>📢 Send Update</h3>
                             <p>Post announcements and updates that will appear on the main updates page.</p>
-                            <button class="admin-action-btn">Create Update</button>
+                            <button class="admin-action-btn" onclick="openEditor('updates')">Edit Updates</button>
                         </div>
                         
                         <div class="admin-card">
@@ -503,13 +503,13 @@
                     </div>
 
                     <!-- Rota Editor Section -->
-                    <div id="adminRotaEditor" style="display: none; margin-top: 2rem; background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
-                        <h3>✏️ Manual Rota Editor</h3>
+                    <div id="adminDataEditor" style="display: none; margin-top: 2rem; background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h3 id="editorTitle">✏️ Manual Data Editor</h3>
                         <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-secondary);">Edit the JSON array below to update the rota. When finished, you can download the JSON file to deploy it, or copy it for the bot to process.</p>
-                        <textarea id="rotaJsonEditor" style="width: 100%; height: 300px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); padding: 1rem; border-radius: 6px; font-family: monospace; margin-bottom: 1rem;"></textarea>
+                        <textarea id="jsonEditor" style="width: 100%; height: 300px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); padding: 1rem; border-radius: 6px; font-family: monospace; margin-bottom: 1rem;"></textarea>
                         <div style="display: flex; gap: 10px;">
-                            <button class="resource-btn" onclick="downloadRotaJson()">💾 Download Updated JSON</button>
-                            <button class="resource-btn resource-btn-secondary" onclick="closeRotaEditor()">Cancel</button>
+                            <button class="resource-btn" onclick="saveData()">💾 Save Changes</button>
+                            <button class="resource-btn resource-btn-secondary" onclick="closeEditor()">Cancel</button>
                         </div>
                     </div>
                 </div>
