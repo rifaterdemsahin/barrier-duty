@@ -461,15 +461,62 @@ function renderTableEditor(data) {
     container.appendChild(addBtn);
 }
 
+const VOLUNTEER_LIST = [
+    "STANDBY NEEDED",
+    "Paul (Norfolk Street)",
+    "Eslam",
+    "Erdem",
+    "Ben",
+    "Anton",
+    "Elisabeth Whitebread",
+    "Elisabeth Winkelmann",
+    "Cheki",
+    "Annalisa",
+    "Lianna",
+    "Hero",
+    "Su-jin"
+];
+
 function createTableRow(keys, item) {
     const tr = document.createElement('tr');
     keys.forEach(key => {
         const td = document.createElement('td');
         td.style.border = '1px solid var(--border-color)';
         td.style.padding = '4px';
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.value = item[key] !== undefined ? item[key] : '';
+        
+        let input;
+        
+        if (currentEditorEntity === 'rota' && key === 'date') {
+            input = document.createElement('input');
+            input.type = 'date';
+            input.value = item[key] !== undefined ? item[key] : '';
+        } else if (currentEditorEntity === 'rota' && key.startsWith('volunteer')) {
+            input = document.createElement('select');
+            
+            VOLUNTEER_LIST.forEach(vol => {
+                const option = document.createElement('option');
+                option.value = vol;
+                option.textContent = vol;
+                if (item[key] === vol) {
+                    option.selected = true;
+                }
+                input.appendChild(option);
+            });
+            
+            // If the item has a value not in the default list, add it
+            if (item[key] && !VOLUNTEER_LIST.includes(item[key])) {
+                const option = document.createElement('option');
+                option.value = item[key];
+                option.textContent = item[key];
+                option.selected = true;
+                input.appendChild(option);
+            }
+        } else {
+            input = document.createElement('input');
+            input.type = 'text';
+            input.value = item[key] !== undefined ? item[key] : '';
+        }
+        
         input.dataset.key = key;
         input.style.width = '100%';
         input.style.padding = '8px';
@@ -478,6 +525,12 @@ function createTableRow(keys, item) {
         input.style.borderRadius = '4px';
         input.style.background = 'var(--bg-color)';
         input.style.color = 'var(--text-primary)';
+        
+        // Ensure date picker text is readable if it changes based on theme
+        if(input.type === 'date') {
+            input.style.colorScheme = 'dark';
+        }
+
         td.appendChild(input);
         tr.appendChild(td);
     });
@@ -506,7 +559,7 @@ function extractDataFromTable() {
     rows.forEach(row => {
         const item = {};
         keys.forEach(key => {
-            const input = row.querySelector(`input[data-key="${key}"]`);
+            const input = row.querySelector(`[data-key="${key}"]`);
             if (input) item[key] = input.value;
         });
         data.push(item);
