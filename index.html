@@ -450,62 +450,72 @@
             <!-- Admin Section (Password Protected) -->
             <!-- Sanity Check Section -->
             <section id="sanity-check" class="content-section">
-                <h2>🔍 Sanity Check & Fix Output</h2>
-                <div class="resource-card">
-                    <h3>Project Sanity Checklist</h3>
-                    <p>Review the questions below. Fill in the answers, then click "Copy Output" to easily paste it into the AI agent chat to fix the project.</p>
+                <h2>🔍 Sanity Check & First Principles</h2>
+                <p style="margin-bottom: 20px;">Review the core project specifications below. Use the note-taking tool to provide feedback for the AI agent to fix any deviations or bugs.</p>
+                
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+                    <!-- Left Column: Specs Viewer -->
+                    <div style="flex: 1; min-width: 300px; height: 600px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg); overflow: hidden;">
+                        <iframe src="5_Symbols/markdown_renderer.html?file=4_Formula/specs.md" style="width: 100%; height: 100%; border: none;"></iframe>
+                    </div>
                     
-                    <form id="sanityCheckForm" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
-                        <div>
-                            <label style="font-weight: bold;">1. Are the Rota dates correctly generating when you click "Generate Week"?</label>
-                            <textarea id="sc-q1" style="width: 100%; height: 60px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
-                        </div>
+                    <!-- Right Column: Note Taking Tool -->
+                    <div style="flex: 1; min-width: 300px; background: var(--card-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <h3 style="margin-top: 0;">📝 Feedback & Fix Notes</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 15px; color: var(--text-secondary);">Note any deviations from the specs or first principles here. Click copy to format for the agent.</p>
                         
-                        <div>
-                            <label style="font-weight: bold;">2. Are the pre-filled volunteers loading correctly (from dropdown)?</label>
-                            <textarea id="sc-q2" style="width: 100%; height: 60px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
-                        </div>
-                        
-                        <div>
-                            <label style="font-weight: bold;">3. Is the 'total_shifts' properly removed from the UI and backend data?</label>
-                            <textarea id="sc-q3" style="width: 100%; height: 60px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
-                        </div>
-                        
-                        <div>
-                            <label style="font-weight: bold;">4. What else is broken or needs immediate fixing?</label>
-                            <textarea id="sc-q4" style="width: 100%; height: 100px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
-                        </div>
-                        
-                        <button type="button" class="resource-btn" onclick="copySanityOutput()" style="align-self: flex-start; margin-top: 10px;">📋 Copy Output to Clipboard</button>
-                    </form>
-                    
-                    <script>
-                        function copySanityOutput() {
-                            const q1 = document.getElementById('sc-q1').value || 'No input';
-                            const q2 = document.getElementById('sc-q2').value || 'No input';
-                            const q3 = document.getElementById('sc-q3').value || 'No input';
-                            const q4 = document.getElementById('sc-q4').value || 'No input';
+                        <form id="sanityCheckForm" style="display: flex; flex-direction: column; gap: 15px;">
+                            <div>
+                                <label style="font-weight: bold;">1. Spec Deviations (Drift)</label>
+                                <textarea id="sc-q1" placeholder="Which specs are not being followed?" style="width: 100%; height: 70px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
+                            </div>
                             
-                            const output = `### Sanity Check Output
-1. **Are dates correctly generating?**
+                            <div>
+                                <label style="font-weight: bold;">2. UI / UX Issues</label>
+                                <textarea id="sc-q2" placeholder="Any issues with Date Pickers, Dropdowns, or Layout?" style="width: 100%; height: 70px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label style="font-weight: bold;">3. Data & Backend Issues</label>
+                                <textarea id="sc-q3" placeholder="Are saves failing? Is Azure Blob not syncing?" style="width: 100%; height: 70px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label style="font-weight: bold;">4. General Rationale / Next Steps</label>
+                                <textarea id="sc-q4" placeholder="What needs to be done next? What are the root causes?" style="width: 100%; height: 70px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
+                            </div>
+                            
+                            <button type="button" class="resource-btn" onclick="copySanityOutput()" style="align-self: flex-start; margin-top: 10px;">📋 Copy Output for AI Agent</button>
+                        </form>
+                        
+                        <script>
+                            function copySanityOutput() {
+                                const q1 = document.getElementById('sc-q1').value || 'None noted';
+                                const q2 = document.getElementById('sc-q2').value || 'None noted';
+                                const q3 = document.getElementById('sc-q3').value || 'None noted';
+                                const q4 = document.getElementById('sc-q4').value || 'None noted';
+                                
+                                const output = `### Sanity Check & First Principles Feedback
+1. **Spec Deviations:**
 ${q1}
 
-2. **Are pre-filled volunteers loading?**
+2. **UI / UX Issues:**
 ${q2}
 
-3. **Is total_shifts removed?**
+3. **Data & Backend Issues:**
 ${q3}
 
-4. **What else needs fixing?**
+4. **General Rationale & Next Steps:**
 ${q4}
 `;
-                            navigator.clipboard.writeText(output).then(() => {
-                                alert('✅ Output copied to clipboard! Paste it to the AI agent.');
-                            }).catch(err => {
-                                alert('Failed to copy text: ' + err);
-                            });
-                        }
-                    </script>
+                                navigator.clipboard.writeText(output).then(() => {
+                                    alert('✅ Feedback copied to clipboard! Paste it directly to the AI agent to initiate fixes.');
+                                }).catch(err => {
+                                    alert('Failed to copy text: ' + err);
+                                });
+                            }
+                        </script>
+                    </div>
                 </div>
             </section>
             <section id="admin" class="content-section protected-section">
