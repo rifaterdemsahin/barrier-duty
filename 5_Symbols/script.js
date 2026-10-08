@@ -298,3 +298,60 @@ async function loadRotaFromAzure() {
 document.addEventListener('DOMContentLoaded', () => {
     loadRotaFromAzure();
 });
+
+// --- Rota Editor Functions ---
+
+async function openRotaEditor() {
+    const editorSection = document.getElementById('adminRotaEditor');
+    const textArea = document.getElementById('rotaJsonEditor');
+    
+    editorSection.style.display = 'block';
+    textArea.value = "Loading current rota...";
+    
+    // Fetch current data
+    const azureBlobUrl = 'https://dpstoragebarrierduty.blob.core.windows.net/rota/rota.json';
+    const fallbackLocalUrl = '5_Symbols/rota.json';
+    
+    try {
+        let response = await fetch(azureBlobUrl);
+        if (!response.ok) {
+            response = await fetch(fallbackLocalUrl);
+        }
+        const data = await response.json();
+        textArea.value = JSON.stringify(data, null, 4);
+        
+        // Scroll to editor
+        editorSection.scrollIntoView({ behavior: 'smooth' });
+    } catch (e) {
+        textArea.value = '[\n    // Error loading rota. You can paste your own JSON here.\n]';
+    }
+}
+
+function closeRotaEditor() {
+    document.getElementById('adminRotaEditor').style.display = 'none';
+}
+
+function downloadRotaJson() {
+    const textArea = document.getElementById('rotaJsonEditor');
+    const content = textArea.value;
+    
+    // Validate JSON before downloading
+    try {
+        JSON.parse(content);
+    } catch (e) {
+        alert("Invalid JSON format. Please fix the errors before downloading.\n\n" + e.message);
+        return;
+    }
+    
+    const blob = new Blob([content], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'rota.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    alert("Downloaded rota.json. You can now provide this file to the system or upload it to Azure.");
+}

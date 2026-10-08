@@ -452,7 +452,7 @@
                         <div class="admin-card">
                             <h3>📅 Rota Management</h3>
                             <p>Create and edit the volunteer schedule, assign shifts, and manage coverage.</p>
-                            <button class="admin-action-btn">Edit Rota</button>
+                            <button class="admin-action-btn" onclick="openRotaEditor()">Edit Rota</button>
                         </div>
                         
                         <div class="admin-card">
@@ -473,6 +473,17 @@
                         <button class="export-btn">Export Rota (CSV)</button>
                         <button class="export-btn">Export Volunteer List (CSV)</button>
                         <button class="export-btn">Export Statistics (PDF)</button>
+                    </div>
+
+                    <!-- Rota Editor Section -->
+                    <div id="adminRotaEditor" style="display: none; margin-top: 2rem; background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h3>✏️ Manual Rota Editor</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-secondary);">Edit the JSON array below to update the rota. When finished, you can download the JSON file to deploy it, or copy it for the bot to process.</p>
+                        <textarea id="rotaJsonEditor" style="width: 100%; height: 300px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); padding: 1rem; border-radius: 6px; font-family: monospace; margin-bottom: 1rem;"></textarea>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="resource-btn" onclick="downloadRotaJson()">💾 Download Updated JSON</button>
+                            <button class="resource-btn resource-btn-secondary" onclick="closeRotaEditor()">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </section>

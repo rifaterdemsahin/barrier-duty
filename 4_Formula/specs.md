@@ -267,3 +267,14 @@
   - Updated URLs in `README.md`, `sitemap.xml`, and `robots.txt` to point to the new Fly.io domain (`https://barrier-duty-v1.fly.dev/`).
 - **Related Files:** `5_Symbols/Dockerfile`, `5_Symbols/fly.toml`, `5_Symbols/script.js`, `README.md`, `sitemap.xml`, `robots.txt`
 - **Last Updated:** 2026-10-08
+
+### SPEC-025: [School Street Info & Manual Rota Editor]
+- **Status:** Active
+- **Description:** Added an informational page about School Streets with a YouTube video embed, and introduced a manual Rota Editor in the admin area for downloading updated JSON.
+- **Key Behaviors:**
+  - Created `1_Real_Unknown/what_is_a_school_street.md` with embed details.
+  - Added the new page to `navigation_config.json` under `projectMenu`.
+  - Updated `index.html` admin panel with a "Edit Rota" modal overlay containing a `<textarea>` for JSON modifications.
+  - Added `openRotaEditor`, `closeRotaEditor`, and `downloadRotaJson` to `5_Symbols/script.js` to facilitate JSON extraction without requiring an active backend connection.
+- **Related Files:** `1_Real_Unknown/what_is_a_school_street.md`, `navigation_config.json`, `index.html`, `5_Symbols/script.js`
+- **Last Updated:** 2026-10-08

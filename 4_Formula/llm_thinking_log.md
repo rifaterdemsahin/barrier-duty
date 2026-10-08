@@ -1004,3 +1004,31 @@ This log documents the thinking phase summaries and reasoning processes of the L
 - GitHub Pages deployment removed.
 - All URL references updated to the new domain.
 - SPEC-024 added and changes committed/pushed.
+
+---
+
+## 📅 2026-10-08 — School Street Page & Admin Rota Editor
+
+### 📥 Input / Task
+- Add a page "What is a School Street" with a specific YouTube video embed.
+- After login, give a page to edit the rota manually.
+
+### 💭 Thinking & Reasoning Process
+1. **School Street Page**:
+   - Created `1_Real_Unknown/what_is_a_school_street.md` containing a brief definition and the embedded YouTube iframe provided by the user.
+   - Appended this new page to the `projectMenu` in `navigation_config.json` so it shows up in the main project navigation.
+   - Ran `nav_sync.py` to distribute this menu update to `index.html` and `markdown_renderer.html`.
+2. **Admin Rota Editor**:
+   - The user requested a manual way to edit the rota. Since the backend is just a static Nginx server and we load `rota.json` from Azure Blob Storage, we can't save directly to Azure without SAS tokens.
+   - Designed a simple, effective workaround: created a hidden `adminRotaEditor` section inside the password-protected admin area in `index.html`.
+   - Wired the existing "Edit Rota" button to `openRotaEditor()`, which fetches the live Azure JSON and populates a `<textarea>`.
+   - Provided a `downloadRotaJson()` function in `5_Symbols/script.js` that parses and validates the JSON before downloading it as `rota.json`.
+   - This allows admins to safely modify the structure, validate the syntax, and download the artifact (to be uploaded manually or passed to the WhatsApp bot).
+3. **Documentation**:
+   - Logged SPEC-025 in `4_Formula/specs.md`.
+   - Committed and pushed all changes to the Fly.io deployment pipeline.
+
+### 📤 Outcomes & Decisions
+- School street page is visible via the renderer and integrated into the primary navigation.
+- Admins have a direct way to view, edit, validate, and download the rota JSON from the dashboard.
+- Changes were staged, committed, and pushed.
