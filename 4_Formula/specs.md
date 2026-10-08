@@ -255,3 +255,15 @@
   - Updated the WhatsApp Bot Spec to explicitly document its responsibility of acquiring `AZURE_STORAGE_CONNECTION_STRING` from the `dp-kv-deliverypilot` Key Vault to write updates directly to the Azure Blob Container.
 - **Related Files:** `index.html`, `5_Symbols/script.js`, `5_Symbols/rota.json`, `4_Formula/bot_spec_whatsapp_respond.md`
 - **Last Updated:** 2026-10-08
+
+### SPEC-024: [Migrate to Fly.io & Secure Admin Password]
+- **Status:** Active
+- **Description:** Migrated frontend deployment from GitHub Pages to Fly.io using a Dockerized Nginx server, updated the admin password to `3579>`, and secured it in Azure Key Vault.
+- **Key Behaviors:**
+  - Removed `.github/workflows/static.yml` to disable GitHub Pages deployment.
+  - Added `5_Symbols/Dockerfile` (Nginx alpine) and `5_Symbols/fly.toml` for Fly.io deployment.
+  - Updated `5_Symbols/script.js` to verify the new hashed password `3579>`.
+  - Stored the plaintext password in `dp-kv-deliverypilot` Azure Key Vault.
+  - Updated URLs in `README.md`, `sitemap.xml`, and `robots.txt` to point to the new Fly.io domain (`https://barrier-duty-v1.fly.dev/`).
+- **Related Files:** `5_Symbols/Dockerfile`, `5_Symbols/fly.toml`, `5_Symbols/script.js`, `README.md`, `sitemap.xml`, `robots.txt`
+- **Last Updated:** 2026-10-08

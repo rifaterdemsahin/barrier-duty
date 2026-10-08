@@ -972,3 +972,35 @@ This log documents the thinking phase summaries and reasoning processes of the L
 - Updated `nav_sync.py`'s `MENU` block to include all the existing `.md` documentation files so the smoke test passes.
 - Created `4_Formula/bot_spec_gemini.md` for Gemini based on the bot_spec template.
 - All smoke tests passed. Ready for commit.
+
+---
+
+## 📅 2026-10-08 — Migrate to Fly.io & Secure Admin Password
+
+### 📥 Input / Task
+- Make the admin area password `3579>`.
+- Save the password to Azure Key Vault.
+- Deploy to Fly.io.
+- Remove GitHub Pages deployment and update related parts.
+
+### 💭 Thinking & Reasoning Process
+1. **Password Update & Security**: The user requested a new password `3579>`. To comply with RULE-001/RULE-003 and security best practices, the plaintext password must not be stored in the repository. The frontend `script.js` was updated to hash the input and compare it against the pre-calculated SHA-256 hash of `3579>`. The plaintext password was securely stored in the Azure Key Vault (`dp-kv-deliverypilot`).
+2. **Deployment Migration**:
+   - The goal is to move from GitHub Pages to Fly.io.
+   - Deleted `.github/workflows/static.yml` to stop GitHub Actions deployments.
+   - Created `5_Symbols/Dockerfile` using `nginx:alpine` to serve static files.
+   - Created `5_Symbols/fly.toml` for Fly.io configuration.
+   - To adhere to RULE-005 (clean root), these deployment files were placed inside `5_Symbols/` rather than the repository root.
+3. **URL Updates**: Updated all references to the old GitHub Pages URL (`rifaterdemsahin.github.io`) across `README.md`, `sitemap.xml`, and `robots.txt` to the new Fly.io URL (`barrier-duty-v1.fly.dev`).
+4. **Execution & Commits**: 
+   - All code changes were made and tested by deploying to Fly.io.
+   - Wrote SPEC-024 in `4_Formula/specs.md` to document the delivered state.
+   - Documented the process in `4_Formula/llm_thinking_log.md`.
+   - Staged all changes and pushed to the main branch.
+
+### 📤 Outcomes & Decisions
+- Password updated securely using client-side hashing and Azure Key Vault storage.
+- Project successfully migrated to Fly.io and is live at `https://barrier-duty-v1.fly.dev/`.
+- GitHub Pages deployment removed.
+- All URL references updated to the new domain.
+- SPEC-024 added and changes committed/pushed.

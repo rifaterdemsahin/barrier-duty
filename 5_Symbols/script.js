@@ -45,7 +45,7 @@ async function checkPassword(event) {
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     
     // Check against the SHA-256 hash of the vault-stored password
-    if (hashHex === 'd2ee82922533acc7f8c8369f31655d2d28558b251cbab3eec767a4e3efa5c5dc') {
+    if (hashHex === 'cc49091e6a3fa59a5d4f8f9d4a420ff47d7bfaabae08f666fe5d698712b1d326') {
         // Store authentication in session
         sessionStorage.setItem('adminAuthenticated', 'true');
         showAdminContent();
