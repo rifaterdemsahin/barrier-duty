@@ -71,6 +71,20 @@ Fly volumes, Cloudflare R2, local disk, and git LFS are not the default. Structu
 
 ---
 
+## 🔗 Backend Connection to Azure Storage via Key Vault
+
+Backend services (like the WhatsApp Bot or Python backends in `5_Symbols/backend/`) must securely write to Azure Storage. 
+They do this by first retrieving the connection string from Azure Key Vault, bypassing any hardcoded secrets.
+
+### Backend Workflow
+1. **Azure Identity**: The backend uses `DefaultAzureCredential` to authenticate seamlessly (via managed identity in production or Azure CLI locally).
+2. **Key Vault Client**: It queries the `dp-kv-deliverypilot` Key Vault for the `AZURE-STORAGE-CONNECTION-STRING` secret.
+3. **Blob Storage Client**: It initiates the `BlobServiceClient` with the retrieved connection string to upload `rota.json`.
+
+**Reference Implementation:** Check `5_Symbols/backend/update_rota_azure.py` for the exact code pattern.
+
+---
+
 ## 🧪 Verification Checklist
 - [ ] Azure CLI successfully authenticated
 - [ ] Active subscription is verified

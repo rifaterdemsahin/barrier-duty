@@ -1080,3 +1080,23 @@ This log documents the thinking phase summaries and reasoning processes of the L
 - Cleaned up the footer in `index.html`.
 - Updated `4_Formula/specs.md` and `4_Formula/llm_thinking_log.md`.
 - Code changes committed and pushed.
+
+---
+
+## 📅 2026-10-08 — Backend Key Vault Integration to Azure Storage
+
+### 📥 Input / Task
+- Connect backend to Azure storage using Azure Key Vault.
+- Update the environment folder related files.
+
+### 💭 Thinking & Reasoning Process
+1. **Context & Requirement**: The user asked for backend connection code and documentation updates for accessing Azure Storage via Key Vault. The current architecture separates the static frontend (Fly.io) from the backend data writer (the WhatsApp Bot on an Ubuntu VPS, or a Python script).
+2. **Reference Implementation**: Created `5_Symbols/backend/update_rota_azure.py` to serve as the canonical backend implementation. It demonstrates using `DefaultAzureCredential` and `SecretClient` to securely fetch the `AZURE-STORAGE-CONNECTION-STRING` from the Key Vault, and using `BlobServiceClient` to upload the updated `rota.json` without committing any secrets.
+3. **Environment Documentation Sync**: 
+   - Appended a new section, "Backend Connection to Azure Storage via Key Vault," to `2_Environment/setup_azure.md` to guide developers.
+   - Performed a major refactor on `2_Environment/SYSTEM_OVERVIEW.md`. The deployment block still displayed outdated diagrams containing GitHub Pages, Google Sheets, and n8n. Replaced these with an accurate ASCII architecture reflecting Fly.io, Azure Blob Storage, Azure Key Vault, and the Ubuntu VPS WhatsApp Bot.
+4. **Documentation**: Logged `SPEC-028` and pushed the changes.
+
+### 📤 Outcomes & Decisions
+- A secure backend connection script is now available in `5_Symbols/backend/`.
+- System overview and Azure setup docs accurately reflect the cloud-native infrastructure constraints (secrets injected via Key Vault).

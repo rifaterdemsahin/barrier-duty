@@ -298,3 +298,13 @@
   - Ensures a clean, branded UI for the live site.
 - **Related Files:** `index.html`
 - **Last Updated:** 2026-10-08
+
+### SPEC-028: [Backend Azure Key Vault Integration]
+- **Status:** Active
+- **Description:** Documented and established the backend integration pattern for connecting to Azure Storage securely using Azure Key Vault credentials.
+- **Key Behaviors:**
+  - Created `5_Symbols/backend/update_rota_azure.py` as a reference implementation for backend services to fetch connection strings from `dp-kv-deliverypilot` via `DefaultAzureCredential`.
+  - Updated `2_Environment/setup_azure.md` with the Azure backend workflow documentation.
+  - Refactored `2_Environment/SYSTEM_OVERVIEW.md` to map out the current Fly.io + Azure Blob Storage + Azure Key Vault + WhatsApp Bot (Ubuntu VPS) architecture, deprecating outdated Google Sheets / GitHub Pages diagrams.
+- **Related Files:** `5_Symbols/backend/update_rota_azure.py`, `5_Symbols/backend/requirements.txt`, `2_Environment/setup_azure.md`, `2_Environment/SYSTEM_OVERVIEW.md`
+- **Last Updated:** 2026-10-08

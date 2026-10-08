@@ -402,29 +402,28 @@ Weekly Schedule:
 │                   DEPLOYMENT                        │
 ├────────────────────────────────────────────────────┤
 │                                                     │
-│  🌐 Frontend: GitHub Pages                         │
+│  🌐 Frontend: Fly.io (Static Nginx)                │
 │     • Static HTML/CSS/JS                           │
-│     • CDN delivery                                 │
+│     • Custom domain support                        │
 │     • HTTPS enabled                                │
-│     • Auto-deploy on push                          │
+│     • Containerized deployment                     │
 │                                                     │
-│  📊 Data: Google Sheets                            │
-│     • Cloud-hosted                                 │
-│     • Real-time sync                               │
-│     • 99.9% uptime                                 │
-│     • Auto-backup                                  │
+│  📊 Data: Azure Blob Storage                       │
+│     • Cloud-hosted `rota.json`                     │
+│     • Decoupled read-heavy access                  │
+│     • Cost-efficient static serving                │
+│     • No unauthenticated writes                    │
 │                                                     │
-│  🔄 Automation: n8n                                │
-│     • Self-hosted or cloud                         │
-│     • 24/7 monitoring                              │
-│     • Workflow versioning                          │
-│     • Error alerts                                 │
+│  🔒 Secrets: Azure Key Vault                       │
+│     • Managed Identity                             │
+│     • Connection strings                           │
+│     • Bot keys and webhooks                        │
+│     • Centralized security                         │
 │                                                     │
-│  📧 Email: Gmail API                               │
-│     • OAuth authentication                         │
-│     • Send quota: 100/day (user)                   │
-│     • 2000/day (workspace)                         │
-│     • Delivery tracking                            │
+│  🤖 Automation: WhatsApp Bot (Ubuntu VPS)          │
+│     • NLP intent parsing                           │
+│     • Discord webhook approvals (HITL)             │
+│     • Writes to Azure Storage via Key Vault        │
 │                                                     │
 └────────────────────────────────────────────────────┘
 ```
