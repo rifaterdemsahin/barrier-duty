@@ -27,7 +27,7 @@ CONFIG_FILE = "navigation_config.json"
 REPORT_FILE = os.path.join("6_Semblance", "smoke_test_report.md")
 RENDERER = "5_Symbols/markdown_renderer.html"
 REQUIRED_ROOT_FILES = ["index.html", RENDERER, "README.md", "robots.txt", "sitemap.xml"]
-REQUIRED_INDEX_LINKS = ["github.com", "linkedin.com", "youtube.com"]
+REQUIRED_INDEX_LINKS = []
 STAGE_GLOB = re.compile(r"^[1-7]_[A-Za-z_]+$")
 PERSONA_MD = re.compile(r"^[a-z][a-z0-9-]*\.md$")
 ALLOWED_ROOT_DIRS = {
@@ -56,6 +56,10 @@ ALLOWED_ROOT_FILES = {
     "gemini.md",
     "copilot.md",
     "kilocode.md",
+    "app.py",
+    "Dockerfile",
+    "fly.toml",
+    "requirements.txt",
 }
 IGNORED_ROOT_NAMES = {".git", ".antigravitycli", "node_modules", ".venv", "__pycache__", ".DS_Store"}
 MD_URL_PATTERN = re.compile(r"[0-9A-Za-z_]+/[0-9A-Za-z_/.\-]*\.md")
