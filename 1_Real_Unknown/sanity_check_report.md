@@ -11,7 +11,7 @@
 
 | Input | Evidence Used |
 |-------|---------------|
-| `5_Symbols/toolbox/smoke_test.py` (SPEC-008 runner) | 2026-07-12 runs: 10/10 local, 11/11 cloud vs `https://rifaterdemsahin.github.io/delivery-pilot-template/` |
+| `5_Symbols/toolbox/smoke_test.py` (SPEC-008 runner) | 2026-07-12 runs: 10/10 local, 11/11 cloud vs `https://barrier-duty-v1.fly.dev/` |
 | `6_Semblance/smoke_test_report.md` | Latest generated report — all pass |
 | `7_Testing_Known/smoke_tests.md` | Test definitions and GitHub Issues workflow |
 | `6_Semblance/error.log` / `fix.log` | Issue #1 discovery and resolution trail |
@@ -25,7 +25,7 @@
 | 1 | All 7 stage folders exist with content | `1_Real_Unknown` → `7_Testing_Known` all populated (60+ markdown docs) |
 | 2 | `index.html` at repo root | Present, with Project Menu + Debug Menu + bottom-right debug button |
 | 3 | Social links in `index.html` | GitHub, LinkedIn, YouTube links present (smoke test: Social Links ✅) |
-| 4 | README contains GitHub Pages URL | `https://rifaterdemsahin.github.io/delivery-pilot-template/` |
+| 4 | README contains Fly.io URL | `https://barrier-duty-v1.fly.dev/` |
 | 5 | **GitHub Pages deploys via GitHub Actions** | `.github/workflows/static.yml` (added 2026-07-12); deployed site returns HTTP 200 |
 | 6 | No secrets committed | Automated secrets scan in smoke runner ✅; only placeholders in `.env.example` |
 | 7 | `node_modules` not tracked in git | 0 files tracked |

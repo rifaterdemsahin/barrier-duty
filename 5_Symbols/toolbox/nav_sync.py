@@ -30,7 +30,7 @@ MENU = [
     ("   ├─ 🪟 Setup — Windows", "2_Environment/setup_windows.md"),
     ("   ├─ 🤖 Setup — AI Stack", "2_Environment/setup_ai.md"),
     ("   ├─ ☁️ Setup — Azure", "2_Environment/setup_azure.md"),
-    ("   ├─ 📄 GitHub Pages", "2_Environment/github_pages.md"),
+
     ("   ├─ ⚡ Cloudflare Workers", "2_Environment/cloudflare_workers.md"),
     ("   ├─ 🚀 Fly.io (Deployments)", "2_Environment/fly_io.md"),
     ("   ├─ 🗄️ Supabase (Database)", "2_Environment/supabase.md"),

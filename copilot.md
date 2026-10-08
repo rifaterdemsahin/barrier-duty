@@ -102,7 +102,7 @@ delivery-pilot-template/
 - Use emojis (✨, 🛠, 🧪, 🐛) for scannability
 - Leverage GitHub-native integrations (Actions, Pages, Issues) wherever possible
 - **Record every prompt** in `1_Real_Unknown/prompts.md` — log date, agent, and purpose for each prompt given
-- **README.md must include the public GitHub Pages URL** — e.g., `https://rifaterdemsahin.github.io/<repo-name>/` (see [proxmox example](https://rifaterdemsahin.github.io/proxmox/))
+- **README.md must include the public Fly.io URL** — e.g., `https://<repo-name>.fly.dev` (see [proxmox example](https://proxmox.fly.dev))
 - **Keep `index.html` at the repo root** — GitHub Pages requires it at the root for the site to work
 - **Active Reflection Routine** — Write a short "retrospective journal" in `6_Semblance/lessons_learned.md` after every milestone.
 - **Keep Debug Menu Config Synchronized** — When markdown files are added, modified, or deleted in any stage, remember to update the debug menu configuration (`navigation_config.json` and the fallback arrays in `index.html` and `5_Symbols/markdown_renderer.html` — or run `python3 5_Symbols/toolbox/nav_sync.py`) to reflect these changes immediately.
@@ -149,7 +149,7 @@ delivery-pilot-template/
 - [ ] All markdown files render via `5_Symbols/markdown_renderer.html`
 - [ ] Secrets managed via Azure Key Vault (not in git)
 - [ ] `index.html` links to GitHub, LinkedIn, YouTube
-- [ ] README.md contains GitHub Pages URL
+- [ ] README.md contains Fly.io URL
 
 ---
 
@@ -166,7 +166,7 @@ Search the repository for the current template values and replace them with the 
 | `{{PROJECT_NAME}}` | `delivery-pilot-template` | `README.md`, `index.html` (title, hero), `2_Environment/supabase/config.toml` (project id) |
 | `{{GITHUB_USER}}` | `rifaterdemsahin` | `README.md`, `index.html` (GitHub link), renderer local fallback |
 | `{{REPO_NAME}}` | `delivery-pilot-template` | `README.md` Pages URL, `sitemap.xml`, `robots.txt` |
-| `{{PAGES_URL}}` | `https://rifaterdemsahin.github.io/delivery-pilot-template/` | `README.md`, `sitemap.xml`, `robots.txt` |
+| `{{PAGES_URL}}` | `https://barrier-duty-v1.fly.dev/` | `README.md`, `sitemap.xml`, `robots.txt` |
 | `{{LINKEDIN_URL}}` | `https://www.linkedin.com/in/rifaterdemsahin/` | `index.html` social links |
 | `{{YOUTUBE_URL}}` | `https://www.youtube.com/@RifatErdemSahin` | `index.html` social links |
 

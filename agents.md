@@ -209,7 +209,7 @@ Before any agent implements a change (especially `5_Symbols` code), it must ask 
 - **Smoke Tests & GitHub Issues** — After every implementation, run smoke tests that open pages and check for errors. Report every failure as a GitHub Issue. Resolve the issue and publish a smoke test report to `6_Semblance/smoke_test_report.md`. Smoke tests gate deployment — do not deploy if any smoke test fails.
 - Use emojis for scannability in documentation
 - **Record every prompt** — all prompts given to agents must be logged in `1_Real_Unknown/prompts.md` with date, agent name, purpose, and what was done.
-- **README.md must include the public GitHub Pages URL** — e.g., `https://rifaterdemsahin.github.io/<repo-name>/` (see [proxmox example](https://rifaterdemsahin.github.io/proxmox/))
+- **README.md must include the public Fly.io URL** — e.g., `https://<repo-name>.fly.dev` (see [proxmox example](https://proxmox.fly.dev))
 - **Keep `index.html` at the repo root** — GitHub Pages requires it at the root for the site to work
 - **Two menus required** — Project Menu (always visible, project-specific) + Debug Menu (bottom-right button, shows 7 stages + agent files). See `2_Environment/navigation.md`
 - **Active Reflection Routine** — Write a short "retrospective journal" in `6_Semblance/lessons_learned.md` after every milestone (both humans and AI agents must follow this rule).
@@ -249,7 +249,7 @@ Search the repository for the current template values and replace them with the 
 | `{{PROJECT_NAME}}` | `delivery-pilot-template` | `README.md`, `index.html` (title, hero), `2_Environment/supabase/config.toml` (project id) |
 | `{{GITHUB_USER}}` | `rifaterdemsahin` | `README.md`, `index.html` (GitHub link), renderer local fallback |
 | `{{REPO_NAME}}` | `delivery-pilot-template` | `README.md` Pages URL, `sitemap.xml`, `robots.txt` |
-| `{{PAGES_URL}}` | `https://rifaterdemsahin.github.io/delivery-pilot-template/` | `README.md`, `sitemap.xml`, `robots.txt` |
+| `{{PAGES_URL}}` | `https://barrier-duty-v1.fly.dev/` | `README.md`, `sitemap.xml`, `robots.txt` |
 | `{{LINKEDIN_URL}}` | `https://www.linkedin.com/in/rifaterdemsahin/` | `index.html` social links |
 | `{{YOUTUBE_URL}}` | `https://www.youtube.com/@RifatErdemSahin` | `index.html` social links |
 

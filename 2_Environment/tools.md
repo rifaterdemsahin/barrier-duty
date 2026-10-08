@@ -8,14 +8,14 @@
 
 | Layer | Tool | Role | Detail Doc |
 |-------|------|------|------------|
-| **Frontend hosting** | GitHub Pages | Static site (`index.html`, docs, mockups) | [`github_pages.md`](./github_pages.md) |
+
 | **Light backend / edge** | Cloudflare Workers | Stateless backends + auth, routing, caching (RULE-003) | [`cloudflare_workers.md`](./cloudflare_workers.md) |
 | **Heavy container backend** | Fly.io | Docker / persistent / GPU / long-running jobs (RULE-003) | [`fly_io.md`](./fly_io.md) |
 | **Default file/blob storage** | Azure project storage | Project-scoped Storage account / blobs (RULE-004) | [`setup_azure.md`](./setup_azure.md) |
 | **Database & data layer** | Supabase | Managed Postgres, auth, realtime, pgvector | [`supabase.md`](./supabase.md) |
 | **Server-side logs** | Axiom | Centralized logging, tracing, alerting, dashboards | [`axiom.md`](./axiom.md) |
 | **Secrets** | Azure Key Vault | Stores all API keys & credentials | [`setup_azure.md`](./setup_azure.md) |
-| **CI/CD** | GitHub Actions | Build, test, deploy pipeline | [`github_pages.md`](./github_pages.md) |
+
 | **AI / Vector** | Kilo Code (local) / Qdrant (big repos) | Semantic search: Kilo Code built-in nomic text indexing for small projects, Qdrant vector DB for large repos | [`setup_ai.md`](./setup_ai.md) |
 | **Auto-Fix Agent** | Error-Fix Agent (GitHub Token) | Automated error discovery: visits pages, finds errors, opens GitHub Issues, applies fixes, reports to `6_Semblance/`. Uses GitHub PAT from Azure Key Vault. | [`github_agent.md`](./github_agent.md) |
 | **MCP Servers** | GitHub, Azure KV, Browser, Supabase, Axiom, Fly.io, Qdrant | Model Context Protocol servers connecting agents to external tools | [`mcp.md`](./mcp.md) |
@@ -26,7 +26,7 @@
 ## 📦 Tool-by-Tool
 
 ### 1. GitHub Pages — Frontend Hosting
-Serves the static site directly from the repo root. `index.html` **must** stay at the root. Deployed via GitHub Actions. → [`github_pages.md`](./github_pages.md)
+
 
 ### 2. Cloudflare Workers — Light backend / edge
 Deployment target for **lightweight, stateless** backends and edge logic (auth, routing, caching, rate limiting). Credentials from Azure Key Vault. → [`cloudflare_workers.md`](./cloudflare_workers.md)

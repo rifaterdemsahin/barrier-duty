@@ -8,7 +8,7 @@ zero code changes.
 
 Usage:
     python3 5_Symbols/toolbox/smoke_test.py                 # local filesystem mode
-    python3 5_Symbols/toolbox/smoke_test.py --base-url https://user.github.io/repo/
+    python3 5_Symbols/toolbox/smoke_test.py --base-url https://barrier-duty-v1.fly.dev/
     python3 5_Symbols/toolbox/smoke_test.py --no-report     # run checks, skip report file
 
 Output: 6_Semblance/smoke_test_report.md (per 7_Testing_Known/smoke_tests.md format)
@@ -286,7 +286,7 @@ def write_report(root, results, base_url, trigger):
 
 def main():
     ap = argparse.ArgumentParser(description="Template-adapted smoke test runner (SPEC-008)")
-    ap.add_argument("--base-url", help="Deployed site URL for cloud mode (e.g. https://user.github.io/repo/)")
+    ap.add_argument("--base-url", help="Deployed site URL for cloud mode (e.g. https://barrier-duty-v1.fly.dev/)")
     ap.add_argument("--trigger", default="Manual run", help="What triggered this run (for the report)")
     ap.add_argument("--no-report", action="store_true", help="Run checks without writing the report file")
     args = ap.parse_args()

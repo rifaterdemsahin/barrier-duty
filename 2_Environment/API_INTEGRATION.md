@@ -50,7 +50,7 @@ This guide explains how to integrate the Barrier Duty web application with Googl
    - Application type: Web application
    - Name: "Barrier Duty Web Client"
    - Authorized JavaScript origins:
-     - `https://rifaterdemsahin.github.io`
+     - `https://barrier-duty-v1.fly.dev`
      - `http://localhost:8000` (for testing)
    - Authorized redirect URIs:
      - `https://barrier-duty-v1.fly.dev/oauth2callback`

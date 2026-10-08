@@ -69,7 +69,7 @@ jobs:
       - name: Check navigation config
         run: node scripts/validate-nav-config.js
       - name: Link checker
-        run: npx linkinator https://rifaterdemsahin.github.io/delivery-pilot-template/ --recurse
+        run: npx linkinator https://barrier-duty-v1.fly.dev/ --recurse
 ```
 
 ## GitHub Issues Integration

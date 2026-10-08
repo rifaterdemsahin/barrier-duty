@@ -31,4 +31,4 @@ Execute the project's strict commit-push-deploy workflow with zero-batching poli
 3. Commit with descriptive message: `git commit -m "type: description"`
 4. Push immediately: `git push`
 5. If push fails, diagnose and resolve (fetch/rebase, not force push)
-6. Verify deployment on GitHub Pages URL: `https://rifaterdemsahin.github.io/delivery-pilot-template/`
+6. Verify deployment on GitHub Pages URL: `https://barrier-duty-v1.fly.dev/`

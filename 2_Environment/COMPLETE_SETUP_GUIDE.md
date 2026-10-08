@@ -221,8 +221,8 @@ Go back to Google Apps Script:
 3. Create OAuth 2.0 Client ID:
    - Application type: Web application
    - Name: "Barrier Duty Web Client"
-   - Authorized origins: `https://yourusername.github.io`
-   - Redirect URIs: `https://yourusername.github.io/barrier-duty/oauth2callback`
+   - Authorized origins: `https://barrier-duty-v1.fly.dev`
+   - Redirect URIs: `https://barrier-duty-v1.fly.dev/oauth2callback`
 
 ### Step 3: Get Sheet ID
 
@@ -338,14 +338,14 @@ git push origin main
 ### Step 3: Update OAuth Redirect URIs
 
 Go back to Google Cloud Console:
-1. Update authorized origins: `https://yourusername.github.io`
-2. Update redirect URIs: `https://yourusername.github.io/barrier-duty/oauth2callback`
+1. Update authorized origins: `https://barrier-duty-v1.fly.dev`
+2. Update redirect URIs: `https://barrier-duty-v1.fly.dev/oauth2callback`
 
 ### Step 4: Test Production
 
 Visit your live site:
 ```
-https://yourusername.github.io/barrier-duty/
+https://barrier-duty-v1.fly.dev/
 ```
 
 **Checklist:**

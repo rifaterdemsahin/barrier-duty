@@ -778,7 +778,7 @@ This log documents the thinking phase summaries and reasoning processes of the L
 
 ### 💭 Thinking & Reasoning Process
 1. **Renderer move is the risky one**: the renderer fetches `navigation_config.json` and the `?file=` target relative to its own location. Decision: keep `?file=` parameters root-relative everywhere and prefix all internal fetches/links inside the renderer with `../`. `index.html` routes md links through `5_Symbols/markdown_renderer.html?file=…`. SPEC-002 updated.
-2. **Template reuse**: the GitHub edit URL was hardcoded — now derived from `location.hostname`/`pathname` on `*.github.io`, with the configured repo as local fallback. Placeholder convention specced as SPEC-010; project-specific values enumerated so consumers know exactly what to replace.
+2. **Template reuse**: the GitHub edit URL was hardcoded — now derived from `location.hostname`/`pathname` on `*.fly.dev`, with the configured repo as local fallback. Placeholder convention specced as SPEC-010; project-specific values enumerated so consumers know exactly what to replace.
 3. **Supabase caveat**: the Supabase CLI conventionally expects `supabase/` at the repo root; after the move to `2_Environment/supabase/`, CLI use requires `--workdir 2_Environment` (documented in `4_Formula/database.md`).
 4. **Skills**: `.claude/skills/` (unignored via `.gitignore` exception) with smoke-test, nav-sync, and sanity-check skills wrapping the SPEC-008 runner and the menu regeneration script (`5_Symbols/toolbox/nav_sync.py`, promoted from scratchpad so the skill has a stable target).
 5. **CI/CD ownership**: `static.yml` gains a `smoke` job (SPEC-008 runner, CI-compatible exit code) that gates the `deploy` job — closing risk R-007. The Formula Agent owns this pipeline per its "Manage CI/CD" mandate (Continuous Integration = smoke gate, Continuous Delivery = artifact upload, Continuous Deployment = Pages deploy on every green main push).
@@ -991,7 +991,7 @@ This log documents the thinking phase summaries and reasoning processes of the L
    - Created `5_Symbols/Dockerfile` using `nginx:alpine` to serve static files.
    - Created `5_Symbols/fly.toml` for Fly.io configuration.
    - To adhere to RULE-005 (clean root), these deployment files were placed inside `5_Symbols/` rather than the repository root.
-3. **URL Updates**: Updated all references to the old GitHub Pages URL (`rifaterdemsahin.github.io`) across `README.md`, `sitemap.xml`, and `robots.txt` to the new Fly.io URL (`barrier-duty-v1.fly.dev`).
+3. **URL Updates**: Updated all references to the old GitHub Pages URL (`barrier-duty-v1.fly.dev`) across `README.md`, `sitemap.xml`, and `robots.txt` to the new Fly.io URL (`barrier-duty-v1.fly.dev`).
 4. **Execution & Commits**: 
    - All code changes were made and tested by deploying to Fly.io.
    - Wrote SPEC-024 in `4_Formula/specs.md` to document the delivered state.
@@ -1106,11 +1106,11 @@ This log documents the thinking phase summaries and reasoning processes of the L
 ## 📅 2026-10-08 — GitHub Pages Redirects to Fly.io
 
 ### 📥 Input / Task
-- Make GitHub pages go to Fly.io URL `https://rifaterdemsahin.github.io/barrier-duty` -> `https://barrier-duty-v1.fly.dev`.
+- Make GitHub pages go to Fly.io URL `https://barrier-duty-v1.fly.dev/barrier-duty` -> `https://barrier-duty-v1.fly.dev`.
 
 ### 💭 Thinking & Reasoning Process
 1. **Analyze Constraint**: Since Fly.io builds from the exact same `main` branch as GitHub Pages (if we re-enable Actions), putting a blanket `<meta refresh>` tag in `index.html` would break Fly.io by causing an infinite redirect loop (redirecting to itself continuously).
-2. **Javascript Solution**: I injected a conditional JavaScript check in the `<head>` of both `index.html` and `5_Symbols/markdown_renderer.html`. It checks if `window.location.hostname === "rifaterdemsahin.github.io"`. If true, it uses `window.location.replace()` to redirect to Fly.io while keeping the exact path, search params, and hash (e.g. `#rota` or `?file=...`).
+2. **Javascript Solution**: I injected a conditional JavaScript check in the `<head>` of both `index.html` and `5_Symbols/markdown_renderer.html`. It checks if `window.location.hostname === "barrier-duty-v1.fly.dev"`. If true, it uses `window.location.replace()` to redirect to Fly.io while keeping the exact path, search params, and hash (e.g. `#rota` or `?file=...`).
 3. **Workflow Restoration**: Since we previously deleted `.github/workflows/static.yml`, the old GitHub Pages site was frozen. I used `git checkout` to restore the workflow from the git history so that `main` pushes will deploy to GitHub Pages again, bringing the newly injected JavaScript redirect code live to the old URL.
 4. **Documentation**: Logged the logic as `SPEC-029` in `specs.md`.
 

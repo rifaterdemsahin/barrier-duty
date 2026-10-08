@@ -36,7 +36,7 @@
   - Loads markdown from `?file=` query parameter; the parameter is always a **root-relative** path (e.g. `1_Real_Unknown/risks.md`)
   - All internal fetches/links inside the renderer are prefixed with `../` (site root is one level up from the renderer)
   - Renders via marked.js + PrismJS syntax highlighting
-  - "Edit on GitHub" button derives `{user}/{repo}` from `location.hostname`/`pathname` on `*.github.io` (template-reusable); falls back to the configured repo when served locally
+  - "Edit on GitHub" button derives `{user}/{repo}` from `location.hostname`/`pathname` on `*.fly.dev` (template-reusable); falls back to the configured repo when served locally
   - Debug menu toggle available in renderer
 - **Related Files:** `5_Symbols/markdown_renderer.html`, `index.html`, `navigation_config.json`
 - **Last Updated:** 2026-07-12
@@ -313,7 +313,7 @@
 - **Status:** Active
 - **Description:** Implemented a seamless client-side redirect for legacy GitHub Pages visitors directly to the new Fly.io domain, and re-enabled the GitHub Actions workflow to publish the redirect scripts to the gh-pages instance.
 - **Key Behaviors:**
-  - `index.html` and `5_Symbols/markdown_renderer.html` detect if the `window.location.hostname` is `rifaterdemsahin.github.io`.
+  - `index.html` and `5_Symbols/markdown_renderer.html` detect if the `window.location.hostname` is `barrier-duty-v1.fly.dev`.
   - If true, they redirect the user seamlessly to `barrier-duty-v1.fly.dev` while preserving paths, hashes, and search queries.
   - Restored `.github/workflows/static.yml` to ensure these JavaScript updates actually build and deploy to GitHub Pages so the redirect is active on the old domain.
   - This avoids infinite loops because the `if` check inherently fails on the Fly.io environment.

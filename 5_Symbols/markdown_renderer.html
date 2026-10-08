@@ -5,16 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Markdown Renderer</title>
   
-  <!-- Redirect from GitHub Pages to Fly.io -->
-  <script>
-      if (window.location.hostname === "rifaterdemsahin.github.io") {
-          let path = window.location.pathname;
-          if (path.startsWith('/barrier-duty')) {
-              path = path.replace('/barrier-duty', '');
-          }
-          window.location.replace("https://barrier-duty-v1.fly.dev" + path + window.location.search + window.location.hash);
-      }
-  </script>
+
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -438,7 +429,7 @@
         { label: "   ├─ 🪟 Setup — Windows", url: "2_Environment/setup_windows.md" },
         { label: "   ├─ 🤖 Setup — AI Stack", url: "2_Environment/setup_ai.md" },
         { label: "   ├─ ☁️ Setup — Azure", url: "2_Environment/setup_azure.md" },
-        { label: "   ├─ 📄 GitHub Pages", url: "2_Environment/github_pages.md" },
+
         { label: "   ├─ ⚡ Cloudflare Workers", url: "2_Environment/cloudflare_workers.md" },
         { label: "   ├─ 🚀 Fly.io (Deployments)", url: "2_Environment/fly_io.md" },
         { label: "   ├─ 🗄️ Supabase (Database)", url: "2_Environment/supabase.md" },
@@ -650,7 +641,7 @@
       // On GitHub Pages, derive {user}/{repo} from the URL so the template
       // works for any consumer project without editing this file.
       let gitHubRepo = "rifaterdemsahin/delivery-pilot-template"; // local fallback
-      if (location.hostname.endsWith(".github.io")) {
+      if (location.hostname.endsWith(".fly.dev")) {
         const user = location.hostname.split(".")[0];
         const repo = location.pathname.split("/").filter(Boolean)[0] || "";
         if (user && repo) gitHubRepo = `${user}/${repo}`;

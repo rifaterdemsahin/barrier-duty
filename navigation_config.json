@@ -1,96 +1,362 @@
 {
-  "projectMenu": [
-    {"label": "🏠 Home", "url": "index.html"},
-    {"label": "🎯 OKRs & Outcomes", "url": "5_Symbols/markdown_renderer.html?file=1_Real_Unknown/okrs.md"},
-    {"label": "📊 Progress Dashboard", "url": "5_Symbols/markdown_renderer.html?file=1_Real_Unknown/kanban.md"},
-    {"label": "📅 Calendar", "url": "5_Symbols/calendar_view.html"},
-    {"label": "🏫 What is a School Street", "url": "5_Symbols/markdown_renderer.html?file=1_Real_Unknown/what_is_a_school_street.md"}
-  ],
-  "debugMenu": [
-    {"label": "🎯 1. Real Unknown", "url": "1_Real_Unknown/README.md"},
-    {"label": "   ├─ 📋 Problem Statement", "url": "1_Real_Unknown/problem_statement.md"},
-    {"label": "   ├─ 🎯 OKRs", "url": "1_Real_Unknown/okrs.md"},
-    {"label": "   ├─ 💡 Hypotheses", "url": "1_Real_Unknown/hypotheses.md"},
-    {"label": "   ├─ ❓ Questions", "url": "1_Real_Unknown/questions.md"},
-    {"label": "   ├─ 📊 Kanban Board", "url": "1_Real_Unknown/kanban.md"},
-    {"label": "   ├─ ✅ Tasks & Phases", "url": "1_Real_Unknown/tasks.md"},
-    {"label": "   ├─ 💰 Cost Tracker", "url": "1_Real_Unknown/costs.md"},
-    {"label": "   ├─ ⚠️ Risks", "url": "1_Real_Unknown/risks.md"},
-    {"label": "   ├─ 🔍 Sanity Check Report", "url": "1_Real_Unknown/sanity_check_report.md"},
-    {"label": "   ├─ 📝 Prompt Log", "url": "1_Real_Unknown/prompts.md"},
-    {"label": "   ├─ 🙋 Volunteer Guide", "url": "1_Real_Unknown/VOLUNTEER_GUIDE.md"},
-    {"label": "🛠️ 2. Environment", "url": "2_Environment/README.md"},
-    {"label": "   ├─ 🏗️ Architecture", "url": "2_Environment/architecture.md"},
-    {"label": "   ├─ 📋 Product Rules", "url": "2_Environment/product_rules.md"},
-    {"label": "   ├─ 🧰 Tools Overview", "url": "2_Environment/tools.md"},
-    {"label": "   ├─ 📚 Toolstack & Rationale", "url": "2_Environment/toolstack.md"},
-    {"label": "   ├─ 📦 Dependencies", "url": "2_Environment/dependencies.md"},
-    {"label": "   ├─ 🍎 Setup — Mac", "url": "2_Environment/setup_mac.md"},
-    {"label": "   ├─ 🪟 Setup — Windows", "url": "2_Environment/setup_windows.md"},
-    {"label": "   ├─ 🤖 Setup — AI Stack", "url": "2_Environment/setup_ai.md"},
-    {"label": "   ├─ ☁️ Setup — Azure", "url": "2_Environment/setup_azure.md"},
-    {"label": "   ├─ 📄 GitHub Pages", "url": "2_Environment/github_pages.md"},
-    {"label": "   ├─ ⚡ Cloudflare Workers", "url": "2_Environment/cloudflare_workers.md"},
-    {"label": "   ├─ 🚀 Fly.io (Deployments)", "url": "2_Environment/fly_io.md"},
-    {"label": "   ├─ 🗄️ Supabase (Database)", "url": "2_Environment/supabase.md"},
-    {"label": "   ├─ 📊 Axiom (Logs)", "url": "2_Environment/axiom.md"},
-    {"label": "   ├─ 🤖 GitHub Agent", "url": "2_Environment/github_agent.md"},
-    {"label": "   ├─ 🔌 MCP Servers", "url": "2_Environment/mcp.md"},
-    {"label": "   ├─ ⚡ Superskills", "url": "2_Environment/superskills.md"},
-    {"label": "   ├─ 🧰 LLM Tools", "url": "2_Environment/llm_tools.md"},
-    {"label": "   ├─ 💻 Local Server", "url": "2_Environment/local_server.md"},
-    {"label": "   ├─ 🧭 Navigation", "url": "2_Environment/navigation.md"},
-    {"label": "   ├─ 🔌 API Integration", "url": "2_Environment/API_INTEGRATION.md"},
-    {"label": "   ├─ 📖 Complete Setup", "url": "2_Environment/COMPLETE_SETUP_GUIDE.md"},
-    {"label": "   ├─ 📊 Google Sheets", "url": "2_Environment/GOOGLE_SHEETS_SETUP.md"},
-    {"label": "   ├─ 📧 n8n Email", "url": "2_Environment/N8N_EMAIL_WORKFLOW.md"},
-    {"label": "   ├─ 🚀 Quick Start", "url": "2_Environment/QUICK_START.md"},
-    {"label": "   ├─ 🏗️ System Overview", "url": "2_Environment/SYSTEM_OVERVIEW.md"},
-    {"label": "🎨 3. Simulation", "url": "3_Simulation/README.md"},
-    {"label": "   ├─ 🎨 Design Workflow", "url": "3_Simulation/design_workflow.md"},
-    {"label": "   ├─ 🖼️ Image Prompts", "url": "3_Simulation/image_prompts.md"},
-    {"label": "   ├─ 🧭 Menu Design", "url": "3_Simulation/menu_design.md"},
-    {"label": "📐 4. Formula", "url": "4_Formula/README.md"},
-    {"label": "   ├─ 📋 Specs", "url": "4_Formula/specs.md"},
-    {"label": "   ├─ 🤖 Bot Spec Gemini", "url": "4_Formula/bot_spec_gemini.md"},
-    {"label": "   ├─ 🤖 Bot Spec WhatsApp", "url": "4_Formula/bot_spec_whatsapp_respond.md"},
-    {"label": "   ├─ 🤔 Decisions", "url": "4_Formula/decisions.md"},
-    {"label": "   ├─ 🧠 LLM Thinking Log", "url": "4_Formula/llm_thinking_log.md"},
-    {"label": "   ├─ 📋 Implementation Summary", "url": "4_Formula/IMPLEMENTATION_SUMMARY.md"},
-    {"label": "   ├─ 🧠 Qdrant Ollama Setup", "url": "4_Formula/qdrant_ollama_setup.md"},
-    {"label": "   ├─ 📝 DSL", "url": "4_Formula/dsl.md"},
-    {"label": "   ├─ 🗄️ Database", "url": "4_Formula/database.md"},
-    {"label": "   ├─ 🔌 Extensions", "url": "4_Formula/extensions.md"},
-    {"label": "   ├─ 🧭 Navigation", "url": "4_Formula/navigation.md"},
-    {"label": "   ├─ 📊 Logging & Auto-Fix", "url": "4_Formula/logging_and_autofix.md"},
-    {"label": "   ├─ 🤖 Harness (Bot Contract)", "url": "4_Formula/harness.md"},
-    {"label": "   ├─ 🤖 Agent Creation", "url": "4_Formula/agent_creation.md"},
-    {"label": "   ├─ 🤖 Bot Spec (Template)", "url": "4_Formula/bot_spec.md"},
-    {"label": "   ├─ 📊 TOGAF Gap Analysis", "url": "4_Formula/togaf_gap_analysis.md"},
-    {"label": "💻 5. Symbols", "url": "5_Symbols/README.md"},
-    {"label": "   ├─ 📜 Agent Operating Rules", "url": "5_Symbols/rules/agent_operating_rules.md"},
-    {"label": "   ├─ 📝 Coding Standards", "url": "5_Symbols/rules/coding_standards.md"},
-    {"label": "   ├─ 🔀 Git Conventions", "url": "5_Symbols/rules/git_conventions.md"},
-    {"label": "   ├─ 📁 File Organization", "url": "5_Symbols/rules/file_organization.md"},
-    {"label": "🔧 6. Semblance", "url": "6_Semblance/README.md"},
-    {"label": "   ├─ ❌ Error Log", "url": "6_Semblance/error_log.md"},
-    {"label": "   ├─ 📊 Gap Analysis", "url": "6_Semblance/gap_analysis.md"},
-    {"label": "   ├─ 📚 Lessons Learned", "url": "6_Semblance/lessons_learned.md"},
-    {"label": "   ├─ 🔧 Workarounds", "url": "6_Semblance/workarounds.md"},
-    {"label": "   ├─ 🧪 Smoke Test Report", "url": "6_Semblance/smoke_test_report.md"},
-    {"label": "✅ 7. Testing Known", "url": "7_Testing_Known/README.md"},
-    {"label": "   ├─ 🧪 Smoke Tests", "url": "7_Testing_Known/smoke_tests.md"},
-    {"label": "   ├─ 🤖 Harness Slice-2 Report", "url": "7_Testing_Known/harness_slice2_report.md"},
-    {"label": "   ├─ 🏅 Golden Task Report", "url": "7_Testing_Known/harness_golden_report.md"},
-    {"label": "   ├─ 🧩 Logic Tracker", "url": "7_Testing_Known/logic.md"},
-    {"label": "   ├─ ✅ Validation Report", "url": "7_Testing_Known/validation_report.md"},
-    {"label": "   ├─ 📋 Sanity Data Source", "url": "7_Testing_Known/sanity_check_report.md"},
-    {"label": "---", "url": "divider"},
-    {"label": "🎠 Artifacts Carousel", "url": "5_Symbols/artifacts_carousel.html"},
-    {"label": "📖 agents.md", "url": "agents.md"},
-    {"label": "🤖 claude.md", "url": "claude.md"},
-    {"label": "✨ gemini.md", "url": "gemini.md"},
-    {"label": "🧑‍💻 copilot.md", "url": "copilot.md"},
-    {"label": "⚡ kilocode.md", "url": "kilocode.md"}
-  ]
+    "projectMenu": [
+        {
+            "label": "\ud83c\udfe0 Home",
+            "url": "index.html"
+        },
+        {
+            "label": "\ud83c\udfaf OKRs & Outcomes",
+            "url": "5_Symbols/markdown_renderer.html?file=1_Real_Unknown/okrs.md"
+        },
+        {
+            "label": "\ud83d\udcca Progress Dashboard",
+            "url": "5_Symbols/markdown_renderer.html?file=1_Real_Unknown/kanban.md"
+        },
+        {
+            "label": "\ud83d\udcc5 Calendar",
+            "url": "5_Symbols/calendar_view.html"
+        },
+        {
+            "label": "\ud83c\udfeb What is a School Street",
+            "url": "5_Symbols/markdown_renderer.html?file=1_Real_Unknown/what_is_a_school_street.md"
+        }
+    ],
+    "debugMenu": [
+        {
+            "label": "\ud83c\udfaf 1. Real Unknown",
+            "url": "1_Real_Unknown/README.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udccb Problem Statement",
+            "url": "1_Real_Unknown/problem_statement.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83c\udfaf OKRs",
+            "url": "1_Real_Unknown/okrs.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udca1 Hypotheses",
+            "url": "1_Real_Unknown/hypotheses.md"
+        },
+        {
+            "label": "   \u251c\u2500 \u2753 Questions",
+            "url": "1_Real_Unknown/questions.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcca Kanban Board",
+            "url": "1_Real_Unknown/kanban.md"
+        },
+        {
+            "label": "   \u251c\u2500 \u2705 Tasks & Phases",
+            "url": "1_Real_Unknown/tasks.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcb0 Cost Tracker",
+            "url": "1_Real_Unknown/costs.md"
+        },
+        {
+            "label": "   \u251c\u2500 \u26a0\ufe0f Risks",
+            "url": "1_Real_Unknown/risks.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udd0d Sanity Check Report",
+            "url": "1_Real_Unknown/sanity_check_report.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcdd Prompt Log",
+            "url": "1_Real_Unknown/prompts.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\ude4b Volunteer Guide",
+            "url": "1_Real_Unknown/VOLUNTEER_GUIDE.md"
+        },
+        {
+            "label": "\ud83d\udee0\ufe0f 2. Environment",
+            "url": "2_Environment/README.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83c\udfd7\ufe0f Architecture",
+            "url": "2_Environment/architecture.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udccb Product Rules",
+            "url": "2_Environment/product_rules.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\uddf0 Tools Overview",
+            "url": "2_Environment/tools.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcda Toolstack & Rationale",
+            "url": "2_Environment/toolstack.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udce6 Dependencies",
+            "url": "2_Environment/dependencies.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83c\udf4e Setup \u2014 Mac",
+            "url": "2_Environment/setup_mac.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\ude9f Setup \u2014 Windows",
+            "url": "2_Environment/setup_windows.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udd16 Setup \u2014 AI Stack",
+            "url": "2_Environment/setup_ai.md"
+        },
+        {
+            "label": "   \u251c\u2500 \u2601\ufe0f Setup \u2014 Azure",
+            "url": "2_Environment/setup_azure.md"
+        },
+        {
+            "label": "   \u251c\u2500 \u26a1 Cloudflare Workers",
+            "url": "2_Environment/cloudflare_workers.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\ude80 Fly.io (Deployments)",
+            "url": "2_Environment/fly_io.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\uddc4\ufe0f Supabase (Database)",
+            "url": "2_Environment/supabase.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcca Axiom (Logs)",
+            "url": "2_Environment/axiom.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udd16 GitHub Agent",
+            "url": "2_Environment/github_agent.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udd0c MCP Servers",
+            "url": "2_Environment/mcp.md"
+        },
+        {
+            "label": "   \u251c\u2500 \u26a1 Superskills",
+            "url": "2_Environment/superskills.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\uddf0 LLM Tools",
+            "url": "2_Environment/llm_tools.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcbb Local Server",
+            "url": "2_Environment/local_server.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udded Navigation",
+            "url": "2_Environment/navigation.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udd0c API Integration",
+            "url": "2_Environment/API_INTEGRATION.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcd6 Complete Setup",
+            "url": "2_Environment/COMPLETE_SETUP_GUIDE.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcca Google Sheets",
+            "url": "2_Environment/GOOGLE_SHEETS_SETUP.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udce7 n8n Email",
+            "url": "2_Environment/N8N_EMAIL_WORKFLOW.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\ude80 Quick Start",
+            "url": "2_Environment/QUICK_START.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83c\udfd7\ufe0f System Overview",
+            "url": "2_Environment/SYSTEM_OVERVIEW.md"
+        },
+        {
+            "label": "\ud83c\udfa8 3. Simulation",
+            "url": "3_Simulation/README.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83c\udfa8 Design Workflow",
+            "url": "3_Simulation/design_workflow.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\uddbc\ufe0f Image Prompts",
+            "url": "3_Simulation/image_prompts.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udded Menu Design",
+            "url": "3_Simulation/menu_design.md"
+        },
+        {
+            "label": "\ud83d\udcd0 4. Formula",
+            "url": "4_Formula/README.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udccb Specs",
+            "url": "4_Formula/specs.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udd16 Bot Spec Gemini",
+            "url": "4_Formula/bot_spec_gemini.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udd16 Bot Spec WhatsApp",
+            "url": "4_Formula/bot_spec_whatsapp_respond.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udd14 Decisions",
+            "url": "4_Formula/decisions.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udde0 LLM Thinking Log",
+            "url": "4_Formula/llm_thinking_log.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udccb Implementation Summary",
+            "url": "4_Formula/IMPLEMENTATION_SUMMARY.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udde0 Qdrant Ollama Setup",
+            "url": "4_Formula/qdrant_ollama_setup.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcdd DSL",
+            "url": "4_Formula/dsl.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\uddc4\ufe0f Database",
+            "url": "4_Formula/database.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udd0c Extensions",
+            "url": "4_Formula/extensions.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udded Navigation",
+            "url": "4_Formula/navigation.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcca Logging & Auto-Fix",
+            "url": "4_Formula/logging_and_autofix.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udd16 Harness (Bot Contract)",
+            "url": "4_Formula/harness.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udd16 Agent Creation",
+            "url": "4_Formula/agent_creation.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udd16 Bot Spec (Template)",
+            "url": "4_Formula/bot_spec.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcca TOGAF Gap Analysis",
+            "url": "4_Formula/togaf_gap_analysis.md"
+        },
+        {
+            "label": "\ud83d\udcbb 5. Symbols",
+            "url": "5_Symbols/README.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcdc Agent Operating Rules",
+            "url": "5_Symbols/rules/agent_operating_rules.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcdd Coding Standards",
+            "url": "5_Symbols/rules/coding_standards.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udd00 Git Conventions",
+            "url": "5_Symbols/rules/git_conventions.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcc1 File Organization",
+            "url": "5_Symbols/rules/file_organization.md"
+        },
+        {
+            "label": "\ud83d\udd27 6. Semblance",
+            "url": "6_Semblance/README.md"
+        },
+        {
+            "label": "   \u251c\u2500 \u274c Error Log",
+            "url": "6_Semblance/error_log.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcca Gap Analysis",
+            "url": "6_Semblance/gap_analysis.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udcda Lessons Learned",
+            "url": "6_Semblance/lessons_learned.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udd27 Workarounds",
+            "url": "6_Semblance/workarounds.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\uddea Smoke Test Report",
+            "url": "6_Semblance/smoke_test_report.md"
+        },
+        {
+            "label": "\u2705 7. Testing Known",
+            "url": "7_Testing_Known/README.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\uddea Smoke Tests",
+            "url": "7_Testing_Known/smoke_tests.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udd16 Harness Slice-2 Report",
+            "url": "7_Testing_Known/harness_slice2_report.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83c\udfc5 Golden Task Report",
+            "url": "7_Testing_Known/harness_golden_report.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83e\udde9 Logic Tracker",
+            "url": "7_Testing_Known/logic.md"
+        },
+        {
+            "label": "   \u251c\u2500 \u2705 Validation Report",
+            "url": "7_Testing_Known/validation_report.md"
+        },
+        {
+            "label": "   \u251c\u2500 \ud83d\udccb Sanity Data Source",
+            "url": "7_Testing_Known/sanity_check_report.md"
+        },
+        {
+            "label": "---",
+            "url": "divider"
+        },
+        {
+            "label": "\ud83c\udfa0 Artifacts Carousel",
+            "url": "5_Symbols/artifacts_carousel.html"
+        },
+        {
+            "label": "\ud83d\udcd6 agents.md",
+            "url": "agents.md"
+        },
+        {
+            "label": "\ud83e\udd16 claude.md",
+            "url": "claude.md"
+        },
+        {
+            "label": "\u2728 gemini.md",
+            "url": "gemini.md"
+        },
+        {
+            "label": "\ud83e\uddd1\u200d\ud83d\udcbb copilot.md",
+            "url": "copilot.md"
+        },
+        {
+            "label": "\u26a1 kilocode.md",
+            "url": "kilocode.md"
+        }
+    ]
 }
