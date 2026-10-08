@@ -2,12 +2,12 @@
 
 > **Stage 4: Formula** — The bot-spec format for the Barrier Duty bot. 
 
-Version: 1.1
+Version: 1.2
 Last updated: 2026-10-08 (Europe/London)
 
 ## Purpose
 
-The Barrier Duty bot assists with automating the volunteer rota updates, managing volunteer communications, and maintaining the school street barrier duty website data.
+The Barrier Duty bot assists with automating the volunteer rota updates, managing volunteer communications, maintaining the school street barrier duty website data, and actively listening to channel conversations to build the rota and announce weekly gaps.
 
 ## Success criteria
 
@@ -15,6 +15,7 @@ The Barrier Duty bot assists with automating the volunteer rota updates, managin
 - The website (https://barrier-duty-v1.fly.dev/) reflects the updated data accurately.
 - Human-in-the-loop is maintained for critical changes.
 - High security standards are observed, with credentials securely retrieved from Azure Key Vault.
+- The bot accurately captures volunteer availability from channel conversations and correctly mentions weekly rota gaps.
 
 ## Context
 
@@ -29,12 +30,14 @@ The Barrier Duty bot assists with automating the volunteer rota updates, managin
 - Azure Blob Storage (`dpstoragebarrierduty` -> `config`, `rota` containers) for dynamic data.
 - Fly.io backend API (`https://barrier-duty-v1.fly.dev/api/data/<entity>`) to load and save `rota`, `volunteers`, and `updates` json files.
 - GitHub (`rifaterdemsahin/barrier-duty`) for source code management.
+- Messaging Channels (e.g., Slack, WhatsApp, or Discord) to monitor conversations for volunteer availability.
 
 ## Destinations
 
 - The primary web interface at Fly.io: https://barrier-duty-v1.fly.dev/
 - Local fallbacks and development environments.
 - Azure Storage Blob (updating `rota.json`, `updates.json`, `volunteers.json`).
+- Messaging Channels (posting weekly rota gap mentions).
 
 ## Operating rules
 
@@ -44,6 +47,8 @@ The Barrier Duty bot assists with automating the volunteer rota updates, managin
 
 ## Automation / routines
 
+- **Channel Listening**: The bot continuously monitors the designated volunteer chat channel for availability messages (e.g., "I can do Tuesday morning") and parses them to build the rota.
+- **Weekly Gap Mentions**: At a designated time each week (e.g., Sunday evening), the bot checks the rota for the upcoming week and posts a mention in the channel highlighting any remaining gaps.
 - **Data Updates**: The bot can run periodic checks to ensure the rota is populated for upcoming weeks.
 - **Config Sync**: The bot can sync local `navigation_config.json` with the Azure Blob Storage.
 
