@@ -323,10 +323,19 @@ async function renderVolunteers() {
 
     grid.innerHTML = '';
     data.forEach(vol => {
+        let detailsHtml = '';
+        for (const [key, value] of Object.entries(vol)) {
+            if (key !== 'name') {
+                // format key (e.g. total_shifts -> Total Shifts)
+                const formattedKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                detailsHtml += `<p><strong>${formattedKey}:</strong> ${value}</p>`;
+            }
+        }
+        
         grid.innerHTML += `
             <div class="volunteer-card" style="opacity: 1; transform: translateY(0);">
-                <h4>${vol.name}</h4>
-                <p><strong>Availability:</strong> ${vol.availability}</p>
+                <h4>${vol.name || 'Unknown Volunteer'}</h4>
+                ${detailsHtml}
             </div>
         `;
     });
