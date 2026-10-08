@@ -7,33 +7,20 @@
 
 ## 🗺️ High-Level System Architecture
 
-This project is built as a highly responsive, modern static application on **GitHub Pages**. Apps with a backend deploy to **Cloudflare Workers** or **Fly.io** based on requirements (RULE-003 / SPEC-012): lightweight/stateless backends go to Workers; **heavy container** workloads go to Fly.io. Both take credentials from **Azure Key Vault**. Default file/blob storage is **Azure project-based storage** (RULE-004).
+This project is built as a highly responsive, modern application deployed on **Fly.io** using a Python Flask backend. The backend serves both the static frontend (HTML/CSS/JS) and the REST API. Storage is handled via **Azure project-based storage** (Blob Storage), and credentials are retrieved from **Azure Key Vault** (RULE-003, RULE-004). 
 
 ```mermaid
 graph TD
     User["🌐 End User (Browser)"]
-    GitHubPages["📦 GitHub Pages (Frontend)"]
-    CloudflareWorkers["⚡ Cloudflare Workers (light backend / edge)"]
-    FlyIO["🐳 Fly.io (heavy containers)"]
-    AzureStorage["📁 Azure project storage (default blobs)"]
-    Supabase["🗄️ Supabase (Postgres / Auth / Realtime)"]
-    Axiom["📊 Axiom (Server-Side Logs)"]
+    FlyIO["🐳 Fly.io (Python Flask Container)"]
+    AzureStorage["📁 Azure Blob Storage (rota.json, etc.)"]
     AzureKeyVault["🔒 Azure Key Vault (Secrets Management)"]
     GitHubActions["🤖 GitHub Actions (CI/CD Pipeline)"]
 
-    User -->|Access index.html| GitHubPages
-    User -->|Dynamic requests| CloudflareWorkers
-    User -->|Heavy / container APIs| FlyIO
-    CloudflareWorkers -->|Optional proxy / cache| FlyIO
-    CloudflareWorkers -->|Blobs| AzureStorage
-    FlyIO -->|Blobs| AzureStorage
-    FlyIO -->|Read/write data, auth| Supabase
-    FlyIO -->|Ship structured logs| Axiom
-    FlyIO -->|Retrieve secrets at runtime| AzureKeyVault
-    CloudflareWorkers -->|Retrieve secrets at runtime| AzureKeyVault
+    User -->|Access static files & API| FlyIO
+    FlyIO -->|Read/write JSON files| AzureStorage
+    FlyIO -->|Retrieve secrets at runtime via SP| AzureKeyVault
 
-    GitHubActions -->|Deploy static pages| GitHubPages
-    GitHubActions -->|Deploy Workers| CloudflareWorkers
     GitHubActions -->|Deploy containers| FlyIO
     GitHubActions -->|Fetch deploy secrets| AzureKeyVault
 ```
@@ -42,37 +29,23 @@ graph TD
 
 ## 🧩 Core Components
 
-### 1. Frontend Static Layer (`index.html`)
-- **Hosting:** Hosted directly at the root of the repository on GitHub Pages.
+### 1. Frontend Static Layer (`index.html` & `script.js`)
+- **Hosting:** Served by the Flask backend on Fly.io.
 - **Styling & Assets:** Vanilla CSS styling, Fira Code / Outfit / Inter fonts, and FontAwesome icons loaded via CDN.
-- **Routing:** Handled dynamically via `5_Symbols/markdown_renderer.html` using query parameters (e.g. `?file=1_Real_Unknown/kanban.md`).
-- **Menu System:**
-  - **Project Menu:** Always visible, reads from `navigation_config.json`.
-  - **Debug Menu:** Configured dynamically, toggled via a floating action button on the bottom right. Persists using cookie values (`debug=true`).
-  - **Console Logger:** `debugLog` utility logs loading operations, API integrations, and routing info for developers if debug mode is active.
+- **Data Editing:** Admin UI edits the volunteer and rota JSON arrays and saves directly to the backend API.
 
-### 2. Backend — Cloudflare Workers (`2_Environment/cloudflare_workers.md`)
-- Target for **lightweight, stateless** backends and edge logic (auth, routing, caching, rate limiting).
-- Credentials from Azure Key Vault (RULE-003).
+### 2. Backend API — Fly.io
+- **Server:** Python Flask serving endpoints `/api/data/<entity>` for GET and POST.
+- **Credentials:** Uses `DefaultAzureCredential` configured with Service Principal env variables in Fly.io to read the Key Vault.
+- **Key Vault Secrets:** `ADMIN-PASSWORD` and `AZURE-STORAGE-CONNECTION-STRING`.
 
-### 3. Backend — Fly.io (`2_Environment/fly_io.md`)
-- Target for **heavy container** backends: Docker, persistent processes, filesystems, WebSockets, GPU, long-running jobs.
-- Credentials from Azure Key Vault (RULE-003).
+### 3. Data Layer — Azure Blob Storage
+- **Container:** `rota` and `config` containers in `dpstoragebarrierduty` account.
+- **Usage:** Holds `rota.json`, `updates.json`, `volunteers.json` which the Fly.io backend reads and writes.
 
-### 4. Database & Data Layer (`2_Environment/supabase.md`)
-- **Provider:** Supabase (managed PostgreSQL) for structured data, auth, APIs, realtime, and `pgvector`.
-- **Default files/blobs:** Azure project-based storage (RULE-004 / SPEC-012), not Supabase Storage or Fly volumes unless Formula records an exception.
-
-### 4b. Azure project storage
-- One Azure Storage account (blob containers) scoped to this project. Account keys live in Key Vault.
-
-### 5. Server-Side Logs (`2_Environment/axiom.md`)
-- **Provider:** Axiom.
-- **Usage:** Centralized, structured server-side logs from Fly.io and CI. Powers querying (APL), dashboards, and alerting.
-
-### 6. Secrets Management (`2_Environment/setup_azure.md`)
-- **Provider:** Microsoft Azure Key Vault.
-- **Usage:** Stores all API keys, database credentials, and deployment keys. Secrets are loaded at runtime by backend environments or injected during CI/CD steps.
+### 4. CI/CD & Deployments
+- **Pipeline:** GitHub Actions (`.github/workflows/fly.yml`) handles deployment to Fly.io on pushes to `main`.
+- **Secrets:** Fly API token configured as a GitHub Secret.
 
 > 📋 For a single reference covering every tool in the stack, see [`tools.md`](./tools.md).
 
@@ -80,6 +53,6 @@ graph TD
 
 ## 🛠️ How to Keep This Document Updated
 
-1. **Keep Diagrams in Sync:** If new components are added (e.g. database layers, external OAuth providers), update the Mermaid graph above.
-2. **Review Environment Configs:** Ensure that changes here match setup instructions in `setup_mac.md`, `setup_windows.md`, and `setup_ai.md`.
+1. **Keep Diagrams in Sync:** If new components are added, update the Mermaid graph above.
+2. **Review Environment Configs:** Ensure changes match `setup_mac.md`, `setup_windows.md`, etc.
 3. **Verify Rendering:** Ensure that Mermaid rendering works on the compiled web page via `5_Symbols/markdown_renderer.html`.
