@@ -128,20 +128,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Add click handlers for admin action buttons
-    const adminActionButtons = document.querySelectorAll('.admin-action-btn');
-    adminActionButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            alert('This feature would be connected to a backend system in a production environment.');
-        });
-    });
+    // The edit buttons are handled by onclick="openEditor('entity')" in HTML.
     
-    // Add click handlers for export buttons
+    // Add click handlers for export buttons to actually download data
     const exportButtons = document.querySelectorAll('.export-btn');
     exportButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', async function() {
             const buttonText = this.textContent;
-            alert(`${buttonText}\n\nThis would download the requested file in a production environment.`);
+            let entity = '';
+            if (buttonText.includes('Rota')) entity = 'rota';
+            else if (buttonText.includes('Volunteer')) entity = 'volunteers';
+            else if (buttonText.includes('Statistics') || buttonText.includes('Updates')) entity = 'updates';
+            
+            if (entity) {
+                try {
+                    const data = await loadData(entity);
+                    const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json"});
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${entity}.json`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                } catch (e) {
+                    console.error("Export failed", e);
+                    alert("Failed to export data.");
+                }
+            }
         });
     });
 });
