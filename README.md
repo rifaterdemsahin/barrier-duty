@@ -137,22 +137,21 @@ Then visit `http://localhost:8000` in your browser.
 
 ## Deployment
 
-This project uses GitHub Actions for automatic deployment to GitHub Pages.
+This project uses **Fly.io** for static site hosting via an Nginx Docker container.
 
-### Setup GitHub Pages
+### Setup Fly.io Deployment
 
-1. Go to your repository settings
-2. Navigate to "Pages" section
-3. Under "Build and deployment":
-   - Source: "GitHub Actions"
-4. Push to the main/master branch to trigger deployment
+1. The project includes a `5_Symbols/Dockerfile` configured with `nginx:alpine` and a `5_Symbols/fly.toml` for Fly.io configuration.
+2. The site is live at: [https://barrier-duty-v1.fly.dev/](https://barrier-duty-v1.fly.dev/)
+3. All deployment credentials are securely managed through **Azure Key Vault** (`dp-kv-deliverypilot`), adhering to project rules (RULE-003, SPEC-012).
 
 ### Manual Deployment
 
-The workflow can also be triggered manually:
-1. Go to Actions tab
-2. Select "Deploy to GitHub Pages"
-3. Click "Run workflow"
+To deploy manually via the Fly.io CLI:
+```bash
+# From the project root, using the explicit config paths (per RULE-005)
+fly deploy -c 5_Symbols/fly.toml --dockerfile 5_Symbols/Dockerfile --ignorefile 5_Symbols/.dockerignore .
+```
 
 ## File Structure
 

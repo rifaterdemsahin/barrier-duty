@@ -1032,3 +1032,33 @@ This log documents the thinking phase summaries and reasoning processes of the L
 - School street page is visible via the renderer and integrated into the primary navigation.
 - Admins have a direct way to view, edit, validate, and download the rota JSON from the dashboard.
 - Changes were staged, committed, and pushed.
+
+---
+
+## 📅 2026-10-08 — Documentation Updates for Deployment & Bot Spec Refinement
+
+### 📥 Input / Task
+- Update `README.md` to include Fly.io links and manual deployment steps.
+- Update `4_Formula/bot_spec_whatsapp_respond.md` to define:
+  - Fly.io links
+  - Update mechanisms
+  - Human-in-the-loop (HITL) process
+  - Security definition
+  - Training and adaptation processes
+
+### 💭 Thinking & Reasoning Process
+1. **README Optimization**: 
+   - Replaced obsolete GitHub Pages instructions with accurate Fly.io configuration.
+   - Inserted the exact manual `fly deploy` command that respects RULE-005 (running from root but targeting `5_Symbols/fly.toml` and `5_Symbols/Dockerfile`).
+2. **Bot Spec Enhancements**:
+   - Analyzed the WhatsApp responder's role. It directly impacts the live schedule, making error mitigation crucial.
+   - **HITL**: Introduced a 5-step Human-In-The-Loop flow. The bot proposes an update, sends it via Discord webhook, and waits for a human administrator to approve before writing to Azure.
+   - **Security**: Solidified rules around PII (no phone numbers in the public `rota.json`) and secrets (always Key Vault, never codebase).
+   - **Training**: Defined an iterative loop where failed/ambiguous prompts land in an Axiom log bucket. The team reviews these weekly to update the bot's system prompts.
+3. **Documentation**:
+   - Logged SPEC-026 in `4_Formula/specs.md`.
+   - Staged, committed, and pushed the updates to keep the repository fresh.
+
+### 📤 Outcomes & Decisions
+- README is now accurate and reflects the current Fly.io cloud-native state.
+- The WhatsApp Bot spec acts as a robust standard operating procedure detailing exact mechanisms for how AI integrates safely with human supervisors.

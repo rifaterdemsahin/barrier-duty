@@ -278,3 +278,14 @@
   - Added `openRotaEditor`, `closeRotaEditor`, and `downloadRotaJson` to `5_Symbols/script.js` to facilitate JSON extraction without requiring an active backend connection.
 - **Related Files:** `1_Real_Unknown/what_is_a_school_street.md`, `navigation_config.json`, `index.html`, `5_Symbols/script.js`
 - **Last Updated:** 2026-10-08
+
+### SPEC-026: [Bot Spec Refinement - Security & HITL]
+- **Status:** Active
+- **Description:** Updated the README.md to reflect Fly.io deployment instructions and formalized the WhatsApp Bot specification.
+- **Key Behaviors:**
+  - `README.md` updated with exact Fly.io links and manual deployment commands.
+  - `4_Formula/bot_spec_whatsapp_respond.md` updated to document the Human-In-The-Loop (HITL) process (Discord Webhook approvals).
+  - Defined explicit security models for the bot (excluding PII from public JSON, fetching from Key Vault).
+  - Defined the Training & Adaptation process for the bot to learn from ambiguous volunteer messages.
+- **Related Files:** `README.md`, `4_Formula/bot_spec_whatsapp_respond.md`
+- **Last Updated:** 2026-10-08
