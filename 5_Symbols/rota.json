@@ -1,18 +1,82 @@
 [
     {
-        "date": "2026-10-12",
+        "date": "2026-10-21",
         "day": "Monday",
-        "time": "08:30-09:00",
+        "time": "08:00-08:30",
         "shift": "morning",
-        "volunteer1": "John Doe",
-        "volunteer2": "Needed"
+        "volunteer1": "Paul (Norfolk Street)",
+        "volunteer2": "Eslam"
     },
     {
-        "date": "2026-10-12",
+        "date": "2026-10-21",
         "day": "Monday",
         "time": "15:00-15:30",
         "shift": "afternoon",
-        "volunteer1": "Jane Smith",
-        "volunteer2": "Alice Brown"
+        "volunteer1": "Erdem",
+        "volunteer2": "STANDBY NEEDED"
+    },
+    {
+        "date": "2026-10-22",
+        "day": "Tuesday",
+        "time": "08:00-08:30",
+        "shift": "morning",
+        "volunteer1": "Ben",
+        "volunteer2": "STANDBY NEEDED"
+    },
+    {
+        "date": "2026-10-22",
+        "day": "Tuesday",
+        "time": "15:00-15:30",
+        "shift": "afternoon",
+        "volunteer1": "STANDBY NEEDED",
+        "volunteer2": "STANDBY NEEDED"
+    },
+    {
+        "date": "2026-10-23",
+        "day": "Wednesday",
+        "time": "08:00-08:30",
+        "shift": "morning",
+        "volunteer1": "Anton",
+        "volunteer2": "Eslam"
+    },
+    {
+        "date": "2026-10-23",
+        "day": "Wednesday",
+        "time": "15:00-15:30",
+        "shift": "afternoon",
+        "volunteer1": "STANDBY NEEDED",
+        "volunteer2": "STANDBY NEEDED"
+    },
+    {
+        "date": "2026-10-24",
+        "day": "Thursday",
+        "time": "08:00-08:30",
+        "shift": "morning",
+        "volunteer1": "Elisabeth Whitebread",
+        "volunteer2": "STANDBY NEEDED"
+    },
+    {
+        "date": "2026-10-24",
+        "day": "Thursday",
+        "time": "15:00-15:30",
+        "shift": "afternoon",
+        "volunteer1": "Cheki",
+        "volunteer2": "Annalisa"
+    },
+    {
+        "date": "2026-10-25",
+        "day": "Friday",
+        "time": "08:00-08:30",
+        "shift": "morning",
+        "volunteer1": "Elisabeth Winkelmann",
+        "volunteer2": "Lianna"
+    },
+    {
+        "date": "2026-10-25",
+        "day": "Friday",
+        "time": "15:00-15:30",
+        "shift": "afternoon",
+        "volunteer1": "Hero",
+        "volunteer2": "Su-jin"
     }
 ]
