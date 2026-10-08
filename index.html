@@ -5,11 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🚧 Barrier Duty — Volunteer Management</title>
     <meta name="description" content="Barrier Duty Volunteer Management — coordinating school crossing volunteers for children's safety.">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="5_Symbols/styles.css">
 </head>
 <body>
     <script>window.MENU_BASE_PATH = '';</script>
-    <script src="menu.js"></script>
+    <script src="5_Symbols/menu.js"></script>
+
+  <script>
+    // 🗃️ Menu Configuration Fallback Data
+    let navigationData = {
+      projectMenu: [
+        { label: "🏠 Home", url: "index.html" }
+      ],
+      debugMenu: [
+        { label: "🎯 1. Real Unknown", url: "1_Real_Unknown/README.md" },
+        { label: "   ├─ 📋 Problem Statement", url: "1_Real_Unknown/problem_statement.md" },
+        { label: "   ├─ 🎯 OKRs", url: "1_Real_Unknown/okrs.md" },
+        { label: "   ├─ 💡 Hypotheses", url: "1_Real_Unknown/hypotheses.md" },
+        { label: "   ├─ ❓ Questions", url: "1_Real_Unknown/questions.md" },
+        { label: "   ├─ 📊 Kanban Board", url: "1_Real_Unknown/kanban.md" },
+        { label: "   ├─ ✅ Tasks & Phases", url: "1_Real_Unknown/tasks.md" },
+        { label: "   ├─ 💰 Cost Tracker", url: "1_Real_Unknown/costs.md" },
+        { label: "   ├─ ⚠️ Risks", url: "1_Real_Unknown/risks.md" },
+        { label: "   ├─ 🔍 Sanity Check Report", url: "1_Real_Unknown/sanity_check_report.md" },
+        { label: "   ├─ 📝 Prompt Log", url: "1_Real_Unknown/prompts.md" },
+        { label: "   ├─ 🙋 Volunteer Guide", url: "1_Real_Unknown/VOLUNTEER_GUIDE.md" },
+        { label: "🛠️ 2. Environment", url: "2_Environment/README.md" },
+        { label: "   ├─ 🏗️ Architecture", url: "2_Environment/architecture.md" },
+        { label: "   ├─ 📋 Product Rules", url: "2_Environment/product_rules.md" },
+        { label: "   ├─ 🧰 Tools Overview", url: "2_Environment/tools.md" },
+        { label: "   ├─ 📚 Toolstack & Rationale", url: "2_Environment/toolstack.md" },
+        { label: "   ├─ 📦 Dependencies", url: "2_Environment/dependencies.md" },
+        { label: "   ├─ 🍎 Setup — Mac", url: "2_Environment/setup_mac.md" },
+        { label: "   ├─ 🪟 Setup — Windows", url: "2_Environment/setup_windows.md" },
+        { label: "   ├─ 🤖 Setup — AI Stack", url: "2_Environment/setup_ai.md" },
+        { label: "   ├─ ☁️ Setup — Azure", url: "2_Environment/setup_azure.md" },
+        { label: "   ├─ 📄 GitHub Pages", url: "2_Environment/github_pages.md" },
+        { label: "   ├─ ⚡ Cloudflare Workers", url: "2_Environment/cloudflare_workers.md" },
+        { label: "   ├─ 🚀 Fly.io (Deployments)", url: "2_Environment/fly_io.md" },
+        { label: "   ├─ 🗄️ Supabase (Database)", url: "2_Environment/supabase.md" },
+        { label: "   ├─ 📊 Axiom (Logs)", url: "2_Environment/axiom.md" },
+        { label: "   ├─ 🤖 GitHub Agent", url: "2_Environment/github_agent.md" },
+        { label: "   ├─ 🔌 MCP Servers", url: "2_Environment/mcp.md" },
+        { label: "   ├─ ⚡ Superskills", url: "2_Environment/superskills.md" },
+        { label: "   ├─ 🧰 LLM Tools", url: "2_Environment/llm_tools.md" },
+        { label: "   ├─ 💻 Local Server", url: "2_Environment/local_server.md" },
+        { label: "   ├─ 🧭 Navigation", url: "2_Environment/navigation.md" },
+        { label: "   ├─ 🔌 API Integration", url: "2_Environment/API_INTEGRATION.md" },
+        { label: "   ├─ 📖 Complete Setup", url: "2_Environment/COMPLETE_SETUP_GUIDE.md" },
+        { label: "   ├─ 📊 Google Sheets", url: "2_Environment/GOOGLE_SHEETS_SETUP.md" },
+        { label: "   ├─ 📧 n8n Email", url: "2_Environment/N8N_EMAIL_WORKFLOW.md" },
+        { label: "   ├─ 🚀 Quick Start", url: "2_Environment/QUICK_START.md" },
+        { label: "   ├─ 🏗️ System Overview", url: "2_Environment/SYSTEM_OVERVIEW.md" },
+        { label: "🎨 3. Simulation", url: "3_Simulation/README.md" },
+        { label: "   ├─ 🎨 Design Workflow", url: "3_Simulation/design_workflow.md" },
+        { label: "   ├─ 🖼️ Image Prompts", url: "3_Simulation/image_prompts.md" },
+        { label: "   ├─ 🧭 Menu Design", url: "3_Simulation/menu_design.md" },
+        { label: "📐 4. Formula", url: "4_Formula/README.md" },
+        { label: "   ├─ 📋 Specs", url: "4_Formula/specs.md" },
+        { label: "   ├─ 🤖 Bot Spec Gemini", url: "4_Formula/bot_spec_gemini.md" },
+        { label: "   ├─ 🤔 Decisions", url: "4_Formula/decisions.md" },
+        { label: "   ├─ 🧠 LLM Thinking Log", url: "4_Formula/llm_thinking_log.md" },
+        { label: "   ├─ 📋 Implementation Summary", url: "4_Formula/IMPLEMENTATION_SUMMARY.md" },
+        { label: "   ├─ 🧠 Qdrant Ollama Setup", url: "4_Formula/qdrant_ollama_setup.md" },
+        { label: "   ├─ 📝 DSL", url: "4_Formula/dsl.md" },
+        { label: "   ├─ 🗄️ Database", url: "4_Formula/database.md" },
+        { label: "   ├─ 🔌 Extensions", url: "4_Formula/extensions.md" },
+        { label: "   ├─ 🧭 Navigation", url: "4_Formula/navigation.md" },
+        { label: "   ├─ 📊 Logging & Auto-Fix", url: "4_Formula/logging_and_autofix.md" },
+        { label: "   ├─ 🤖 Harness (Bot Contract)", url: "4_Formula/harness.md" },
+        { label: "   ├─ 🤖 Agent Creation", url: "4_Formula/agent_creation.md" },
+        { label: "   ├─ 🤖 Bot Spec (Template)", url: "4_Formula/bot_spec.md" },
+        { label: "   ├─ 📊 TOGAF Gap Analysis", url: "4_Formula/togaf_gap_analysis.md" },
+        { label: "💻 5. Symbols", url: "5_Symbols/README.md" },
+        { label: "   ├─ 📜 Agent Operating Rules", url: "5_Symbols/rules/agent_operating_rules.md" },
+        { label: "   ├─ 📝 Coding Standards", url: "5_Symbols/rules/coding_standards.md" },
+        { label: "   ├─ 🔀 Git Conventions", url: "5_Symbols/rules/git_conventions.md" },
+        { label: "   ├─ 📁 File Organization", url: "5_Symbols/rules/file_organization.md" },
+        { label: "🔧 6. Semblance", url: "6_Semblance/README.md" },
+        { label: "   ├─ ❌ Error Log", url: "6_Semblance/error_log.md" },
+        { label: "   ├─ 📊 Gap Analysis", url: "6_Semblance/gap_analysis.md" },
+        { label: "   ├─ 📚 Lessons Learned", url: "6_Semblance/lessons_learned.md" },
+        { label: "   ├─ 🔧 Workarounds", url: "6_Semblance/workarounds.md" },
+        { label: "   ├─ 🧪 Smoke Test Report", url: "6_Semblance/smoke_test_report.md" },
+        { label: "✅ 7. Testing Known", url: "7_Testing_Known/README.md" },
+        { label: "   ├─ 🧪 Smoke Tests", url: "7_Testing_Known/smoke_tests.md" },
+        { label: "   ├─ 🤖 Harness Slice-2 Report", url: "7_Testing_Known/harness_slice2_report.md" },
+        { label: "   ├─ 🏅 Golden Task Report", url: "7_Testing_Known/harness_golden_report.md" },
+        { label: "   ├─ 🧩 Logic Tracker", url: "7_Testing_Known/logic.md" },
+        { label: "   ├─ ✅ Validation Report", url: "7_Testing_Known/validation_report.md" },
+        { label: "   ├─ 📋 Sanity Data Source", url: "7_Testing_Known/sanity_check_report.md" },
+        { label: "---", url: "divider" },
+        { label: "🎠 Artifacts Carousel", url: "5_Symbols/artifacts_carousel.html" },
+        { label: "📖 agents.md", url: "agents.md" },
+        { label: "🤖 claude.md", url: "claude.md" },
+        { label: "✨ gemini.md", url: "gemini.md" },
+        { label: "🧑‍💻 copilot.md", url: "copilot.md" },
+        { label: "⚡ kilocode.md", url: "kilocode.md" }
+      ]
+    };
+  </script>
+
     <header>
         <div class="container">
             <h1>🚧 Barrier Duty Volunteer Management</h1>
@@ -54,7 +150,7 @@
                 <div class="cta-section" style="margin-top: 40px; text-align: center; padding: 30px; background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); border-radius: 12px; color: white;">
                     <h3 style="margin-top: 0; font-size: 24px;">📝 Can't Make Your Shift?</h3>
                     <p style="font-size: 16px; margin-bottom: 20px;">Let us know immediately so we can find a substitute!</p>
-                    <a href="update-availability.html" style="display: inline-block; background: white; color: #2563eb; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; transition: transform 0.2s;">
+                    <a href="5_Symbols/update-availability.html" style="display: inline-block; background: white; color: #2563eb; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; transition: transform 0.2s;">
                         Update My Availability →
                     </a>
                 </div>
@@ -158,7 +254,7 @@
                     <p>⚠️ Slots marked as "Pending" need volunteers. Contact the admin to sign up!</p>
                     <p style="margin-top: 10px;">
                         <strong>Can't make your shift?</strong> 
-                        <a href="update-availability.html" style="color: #2563eb; text-decoration: underline;">Click here to update your availability</a>
+                        <a href="5_Symbols/update-availability.html" style="color: #2563eb; text-decoration: underline;">Click here to update your availability</a>
                     </p>
                 </div>
             </section>
@@ -352,7 +448,7 @@
                         </div>
                     </div>
                     <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="flier.html" target="_blank" class="resource-btn">🖨️ Open Printable Flier</a>
+                        <a href="5_Symbols/flier.html" target="_blank" class="resource-btn">🖨️ Open Printable Flier</a>
                         <button class="resource-btn resource-btn-secondary" onclick="window.print()">🖨️ Print This Page</button>
                     </div>
                 </div>
@@ -465,6 +561,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="5_Symbols/script.js"></script>
 </body>
 </html>

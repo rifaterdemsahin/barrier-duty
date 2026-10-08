@@ -1,4 +1,4 @@
-# 🛠 Kilo Code — Delivery Pilot Template
+# ✨ Gemini AI — Delivery Pilot Template
 
 ## Persona & Role
 
@@ -40,9 +40,9 @@ delivery-pilot-template/
 ├── .env.example
 ├── agents.md             # Agent rules & persona instructions
 ├── claude.md
-├── kilocode.md           # This file
+├── kilocode.md
 ├── copilot.md
-└── gemini.md
+└── gemini.md             # This file
 ```
 
 ---
@@ -78,7 +78,7 @@ delivery-pilot-template/
 
 ---
 
-## 🤖 Kilo Code-Specific Instructions
+## 🤖 Gemini-Specific Instructions
 
 ### Behavior Guidelines
 - **Standing operating rules** — Load and follow `5_Symbols/rules/agent_operating_rules.md` on every task. **RULE-001:** formulate what you did as a spec and add it to the Formula folder (`4_Formula/specs.md`). **RULE-002:** commit and push after each logical change. **RULE-003:** backends deploy to Fly.io or Cloudflare Workers (heavy containers → Fly.io); both take credentials from Azure Key Vault. **RULE-004:** default storage is Azure project-based storage. **RULE-005:** only these root folders: `.claude/skills`, `.github/workflows`, `.kilo/skills`, `1_Real_Unknown`–`7_Testing_Known`; move anything else into the related subfolder.
@@ -100,7 +100,7 @@ delivery-pilot-template/
 - **Task Resolution** — When resolving a task, mention which agent is involved. For complex tasks spanning multiple agents, describe how the Real Agent coordinates them.
 - **Sub-Agent Generation** — Top agents create sub-agents when specialized work is needed. When receiving a task, ask if a sub-agent is required. Get confirmation and create a spec before generating.
 - Use emojis (✨, 🛠, 🧪, 🐛) for scannability
-- Focus on precision code generation and minimal footprint changes
+- Leverage Gemini's multimodal capabilities for image analysis in `3_Simulation`
 - **Record every prompt** in `1_Real_Unknown/prompts.md` — log date, agent, and purpose for each prompt given
 - **README.md must include the public GitHub Pages URL** — e.g., `https://rifaterdemsahin.github.io/<repo-name>/` (see [proxmox example](https://rifaterdemsahin.github.io/proxmox/))
 - **Keep `index.html` at the repo root** — GitHub Pages requires it at the root for the site to work

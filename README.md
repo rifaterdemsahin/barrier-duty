@@ -28,10 +28,10 @@ A responsive web application for managing school crossing volunteers, coordinati
 - 🏠 [Home Page](https://rifaterdemsahin.github.io/barrier-duty/)
 - 📅 [Volunteer Rota](https://rifaterdemsahin.github.io/barrier-duty/#rota)
 - 🔔 [Updates](https://rifaterdemsahin.github.io/barrier-duty/#updates)
-- 📝 [Update My Availability](https://rifaterdemsahin.github.io/barrier-duty/update-availability.html)
+- 📝 [Update My Availability](https://rifaterdemsahin.github.io/barrier-duty/5_Symbols/update-availability.html)
 - 🎭 [Media Gallery / Carousel](https://rifaterdemsahin.github.io/barrier-duty/3_Simulation/carousel.html)
-- 📄 [Markdown Viewer](https://rifaterdemsahin.github.io/barrier-duty/markdown_renderer.html)
-- 🖨️ [Printable Flier](https://rifaterdemsahin.github.io/barrier-duty/flier.html)
+- 📄 [Markdown Viewer](https://rifaterdemsahin.github.io/barrier-duty/5_Symbols/markdown_renderer.html)
+- 🖨️ [Printable Flier](https://rifaterdemsahin.github.io/barrier-duty/5_Symbols/flier.html)
 
 ---
 
@@ -251,7 +251,7 @@ See [N8N_EMAIL_WORKFLOW.md](N8N_EMAIL_WORKFLOW.md) for workflow setup guide.
 
 ### 🔗 Volunteer Update Portal
 New self-service page for volunteers:
-- **Update availability** through a simple web form ([update-availability.html](update-availability.html))
+- **Update availability** through a simple web form ([5_Symbols/update-availability.html](5_Symbols/update-availability.html))
 - **Pre-filled forms** from email notification links
 - **Instant submission** to Google Sheets
 - **Email confirmations** to both volunteer and admin
