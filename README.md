@@ -78,31 +78,19 @@ Visit the live site at: `https://[your-username].github.io/barrier-duty/`
 
 ## Admin Access
 
-**Default Password:** `admin123`
+**Default Password:** `3579`
 
-### ⚠️ CRITICAL SECURITY WARNING
+### 🔒 Security Features
 
-This implementation uses **CLIENT-SIDE password protection for demonstration purposes only**. This is **NOT SECURE** for production use because:
+This implementation is now secured with a backend API:
 
-1. The password is visible in the JavaScript source code
-2. Anyone can view the source and see the password
-3. There is no real authentication - users can bypass it by manipulating browser storage
+1. **Authentication**: The frontend compares hashes and stores session state, but the real security is that all edits happen via the `/api/data/*` endpoints.
+2. **Key Vault Integration**: The `ADMIN-PASSWORD` and `AZURE-STORAGE-CONNECTION-STRING` are stored securely in **Azure Key Vault** (`dp-kv-deliverypilot`). The Flask backend uses these credentials to communicate with Azure Blob Storage.
+3. **No Plaintext Secrets**: The codebase has no committed secrets.
 
 **For Production Use:**
-- Implement proper **server-side authentication** with encrypted passwords
-- Use a backend framework (Node.js, Python Flask/Django, PHP, etc.)
-- Store passwords securely using bcrypt or similar hashing
-- Implement proper session management on the server
-- Use HTTPS for all communications
-- Consider using OAuth or other modern authentication methods
-
-This demo is suitable for:
-- Local development and testing
-- Understanding the UI/UX flow
-- Demonstrating features to stakeholders
-- Educational purposes
-
-**Do not deploy this to production without implementing proper security measures.**
+- Consider integrating a fully-fledged identity provider (e.g. Entra ID / Auth0) for the Admin interface instead of a shared password.
+- Enforce HTTPS strictly (Fly.io handles this automatically).
 
 ## Local Development
 
@@ -137,20 +125,20 @@ Then visit `http://localhost:8000` in your browser.
 
 ## Deployment
 
-This project uses **Fly.io** for static site hosting via an Nginx Docker container.
+This project uses **Fly.io** for hosting a full-stack Python Flask application with an API backend.
 
 ### Setup Fly.io Deployment
 
-1. The project includes a `5_Symbols/Dockerfile` configured with `nginx:alpine` and a `5_Symbols/fly.toml` for Fly.io configuration.
+1. The project includes a root `Dockerfile` and a `fly.toml` for Fly.io configuration.
 2. The site is live at: [https://barrier-duty-v1.fly.dev/](https://barrier-duty-v1.fly.dev/)
-3. All deployment credentials are securely managed through **Azure Key Vault** (`dp-kv-deliverypilot`), adhering to project rules (RULE-003, SPEC-012).
+3. All deployment credentials and data storage rely on **Azure Key Vault** (`dp-kv-deliverypilot`) and **Azure Blob Storage** (`dpstoragebarrierduty`).
+4. GitHub Actions workflow (`.github/workflows/fly.yml`) is set up to automatically deploy changes pushed to the `main` branch.
 
 ### Manual Deployment
 
 To deploy manually via the Fly.io CLI:
 ```bash
-# From the project root, using the explicit config paths (per RULE-005)
-fly deploy -c 5_Symbols/fly.toml --dockerfile 5_Symbols/Dockerfile --ignorefile 5_Symbols/.dockerignore .
+fly deploy
 ```
 
 ## File Structure
@@ -158,21 +146,26 @@ fly deploy -c 5_Symbols/fly.toml --dockerfile 5_Symbols/Dockerfile --ignorefile 
 ```
 barrier-duty/
 ├── index.html          # Main HTML file with all sections
-├── styles.css          # Responsive CSS styling
-├── script.js           # JavaScript for interactivity and auth
+├── 5_Symbols/styles.css# Responsive CSS styling
+├── 5_Symbols/script.js # JavaScript for interactivity and auth
+├── app.py              # Python Flask backend serving API
+├── Dockerfile          # Docker configuration
+├── fly.toml            # Fly.io configuration
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml  # GitHub Actions deployment workflow
+│       └── fly.yml     # GitHub Actions deployment workflow
 └── README.md           # This file
 ```
 
 ## Technologies Used
 
-- **HTML5** - Semantic markup
-- **CSS3** - Modern styling with Grid and Flexbox
+- **HTML5 & CSS3** - Semantic markup and modern styling
 - **JavaScript (ES6+)** - Client-side interactivity
+- **Python Flask** - Backend API and static file serving
+- **Azure Blob Storage** - Cloud JSON data storage
+- **Azure Key Vault** - Secure credential management
+- **Fly.io** - Docker-based application hosting
 - **GitHub Actions** - CI/CD pipeline
-- **GitHub Pages** - Static site hosting
 
 ## Features Overview
 
