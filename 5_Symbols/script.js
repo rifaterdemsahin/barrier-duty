@@ -311,7 +311,6 @@ async function renderVolunteers() {
         grid.innerHTML += `
             <div class="volunteer-card" style="opacity: 1; transform: translateY(0);">
                 <h4>${vol.name}</h4>
-                <p><strong>Total Shifts:</strong> ${vol.total_shifts} shifts</p>
                 <p><strong>Availability:</strong> ${vol.availability}</p>
             </div>
         `;
@@ -450,6 +449,13 @@ function renderTableEditor(data) {
     table.appendChild(tbody);
     container.appendChild(table);
     
+    const btnContainer = document.createElement('div');
+    btnContainer.style.display = 'flex';
+    btnContainer.style.gap = '10px';
+    btnContainer.style.marginTop = '10px';
+    btnContainer.style.alignItems = 'center';
+    btnContainer.style.flexWrap = 'wrap';
+    
     const addBtn = document.createElement('button');
     addBtn.className = 'resource-btn resource-btn-secondary';
     addBtn.textContent = '➕ Add Row';
@@ -458,7 +464,67 @@ function renderTableEditor(data) {
         keys.forEach(k => newItem[k] = '');
         tbody.appendChild(createTableRow(keys, newItem));
     };
-    container.appendChild(addBtn);
+    btnContainer.appendChild(addBtn);
+    
+    if (currentEditorEntity === 'rota') {
+        const dateInput = document.createElement('input');
+        dateInput.type = 'date';
+        dateInput.id = 'weekStartDate';
+        dateInput.style.padding = '8px';
+        dateInput.style.borderRadius = '4px';
+        dateInput.style.border = '1px solid var(--border-color)';
+        dateInput.style.background = 'var(--bg-color)';
+        dateInput.style.color = 'var(--text-primary)';
+        dateInput.style.colorScheme = 'dark';
+        
+        const genBtn = document.createElement('button');
+        genBtn.className = 'resource-btn';
+        genBtn.textContent = '📅 Generate Week';
+        genBtn.onclick = () => {
+            const startVal = dateInput.value;
+            if (!startVal) {
+                alert("Please select a starting date (preferably a Monday).");
+                return;
+            }
+            const start = new Date(startVal);
+            for (let i = 0; i < 5; i++) {
+                const currentDate = new Date(start);
+                currentDate.setDate(start.getDate() + i);
+                const dateStr = currentDate.toISOString().split('T')[0];
+                const dayName = currentDate.toLocaleDateString('en-US', {weekday: 'long'});
+                
+                // Morning
+                tbody.appendChild(createTableRow(keys, {
+                    date: dateStr,
+                    day: dayName,
+                    time: "08:00-08:30",
+                    shift: "morning",
+                    volunteer1: "STANDBY NEEDED",
+                    volunteer2: "STANDBY NEEDED"
+                }));
+                
+                // Afternoon
+                tbody.appendChild(createTableRow(keys, {
+                    date: dateStr,
+                    day: dayName,
+                    time: "15:00-15:30",
+                    shift: "afternoon",
+                    volunteer1: "STANDBY NEEDED",
+                    volunteer2: "STANDBY NEEDED"
+                }));
+            }
+        };
+        
+        const label = document.createElement('span');
+        label.textContent = 'Start Date:';
+        label.style.color = 'var(--text-primary)';
+        
+        btnContainer.appendChild(label);
+        btnContainer.appendChild(dateInput);
+        btnContainer.appendChild(genBtn);
+    }
+    
+    container.appendChild(btnContainer);
 }
 
 const VOLUNTEER_LIST = [

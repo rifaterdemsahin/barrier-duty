@@ -154,6 +154,7 @@
                 <li><a href="#updates" onclick="showSection('updates')">Updates</a></li>
                 <li><a href="#school-street" onclick="showSection('school-street')">What is a School Street?</a></li>
                 <li><a href="#resources" onclick="showSection('resources')">Resources</a></li>
+                <li><a href="#sanity-check" onclick="showSection('sanity-check')">Sanity Check</a></li>
                 <li><a href="#admin" onclick="checkAccess('admin')">Admin</a></li>
             </ul>
         </div>
@@ -447,6 +448,66 @@
             </section>
 
             <!-- Admin Section (Password Protected) -->
+            <!-- Sanity Check Section -->
+            <section id="sanity-check" class="content-section">
+                <h2>🔍 Sanity Check & Fix Output</h2>
+                <div class="resource-card">
+                    <h3>Project Sanity Checklist</h3>
+                    <p>Review the questions below. Fill in the answers, then click "Copy Output" to easily paste it into the AI agent chat to fix the project.</p>
+                    
+                    <form id="sanityCheckForm" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+                        <div>
+                            <label style="font-weight: bold;">1. Are the Rota dates correctly generating when you click "Generate Week"?</label>
+                            <textarea id="sc-q1" style="width: 100%; height: 60px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label style="font-weight: bold;">2. Are the pre-filled volunteers loading correctly (from dropdown)?</label>
+                            <textarea id="sc-q2" style="width: 100%; height: 60px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label style="font-weight: bold;">3. Is the 'total_shifts' properly removed from the UI and backend data?</label>
+                            <textarea id="sc-q3" style="width: 100%; height: 60px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label style="font-weight: bold;">4. What else is broken or needs immediate fixing?</label>
+                            <textarea id="sc-q4" style="width: 100%; height: 100px; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);"></textarea>
+                        </div>
+                        
+                        <button type="button" class="resource-btn" onclick="copySanityOutput()" style="align-self: flex-start; margin-top: 10px;">📋 Copy Output to Clipboard</button>
+                    </form>
+                    
+                    <script>
+                        function copySanityOutput() {
+                            const q1 = document.getElementById('sc-q1').value || 'No input';
+                            const q2 = document.getElementById('sc-q2').value || 'No input';
+                            const q3 = document.getElementById('sc-q3').value || 'No input';
+                            const q4 = document.getElementById('sc-q4').value || 'No input';
+                            
+                            const output = `### Sanity Check Output
+1. **Are dates correctly generating?**
+${q1}
+
+2. **Are pre-filled volunteers loading?**
+${q2}
+
+3. **Is total_shifts removed?**
+${q3}
+
+4. **What else needs fixing?**
+${q4}
+`;
+                            navigator.clipboard.writeText(output).then(() => {
+                                alert('✅ Output copied to clipboard! Paste it to the AI agent.');
+                            }).catch(err => {
+                                alert('Failed to copy text: ' + err);
+                            });
+                        }
+                    </script>
+                </div>
+            </section>
             <section id="admin" class="content-section protected-section">
                 <div id="adminLogin" class="login-form">
                     <h2>🔒 Admin Area</h2>
