@@ -8,7 +8,11 @@
   <!-- Redirect from GitHub Pages to Fly.io -->
   <script>
       if (window.location.hostname === "rifaterdemsahin.github.io") {
-          window.location.replace("https://barrier-duty-v1.fly.dev" + window.location.pathname + window.location.search + window.location.hash);
+          let path = window.location.pathname;
+          if (path.startsWith('/barrier-duty')) {
+              path = path.replace('/barrier-duty', '');
+          }
+          window.location.replace("https://barrier-duty-v1.fly.dev" + path + window.location.search + window.location.hash);
       }
   </script>
 

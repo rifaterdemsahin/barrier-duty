@@ -22,7 +22,7 @@ The carousel below demonstrates real-world assets from barrier duty operations. 
 
 ## 🖼️ UI Mockups
 
-The live site at `https://rifaterdemsahin.github.io/barrier-duty/` serves as the primary simulation of the intended solution.
+The live site at `https://barrier-duty-v1.fly.dev/` serves as the primary simulation of the intended solution.
 
 Key screens:
 1. **Home** — Welcome + call-to-action for availability updates

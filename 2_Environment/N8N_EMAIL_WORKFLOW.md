@@ -149,7 +149,7 @@ const date = $input.first().json.date;
 const timeSlot = $input.first().json.timeSlot;
 
 // Generate update link with parameters
-const baseUrl = 'https://rifaterdemsahin.github.io/barrier-duty/update-availability.html';
+const baseUrl = 'https://barrier-duty-v1.fly.dev/update-availability.html';
 const updateLink = `${baseUrl}?name=${encodeURIComponent(volunteerName)}&email=${encodeURIComponent(volunteerEmail)}&date=${date}&scheduleId=${scheduleId}`;
 
 // Format date for display

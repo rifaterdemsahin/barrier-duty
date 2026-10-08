@@ -2,7 +2,7 @@
 
 A responsive web application for managing school crossing volunteers, coordinating rotas, and keeping everyone informed about their duties.
 
-> 🌐 **Live Site:** [rifaterdemsahin.github.io/barrier-duty](https://barrier-duty-v1.fly.dev/)  
+> 🌐 **Live Site:** [barrier-duty-v1.fly.dev](https://barrier-duty-v1.fly.dev/)  
 > 🐙 **GitHub:** [github.com/rifaterdemsahin/barrier-duty](https://github.com/rifaterdemsahin/barrier-duty)  
 > 💼 **LinkedIn:** [linkedin.com/in/rifaterdemsahin](https://www.linkedin.com/in/rifaterdemsahin/)  
 > ▶️ **YouTube:** [youtube.com/@RifatErdemSahin](https://www.youtube.com/@RifatErdemSahin)
@@ -74,7 +74,7 @@ A responsive web application for managing school crossing volunteers, coordinati
 
 ## Live Demo
 
-Visit the live site at: `https://[your-username].github.io/barrier-duty/`
+Visit the live site at: `https://barrier-duty-v1.fly.dev/`
 
 ## Admin Access
 

@@ -8,7 +8,7 @@ Welcome to the Barrier Duty Volunteer Management System! This guide will help yo
 
 ## Accessing the System
 
-**Main Website:** https://rifaterdemsahin.github.io/barrier-duty/
+**Main Website:** https://barrier-duty-v1.fly.dev/
 
 The website has several sections:
 - **Home** - Welcome and quick information
@@ -79,7 +79,7 @@ Each shift is 30 minutes at the school crossing.
 
 ### Method 2: From Website
 
-1. Go to https://rifaterdemsahin.github.io/barrier-duty/
+1. Go to https://barrier-duty-v1.fly.dev/
 2. Click "Update My Availability" button on the home page
 3. Or scroll to the Volunteer Rota section and click the update link
 4. Fill in the form with:
@@ -253,10 +253,10 @@ For urgent matters within 24 hours of your shift, contact the admin directly:
 
 ## Quick Links
 
-- **Main Website:** https://rifaterdemsahin.github.io/barrier-duty/
-- **Update Availability:** https://rifaterdemsahin.github.io/barrier-duty/update-availability.html
-- **View Schedule:** https://rifaterdemsahin.github.io/barrier-duty/#rota
-- **Latest Updates:** https://rifaterdemsahin.github.io/barrier-duty/#updates
+- **Main Website:** https://barrier-duty-v1.fly.dev/
+- **Update Availability:** https://barrier-duty-v1.fly.dev/update-availability.html
+- **View Schedule:** https://barrier-duty-v1.fly.dev/#rota
+- **Latest Updates:** https://barrier-duty-v1.fly.dev/#updates
 
 ---
 

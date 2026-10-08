@@ -53,7 +53,7 @@ This guide explains how to integrate the Barrier Duty web application with Googl
      - `https://rifaterdemsahin.github.io`
      - `http://localhost:8000` (for testing)
    - Authorized redirect URIs:
-     - `https://rifaterdemsahin.github.io/barrier-duty/oauth2callback`
+     - `https://barrier-duty-v1.fly.dev/oauth2callback`
      - `http://localhost:8000/oauth2callback`
 
 5. Save the **Client ID** and **Client Secret**

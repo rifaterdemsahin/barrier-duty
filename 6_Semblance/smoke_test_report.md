@@ -4,7 +4,7 @@
 > Latest run overwrites this file; one report per test run.
 
 ## Run Info
-- **Date:** 2026-10-08 22:33
+- **Date:** 2026-10-08 23:20
 - **Trigger:** Manual run
 - **Mode:** Local filesystem
 - **Tester:** smoke_test.py (automated)
@@ -21,7 +21,7 @@
 | Nav 3-Way Sync | ✅ Pass | — |
 | Stage Docs In Menu | ✅ Pass | — |
 | Social Links | ✅ Pass | — |
-| README Pages URL | ✅ Pass | — |
+| README Deployment URL | ✅ Pass | — |
 | Secrets Scan | ✅ Pass | — |
 | Root Layout (RULE-005) | ✅ Pass | — |
 

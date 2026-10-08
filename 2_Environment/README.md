@@ -20,19 +20,19 @@
 
 ### 🪟 Windows Client
 1. Open **Chrome**, **Edge**, or **Firefox**
-2. Navigate to: `https://rifaterdemsahin.github.io/barrier-duty/`
+2. Navigate to: `https://barrier-duty-v1.fly.dev/`
 3. For offline use: Press **Ctrl+D** to bookmark, or **Ctrl+Shift+D** to add to the home screen shortcut
 4. For local development: `python -m http.server 8000` then visit `http://localhost:8000`
 
 ### 🍎 Mac Client
 1. Open **Safari**, **Chrome**, or **Firefox**
-2. Navigate to: `https://rifaterdemsahin.github.io/barrier-duty/`
+2. Navigate to: `https://barrier-duty-v1.fly.dev/`
 3. For offline/desktop shortcut: File → Add to Dock (Safari) or bookmark
 4. For local development: `python3 -m http.server 8000` then visit `http://localhost:8000`
 
 ### 📱 Mobile (iOS / Android)
 1. Open your mobile browser
-2. Navigate to: `https://rifaterdemsahin.github.io/barrier-duty/`
+2. Navigate to: `https://barrier-duty-v1.fly.dev/`
 3. **Add to Home Screen** (iOS: Share → Add to Home Screen; Android: menu → Add to Home Screen) for an app-like experience
 
 ### 🤖 AI Clients

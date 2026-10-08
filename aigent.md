@@ -8,7 +8,7 @@
 ## 📌 Project Context
 
 **Project:** Barrier Duty — Volunteer coordination for school crossing safety  
-**Live URL:** https://rifaterdemsahin.github.io/barrier-duty/  
+**Live URL:** https://barrier-duty-v1.fly.dev/  
 **Repo:** https://github.com/rifaterdemsahin/barrier-duty  
 **Owner:** Rifat Erdem Sahin — https://www.linkedin.com/in/rifaterdemsahin/  
 **YouTube:** https://www.youtube.com/@RifatErdemSahin  

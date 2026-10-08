@@ -25,7 +25,7 @@
 
 ### Site Navigation
 - [ ] All 7 SLS sections accessible from the menu on every page
-- [ ] Home page loads at `https://rifaterdemsahin.github.io/barrier-duty/`
+- [ ] Home page loads at `https://barrier-duty-v1.fly.dev/`
 - [ ] Links are bidirectional — every section links back to others
 
 ### Volunteer Rota

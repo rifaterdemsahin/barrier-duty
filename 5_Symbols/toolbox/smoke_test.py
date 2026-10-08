@@ -176,12 +176,12 @@ def run_checks(root, base_url=None):
     else:
         results.append(Result("Social Links", False, "index.html missing"))
 
-    # 8. README contains the GitHub Pages URL
+    # 8. README contains the deployment URL (Fly.io)
     if os.path.exists("README.md"):
-        has_pages = "github.io" in read("README.md")
-        results.append(Result("README Pages URL", has_pages, "" if has_pages else "no github.io URL in README.md"))
+        has_pages = "fly.dev" in read("README.md")
+        results.append(Result("README Deployment URL", has_pages, "" if has_pages else "no fly.dev URL in README.md"))
     else:
-        results.append(Result("README Pages URL", False, "README.md missing"))
+        results.append(Result("README Deployment URL", False, "README.md missing"))
 
     # 9. No committed secret-shaped strings in text files
     leaks = []
