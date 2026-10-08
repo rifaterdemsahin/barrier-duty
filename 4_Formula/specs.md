@@ -308,3 +308,14 @@
   - Refactored `2_Environment/SYSTEM_OVERVIEW.md` to map out the current Fly.io + Azure Blob Storage + Azure Key Vault + WhatsApp Bot (Ubuntu VPS) architecture, deprecating outdated Google Sheets / GitHub Pages diagrams.
 - **Related Files:** `5_Symbols/backend/update_rota_azure.py`, `5_Symbols/backend/requirements.txt`, `2_Environment/setup_azure.md`, `2_Environment/SYSTEM_OVERVIEW.md`
 - **Last Updated:** 2026-10-08
+
+### SPEC-029: [GitHub Pages Redirect to Fly.io]
+- **Status:** Active
+- **Description:** Implemented a seamless client-side redirect for legacy GitHub Pages visitors directly to the new Fly.io domain, and re-enabled the GitHub Actions workflow to publish the redirect scripts to the gh-pages instance.
+- **Key Behaviors:**
+  - `index.html` and `5_Symbols/markdown_renderer.html` detect if the `window.location.hostname` is `rifaterdemsahin.github.io`.
+  - If true, they redirect the user seamlessly to `barrier-duty-v1.fly.dev` while preserving paths, hashes, and search queries.
+  - Restored `.github/workflows/static.yml` to ensure these JavaScript updates actually build and deploy to GitHub Pages so the redirect is active on the old domain.
+  - This avoids infinite loops because the `if` check inherently fails on the Fly.io environment.
+- **Related Files:** `index.html`, `5_Symbols/markdown_renderer.html`, `.github/workflows/static.yml`
+- **Last Updated:** 2026-10-08

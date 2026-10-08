@@ -1100,3 +1100,21 @@ This log documents the thinking phase summaries and reasoning processes of the L
 ### 📤 Outcomes & Decisions
 - A secure backend connection script is now available in `5_Symbols/backend/`.
 - System overview and Azure setup docs accurately reflect the cloud-native infrastructure constraints (secrets injected via Key Vault).
+
+---
+
+## 📅 2026-10-08 — GitHub Pages Redirects to Fly.io
+
+### 📥 Input / Task
+- Make GitHub pages go to Fly.io URL `https://rifaterdemsahin.github.io/barrier-duty` -> `https://barrier-duty-v1.fly.dev`.
+
+### 💭 Thinking & Reasoning Process
+1. **Analyze Constraint**: Since Fly.io builds from the exact same `main` branch as GitHub Pages (if we re-enable Actions), putting a blanket `<meta refresh>` tag in `index.html` would break Fly.io by causing an infinite redirect loop (redirecting to itself continuously).
+2. **Javascript Solution**: I injected a conditional JavaScript check in the `<head>` of both `index.html` and `5_Symbols/markdown_renderer.html`. It checks if `window.location.hostname === "rifaterdemsahin.github.io"`. If true, it uses `window.location.replace()` to redirect to Fly.io while keeping the exact path, search params, and hash (e.g. `#rota` or `?file=...`).
+3. **Workflow Restoration**: Since we previously deleted `.github/workflows/static.yml`, the old GitHub Pages site was frozen. I used `git checkout` to restore the workflow from the git history so that `main` pushes will deploy to GitHub Pages again, bringing the newly injected JavaScript redirect code live to the old URL.
+4. **Documentation**: Logged the logic as `SPEC-029` in `specs.md`.
+
+### 📤 Outcomes & Decisions
+- Restored GitHub Pages deployment purely to serve the redirect layer.
+- Implemented loop-safe Javascript redirection maintaining deep links.
+- Pushed changes to GitHub.
