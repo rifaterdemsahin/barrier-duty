@@ -5,24 +5,19 @@
 ---
 
 ## 🔍 Core Problem / Pain Point
-*Describe the primary problem you are trying to solve. What is broken, inefficient, or missing?*
+Coordinating volunteer crossing guards (barrier duty) manually is time-consuming, prone to human error, and relies heavily on manual messaging and follow-ups.
 
-- **Current State:** 
-- **Ideal State:** 
-- **The Gap:** 
+- **Current State:** Rota management requires manual outreach, schedule tracking in spreadsheets, and constant manual communication to fill shift gaps.
+- **Ideal State:** An automated system tracks volunteer availability, dynamically manages the rota, and uses a WhatsApp bot to auto-coordinate shifts and communicate with volunteers directly.
+- **The Gap:** There is no automated messaging layer to handle back-and-forth scheduling and reminder tasks autonomously.
 
 ## 👥 Target Audience & Stakeholders
-*Who is experiencing this pain point? Who will benefit from the solution?*
-
-- **Primary User:** 
-- **Secondary Stakeholders:** 
+- **Primary User:** School volunteers (parents, community members) managing barrier duties.
+- **Secondary Stakeholders:** School administrators and rota organizers.
 
 ## 💡 Proposed Value Proposition
-*How does solving this problem add value? What are the high-level benefits?*
-
-- 
+By offloading the coordination to an automated WhatsApp Bot, organizers save hours of manual admin work. Volunteers get instant, easy-to-use support through a platform they already use daily (WhatsApp).
 
 ## 🚀 Constraints & Scope Boundaries
-*What is explicitly out of scope or a known constraint for this problem definition?*
-
-- 
+- Must not expose sensitive volunteer data publicly.
+- Relies on WhatsApp Business API constraints and rate limits.
