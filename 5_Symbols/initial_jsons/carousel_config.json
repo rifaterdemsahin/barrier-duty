@@ -1,0 +1,48 @@
+[
+    {
+        "type": "img",
+        "src": "media/sign.jpeg",
+        "label": "🪧 Sign",
+        "alt": "Barrier duty sign at the school crossing",
+        "captionTitle": "🪧 The Barrier Sign",
+        "captionText": "The official sign used at the school crossing during duty hours"
+    },
+    {
+        "type": "img",
+        "src": "media/road.jpeg",
+        "label": "🛣️ Road",
+        "alt": "The road and school crossing location",
+        "captionTitle": "🛣️ The Crossing Location",
+        "captionText": "The road where volunteers manage pedestrian crossing"
+    },
+    {
+        "type": "img",
+        "src": "media/times.jpeg",
+        "label": "🕐 Times",
+        "alt": "Duty times schedule",
+        "captionTitle": "🕐 Duty Times",
+        "captionText": "Schedule showing morning and afternoon duty slots"
+    },
+    {
+        "type": "img",
+        "src": "media/lock.jpeg",
+        "label": "🔒 Lock",
+        "alt": "Lock and barrier equipment",
+        "captionTitle": "🔒 Lock & Equipment",
+        "captionText": "The lock and barrier equipment used by volunteers"
+    },
+    {
+        "type": "video",
+        "src": "media/how_to.mp4",
+        "label": "🎬 How-To",
+        "captionTitle": "🎬 How-To Guide",
+        "captionText": "Step-by-step walkthrough for barrier duty volunteers"
+    },
+    {
+        "type": "video",
+        "src": "media/lock_and_barrier.mp4",
+        "label": "🎬 Barrier",
+        "captionTitle": "🎬 Lock & Barrier Demo",
+        "captionText": "How to use the lock and barrier safely"
+    }
+]

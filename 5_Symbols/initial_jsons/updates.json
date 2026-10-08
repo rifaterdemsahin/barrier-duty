@@ -1,0 +1,14 @@
+[
+    {
+        "date": "Oct 10, 2026",
+        "title": "❗ Urgent: Volunteers Needed",
+        "content": "We need volunteers for Thursday morning (Oct 15). Please contact admin if you can help!",
+        "urgent": true
+    },
+    {
+        "date": "Oct 8, 2026",
+        "title": "📅 Schedule Updated",
+        "content": "The rota for November has been published. Please check your assigned slots.",
+        "urgent": false
+    }
+]

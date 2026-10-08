@@ -1,0 +1,18 @@
+[
+    {
+        "date": "2026-10-12",
+        "day": "Monday",
+        "time": "08:30-09:00",
+        "shift": "morning",
+        "volunteer1": "John Doe",
+        "volunteer2": "Needed"
+    },
+    {
+        "date": "2026-10-12",
+        "day": "Monday",
+        "time": "15:00-15:30",
+        "shift": "afternoon",
+        "volunteer1": "Jane Smith",
+        "volunteer2": "Alice Brown"
+    }
+]
