@@ -245,3 +245,56 @@ function updateNotificationBadge() {
 document.addEventListener('DOMContentLoaded', function() {
     updateNotificationBadge();
 });
+
+// Load Rota Data from Azure Blob Storage (or fallback to local for dev)
+async function loadRotaFromAzure() {
+    const tableBody = document.getElementById('rotaTableBody');
+    if (!tableBody) return;
+
+    // Production Azure Blob URL for the rota data
+    const azureBlobUrl = 'https://dpstoragebarrierduty.blob.core.windows.net/rota/rota.json';
+    const fallbackLocalUrl = '5_Symbols/rota.json';
+
+    try {
+        let response = await fetch(azureBlobUrl);
+        if (!response.ok) {
+            console.log('Azure blob not available, falling back to local file.');
+            response = await fetch(fallbackLocalUrl);
+        }
+        
+        const data = await response.json();
+        
+        tableBody.innerHTML = ''; // Clear loading state
+        
+        data.forEach(entry => {
+            const tr = document.createElement('tr');
+            tr.setAttribute('data-shift', entry.shift);
+            
+            const timeClass = entry.shift === 'morning' ? 'morning-slot' : 'afternoon-slot';
+            
+            const formatVolunteer = (name) => {
+                if (name.toLowerCase() === 'needed') {
+                    return '<span class="status pending">Needed</span>';
+                }
+                return name;
+            };
+
+            tr.innerHTML = `
+                <td>${entry.date}</td>
+                <td>${entry.day}</td>
+                <td class="${timeClass}">${entry.time}</td>
+                <td>${formatVolunteer(entry.volunteer1)}</td>
+                <td>${formatVolunteer(entry.volunteer2)}</td>
+            `;
+            tableBody.appendChild(tr);
+        });
+    } catch (error) {
+        console.error('Error loading rota data:', error);
+        tableBody.innerHTML = '<tr><td colspan="5">Error loading rota. Please try again later.</td></tr>';
+    }
+}
+
+// Ensure the rota is loaded when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    loadRotaFromAzure();
+});

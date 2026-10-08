@@ -245,3 +245,13 @@
   - `script.js` uses `crypto.subtle.digest` to hash the input and compares it against the pre-calculated hash.
 - **Related Files:** `5_Symbols/script.js`
 - **Last Updated:** 2026-10-08
+
+### SPEC-023: [Dynamic Azure Rota Integration]
+- **Status:** Active
+- **Description:** Updated the volunteer rota to render dynamically from an Azure Blob Storage JSON file (`rota.json`), enabling the WhatsApp bot to update the schedule without requiring static site rebuilds.
+- **Key Behaviors:**
+  - Removed hardcoded `<tbody>` elements in `index.html`.
+  - Added `loadRotaFromAzure()` to `script.js` which fetches the rota JSON payload from Azure Storage (falling back to a local `5_Symbols/rota.json` on CORS/local fetch failure).
+  - Updated the WhatsApp Bot Spec to explicitly document its responsibility of acquiring `AZURE_STORAGE_CONNECTION_STRING` from the `dp-kv-deliverypilot` Key Vault to write updates directly to the Azure Blob Container.
+- **Related Files:** `index.html`, `5_Symbols/script.js`, `5_Symbols/rota.json`, `4_Formula/bot_spec_whatsapp_respond.md`
+- **Last Updated:** 2026-10-08
