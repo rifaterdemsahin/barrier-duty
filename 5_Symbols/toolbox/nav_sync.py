@@ -54,6 +54,7 @@ MENU = [
     ("📐 4. Formula", "4_Formula/README.md"),
     ("   ├─ 📋 Specs", "4_Formula/specs.md"),
     ("   ├─ 🤖 Bot Spec Gemini", "4_Formula/bot_spec_gemini.md"),
+    ("   ├─ 🤖 Bot Spec WhatsApp", "4_Formula/bot_spec_whatsapp_respond.md"),
     ("   ├─ 🤔 Decisions", "4_Formula/decisions.md"),
     ("   ├─ 🧠 LLM Thinking Log", "4_Formula/llm_thinking_log.md"),
     ("   ├─ 📋 Implementation Summary", "4_Formula/IMPLEMENTATION_SUMMARY.md"),
