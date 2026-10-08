@@ -358,9 +358,12 @@ async function openEditor(entity) {
     editorSection.style.display = 'block';
     title.textContent = `✏️ Edit ${entity.charAt(0).toUpperCase() + entity.slice(1)}`;
     textArea.value = "Loading...";
+    document.getElementById('tableEditorContainer').innerHTML = "<p>Loading...</p>";
     
     const data = await loadData(entity);
     textArea.value = JSON.stringify(data, null, 4);
+    renderTableEditor(data);
+    toggleEditorMode();
     
     editorSection.scrollIntoView({ behavior: 'smooth' });
 }
@@ -370,18 +373,163 @@ function closeEditor() {
     currentEditorEntity = null;
 }
 
+function toggleEditorMode() {
+    const mode = document.querySelector('input[name="editorMode"]:checked').value;
+    const textArea = document.getElementById('jsonEditor');
+    const tableContainer = document.getElementById('tableEditorContainer');
+    
+    if (mode === 'table') {
+        try {
+            const data = JSON.parse(textArea.value);
+            renderTableEditor(data);
+        } catch (e) {
+            alert("JSON is invalid. Fix errors in JSON view before switching to Table view.");
+            document.querySelector('input[name="editorMode"][value="json"]').checked = true;
+            return;
+        }
+        textArea.style.display = 'none';
+        tableContainer.style.display = 'block';
+    } else {
+        const data = extractDataFromTable();
+        if (data !== null) {
+            textArea.value = JSON.stringify(data, null, 4);
+        }
+        textArea.style.display = 'block';
+        tableContainer.style.display = 'none';
+    }
+}
+
+function renderTableEditor(data) {
+    const container = document.getElementById('tableEditorContainer');
+    container.innerHTML = '';
+    
+    if (!Array.isArray(data) || data.length === 0) {
+        if (!Array.isArray(data)) data = [];
+    }
+    
+    // Get unique keys
+    let keys = new Set();
+    data.forEach(item => Object.keys(item).forEach(k => keys.add(k)));
+    keys = Array.from(keys);
+    if (keys.length === 0) {
+        // defaults if empty
+        if (currentEditorEntity === 'rota') keys = ['date', 'day', 'time', 'shift', 'volunteer1', 'volunteer2'];
+        else keys = ['id'];
+    }
+    
+    const table = document.createElement('table');
+    table.className = 'editor-table';
+    table.style.width = '100%';
+    table.style.borderCollapse = 'collapse';
+    table.style.marginBottom = '1rem';
+    table.dataset.keys = JSON.stringify(keys);
+    
+    const thead = document.createElement('thead');
+    const trHead = document.createElement('tr');
+    keys.forEach(key => {
+        const th = document.createElement('th');
+        th.textContent = key;
+        th.style.border = '1px solid var(--border-color)';
+        th.style.padding = '8px';
+        th.style.background = 'var(--card-bg)';
+        trHead.appendChild(th);
+    });
+    const thActions = document.createElement('th');
+    thActions.textContent = 'Actions';
+    thActions.style.border = '1px solid var(--border-color)';
+    thActions.style.padding = '8px';
+    thActions.style.background = 'var(--card-bg)';
+    trHead.appendChild(thActions);
+    thead.appendChild(trHead);
+    table.appendChild(thead);
+    
+    const tbody = document.createElement('tbody');
+    data.forEach(item => {
+        tbody.appendChild(createTableRow(keys, item));
+    });
+    table.appendChild(tbody);
+    container.appendChild(table);
+    
+    const addBtn = document.createElement('button');
+    addBtn.className = 'resource-btn resource-btn-secondary';
+    addBtn.textContent = '➕ Add Row';
+    addBtn.onclick = () => {
+        const newItem = {};
+        keys.forEach(k => newItem[k] = '');
+        tbody.appendChild(createTableRow(keys, newItem));
+    };
+    container.appendChild(addBtn);
+}
+
+function createTableRow(keys, item) {
+    const tr = document.createElement('tr');
+    keys.forEach(key => {
+        const td = document.createElement('td');
+        td.style.border = '1px solid var(--border-color)';
+        td.style.padding = '4px';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = item[key] !== undefined ? item[key] : '';
+        input.dataset.key = key;
+        input.style.width = '100%';
+        input.style.padding = '8px';
+        input.style.boxSizing = 'border-box';
+        input.style.border = '1px solid var(--border-color)';
+        input.style.borderRadius = '4px';
+        input.style.background = 'var(--bg-color)';
+        input.style.color = 'var(--text-primary)';
+        td.appendChild(input);
+        tr.appendChild(td);
+    });
+    const tdActions = document.createElement('td');
+    tdActions.style.border = '1px solid var(--border-color)';
+    tdActions.style.padding = '4px';
+    tdActions.style.textAlign = 'center';
+    const delBtn = document.createElement('button');
+    delBtn.textContent = '🗑️';
+    delBtn.style.cursor = 'pointer';
+    delBtn.style.background = 'none';
+    delBtn.style.border = 'none';
+    delBtn.style.fontSize = '1.2rem';
+    delBtn.onclick = () => tr.remove();
+    tdActions.appendChild(delBtn);
+    tr.appendChild(tdActions);
+    return tr;
+}
+
+function extractDataFromTable() {
+    const table = document.querySelector('#tableEditorContainer table');
+    if (!table) return null;
+    const keys = JSON.parse(table.dataset.keys);
+    const rows = table.querySelectorAll('tbody tr');
+    const data = [];
+    rows.forEach(row => {
+        const item = {};
+        keys.forEach(key => {
+            const input = row.querySelector(`input[data-key="${key}"]`);
+            if (input) item[key] = input.value;
+        });
+        data.push(item);
+    });
+    return data;
+}
+
 async function saveData() {
     if (!currentEditorEntity) return;
     
-    const textArea = document.getElementById('jsonEditor');
-    const content = textArea.value;
-    
     let parsedData;
-    try {
-        parsedData = JSON.parse(content);
-    } catch (e) {
-        alert("Invalid JSON format. Please fix the errors before saving.\n\n" + e.message);
-        return;
+    const mode = document.querySelector('input[name="editorMode"]:checked').value;
+    
+    if (mode === 'table') {
+        parsedData = extractDataFromTable();
+    } else {
+        const textArea = document.getElementById('jsonEditor');
+        try {
+            parsedData = JSON.parse(textArea.value);
+        } catch (e) {
+            alert("Invalid JSON format. Please fix the errors before saving.\n\n" + e.message);
+            return;
+        }
     }
     
     try {

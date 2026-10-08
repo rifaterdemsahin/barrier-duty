@@ -518,9 +518,19 @@
 
                     <!-- Rota Editor Section -->
                     <div id="adminDataEditor" style="display: none; margin-top: 2rem; background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
-                        <h3 id="editorTitle">✏️ Manual Data Editor</h3>
-                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-secondary);">Edit the JSON array below to update the rota. When finished, you can download the JSON file to deploy it, or copy it for the bot to process.</p>
-                        <textarea id="jsonEditor" style="width: 100%; height: 300px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); padding: 1rem; border-radius: 6px; font-family: monospace; margin-bottom: 1rem;"></textarea>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3 id="editorTitle" style="margin: 0;">✏️ Manual Data Editor</h3>
+                            <div>
+                                <label style="margin-right: 10px; font-size: 0.9rem;"><input type="radio" name="editorMode" value="table" checked onchange="toggleEditorMode()"> Table View</label>
+                                <label style="font-size: 0.9rem;"><input type="radio" name="editorMode" value="json" onchange="toggleEditorMode()"> JSON View</label>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-secondary);">Edit the data to update the content. Switch to JSON view for advanced formatting.</p>
+                        
+                        <div id="tableEditorContainer" style="overflow-x: auto; margin-bottom: 1rem;"></div>
+                        
+                        <textarea id="jsonEditor" style="display: none; width: 100%; height: 300px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); padding: 1rem; border-radius: 6px; font-family: monospace; margin-bottom: 1rem;"></textarea>
+                        
                         <div style="display: flex; gap: 10px;">
                             <button class="resource-btn" onclick="saveData()">💾 Save Changes</button>
                             <button class="resource-btn resource-btn-secondary" onclick="closeEditor()">Cancel</button>
