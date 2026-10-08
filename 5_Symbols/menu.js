@@ -27,7 +27,7 @@
     '</nav>';
 
   // Insert as first child of body
-  document.body.insertAdjacentHTML('afterbegin', menuHTML);
+  console.log("SLS menu hidden for customers"); // document.body.insertAdjacentHTML('afterbegin', menuHTML);
 
   // openMd: navigate to markdown_renderer.html with the file as a query param
   window.openMd = function (e, filePath) {

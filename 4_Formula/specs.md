@@ -226,3 +226,13 @@
   - Links in `index.html`, `sitemap.xml`, and `README.md` updated to point to `5_Symbols/` for moved assets.
 - **Related Files:** `index.html`, `5_Symbols/toolbox/nav_sync.py`, `4_Formula/bot_spec_gemini.md`, `README.md`, `sitemap.xml`
 - **Last Updated:** 2026-10-08
+
+### SPEC-021: [Hide Framework Menus for Customers]
+- **Status:** Active
+- **Description:** Hid the delivery pilot debug menu (SLS stages) and the right bottom debug toggle button to only show the customer-facing project menu.
+- **Key Behaviors:**
+  - `5_Symbols/menu.js` stops injecting the SLS stage navigation top bar into pages.
+  - `5_Symbols/markdown_renderer.html` forces the `.debug-toggle-btn` to `display: none !important`.
+  - Customers only interact with the native project navigation defined in `index.html`.
+- **Related Files:** `5_Symbols/menu.js`, `5_Symbols/markdown_renderer.html`
+- **Last Updated:** 2026-10-08
