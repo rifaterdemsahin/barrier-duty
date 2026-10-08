@@ -46,8 +46,8 @@ async function checkPassword(event) {
     
     // Check against the SHA-256 hash of the vault-stored password
     if (hashHex === 'cc49091e6a3fa59a5d4f8f9d4a420ff47d7bfaabae08f666fe5d698712b1d326') {
-        // Store authentication in session
-        sessionStorage.setItem('adminAuthenticated', 'true');
+        // Store authentication in local storage to keep logged in
+        localStorage.setItem('adminAuthenticated', 'true');
         showAdminContent();
         return false;
     } else {
@@ -63,7 +63,7 @@ function showAdminContent() {
 }
 
 function logout() {
-    sessionStorage.removeItem('adminAuthenticated');
+    localStorage.removeItem('adminAuthenticated');
     document.getElementById('adminLogin').style.display = 'block';
     document.getElementById('adminContent').style.display = 'none';
     document.getElementById('adminPassword').value = '';
@@ -71,7 +71,7 @@ function logout() {
 }
 
 function checkAccess(sectionId) {
-    const isAuthenticated = sessionStorage.getItem('adminAuthenticated') === 'true';
+    const isAuthenticated = localStorage.getItem('adminAuthenticated') === 'true';
     
     if (sectionId === 'admin') {
         showSection('admin');
@@ -109,7 +109,7 @@ function filterRota(type, event) {
 // Export Functions (Demo - would need backend implementation)
 document.addEventListener('DOMContentLoaded', function() {
     // Check authentication on page load
-    if (sessionStorage.getItem('adminAuthenticated') === 'true') {
+    if (localStorage.getItem('adminAuthenticated') === 'true') {
         const adminSection = document.getElementById('admin');
         if (adminSection && adminSection.classList.contains('active')) {
             showAdminContent();

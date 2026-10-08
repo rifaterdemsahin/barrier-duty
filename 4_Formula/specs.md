@@ -319,3 +319,14 @@
   - This avoids infinite loops because the `if` check inherently fails on the Fly.io environment.
 - **Related Files:** `index.html`, `5_Symbols/markdown_renderer.html`, `.github/workflows/static.yml`
 - **Last Updated:** 2026-10-08
+
+### SPEC-030: [Persistent Auth and Remote Configuration]
+- **Status:** Active
+- **Description:** Implemented persistent administrator authentication across browser sessions and refactored UI configuration data (navigation and carousel) to be fetched dynamically from Azure Blob Storage.
+- **Key Behaviors:**
+  - `5_Symbols/script.js` uses `localStorage` instead of `sessionStorage` for the `adminAuthenticated` flag, ensuring the admin remains logged in until explicitly clicking "Logout".
+  - Extracted hardcoded `thumbDefs` from `3_Simulation/carousel.html` into a new `3_Simulation/carousel_config.json`.
+  - Refactored `index.html`, `5_Symbols/menu.js`, `5_Symbols/markdown_renderer.html`, and `3_Simulation/carousel.html` to fetch their JSON configs directly from `https://dpstoragebarrierduty.blob.core.windows.net/config/` with fallbacks to local files.
+  - Created `5_Symbols/backend/setup_config_container.sh` to provision the Azure `config` container and upload the JSON files automatically.
+- **Related Files:** `5_Symbols/script.js`, `index.html`, `5_Symbols/menu.js`, `5_Symbols/markdown_renderer.html`, `3_Simulation/carousel.html`, `3_Simulation/carousel_config.json`, `5_Symbols/backend/setup_config_container.sh`
+- **Last Updated:** 2026-10-08

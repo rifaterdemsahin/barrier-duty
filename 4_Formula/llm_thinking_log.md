@@ -1118,3 +1118,13 @@ This log documents the thinking phase summaries and reasoning processes of the L
 - Restored GitHub Pages deployment purely to serve the redirect layer.
 - Implemented loop-safe Javascript redirection maintaining deep links.
 - Pushed changes to GitHub.
+
+## 2026-10-08: Persistent Auth and Remote Configuration (SPEC-030)
+**Agent:** Formula Agent / Symbols Agent (Coordinator: Real Agent)
+**Context:** User requested that admin authentication persists until explicitly logged out, and that project configuration files (navigation, carousel) are loaded dynamically from an Azure Blob Storage container instead of relying entirely on hardcoded/locally injected data.
+**Decisions Made:**
+- **Persistent Auth:** Switched `sessionStorage` to `localStorage` in `5_Symbols/script.js` to ensure the `adminAuthenticated` flag survives browser restarts.
+- **Config Storage:** Defined a new Azure Blob container named `config` to house `navigation_config.json` and `carousel_config.json`.
+- **Dynamic Config Loading:** Refactored frontend pages (`index.html`, `5_Symbols/markdown_renderer.html`, `3_Simulation/carousel.html`, `5_Symbols/menu.js`) to asynchronously fetch JSON configs from the Azure Blob URL first. Implemented a fallback mechanism where it falls back to the locally hosted JSON if Azure fetch fails or is unavailable.
+- **Automation:** Created `5_Symbols/backend/setup_config_container.sh` with Azure CLI commands for creating the container and uploading the JSON blobs, establishing a reproducible configuration pipeline.
+**Validation:** A local build passes visual inspection. Smoke tests will verify if UI components correctly fallback or load data. Auth logic securely leverages `localStorage`.

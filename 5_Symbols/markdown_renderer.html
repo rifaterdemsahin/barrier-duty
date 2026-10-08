@@ -529,17 +529,33 @@
       const debugLinksList = document.getElementById("debugLinksList");
       const editGitHubBtn = document.getElementById("editGitHubBtn");
 
-      // Load config dynamically (site root is one level up from 5_Symbols/)
-      fetch("../navigation_config.json")
-        .then(res => res.json())
+      // Load config dynamically from Azure Blob Storage with fallback to local file
+      const azureBlobUrl = 'https://dpstoragebarrierduty.blob.core.windows.net/config/navigation_config.json';
+      const fallbackUrl = '../navigation_config.json';
+      
+      fetch(azureBlobUrl)
+        .then(res => {
+          if (!res.ok) throw new Error("Azure blob not available");
+          return res.json();
+        })
         .then(data => {
-          debugLog("Dynamic navigation config loaded successfully.", data);
+          debugLog("Dynamic navigation config loaded successfully from Azure.", data);
           navigationData = data;
           initDebugMenu();
         })
         .catch(err => {
-          console.warn("Failed to load navigation config, using local fallback.", err);
-          initDebugMenu();
+          debugLog("Failed to load from Azure, trying local fallback.", err);
+          fetch(fallbackUrl)
+            .then(res => res.json())
+            .then(data => {
+              debugLog("Dynamic navigation config loaded successfully from local file.", data);
+              navigationData = data;
+              initDebugMenu();
+            })
+            .catch(fallbackErr => {
+              console.warn("Failed to load navigation config, using local fallback data.", fallbackErr);
+              initDebugMenu();
+            });
         });
 
       function initDebugMenu() {

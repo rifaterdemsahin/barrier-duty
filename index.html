@@ -113,6 +113,25 @@
         { label: "⚡ kilocode.md", url: "kilocode.md" }
       ]
     };
+
+    // Load navigation config from Azure Blob Storage with fallback to local file
+    async function loadNavigationConfig() {
+      const azureBlobUrl = 'https://dpstoragebarrierduty.blob.core.windows.net/config/navigation_config.json';
+      const fallbackUrl = 'navigation_config.json';
+      try {
+        let response = await fetch(azureBlobUrl);
+        if (!response.ok) {
+          response = await fetch(fallbackUrl);
+        }
+        if (response.ok) {
+          navigationData = await response.json();
+          console.log("Navigation config successfully loaded from external source.");
+        }
+      } catch (error) {
+        console.warn("Using fallback navigation config due to error:", error);
+      }
+    }
+    loadNavigationConfig();
   </script>
 
     <header>
