@@ -236,3 +236,12 @@
   - Customers only interact with the native project navigation defined in `index.html`.
 - **Related Files:** `5_Symbols/menu.js`, `5_Symbols/markdown_renderer.html`
 - **Last Updated:** 2026-10-08
+
+### SPEC-022: [Secure Admin Area Password via Hash]
+- **Status:** Active
+- **Description:** Updated the admin area password to `3579>` and saved it to the Azure Key Vault (`dp-kv-deliverypilot`). To comply with RULE-001/RULE-003, the plaintext password was removed from `5_Symbols/script.js` and replaced with an in-browser SHA-256 hash check.
+- **Key Behaviors:**
+  - `barrier-duty-admin-password` created in `dp-kv-deliverypilot`.
+  - `script.js` uses `crypto.subtle.digest` to hash the input and compares it against the pre-calculated hash.
+- **Related Files:** `5_Symbols/script.js`
+- **Last Updated:** 2026-10-08

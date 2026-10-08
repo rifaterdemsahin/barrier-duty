@@ -32,13 +32,20 @@ function showSection(sectionId) {
 // ⚠️ SECURITY WARNING: This is a client-side demo implementation only.
 // For production use, you MUST implement proper server-side authentication.
 // Never store passwords in client-side JavaScript.
-const ADMIN_PASSWORD = 'admin123'; // Demo password - NOT FOR PRODUCTION USE
+// Password is verified via hash to prevent plaintext secrets in source code
 
-function checkPassword(event) {
+async function checkPassword(event) {
     event.preventDefault();
     const password = document.getElementById('adminPassword').value;
     
-    if (password === ADMIN_PASSWORD) {
+    // Securely hash the input password to avoid plaintext secrets in the repo
+    const msgUint8 = new TextEncoder().encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    
+    // Check against the SHA-256 hash of the vault-stored password
+    if (hashHex === 'd2ee82922533acc7f8c8369f31655d2d28558b251cbab3eec767a4e3efa5c5dc') {
         // Store authentication in session
         sessionStorage.setItem('adminAuthenticated', 'true');
         showAdminContent();
