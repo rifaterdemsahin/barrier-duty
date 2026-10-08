@@ -1062,3 +1062,21 @@ This log documents the thinking phase summaries and reasoning processes of the L
 ### 📤 Outcomes & Decisions
 - README is now accurate and reflects the current Fly.io cloud-native state.
 - The WhatsApp Bot spec acts as a robust standard operating procedure detailing exact mechanisms for how AI integrates safely with human supervisors.
+
+---
+
+## 📅 2026-10-08 — Removing Template Footer Links
+
+### 📥 Input / Task
+- Remove the boilerplate footer links from `index.html` (GitHub Repo, LinkedIn, YouTube, Media Gallery, MD Viewer).
+
+### 💭 Thinking & Reasoning Process
+1. **Locate Target**: The template inherently injects project-author links (GitHub, LinkedIn, YouTube) and framework utility links (MD Viewer, Carousel) into the bottom of `index.html`.
+2. **Execute Cleanup**: Since the site is now in production for a real customer base (Barrier Duty volunteers), these debug/framework-level links add visual noise and break immersion. I removed the entire `div` wrapper containing these links.
+3. **Documentation**: Added `SPEC-027` to reflect that the live site drops these framework elements.
+4. **Deploy**: Staged, committed, and pushed the changes to Fly.io via GitHub branch trigger.
+
+### 📤 Outcomes & Decisions
+- Cleaned up the footer in `index.html`.
+- Updated `4_Formula/specs.md` and `4_Formula/llm_thinking_log.md`.
+- Code changes committed and pushed.

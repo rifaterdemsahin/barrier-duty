@@ -289,3 +289,12 @@
   - Defined the Training & Adaptation process for the bot to learn from ambiguous volunteer messages.
 - **Related Files:** `README.md`, `4_Formula/bot_spec_whatsapp_respond.md`
 - **Last Updated:** 2026-10-08
+
+### SPEC-027: [Remove Framework Footer Links]
+- **Status:** Active
+- **Description:** Removed framework-specific template footer links from the customer-facing `index.html`.
+- **Key Behaviors:**
+  - Removed links to GitHub Repo, LinkedIn, YouTube, Media Gallery, and MD Viewer from the footer.
+  - Ensures a clean, branded UI for the live site.
+- **Related Files:** `index.html`
+- **Last Updated:** 2026-10-08
